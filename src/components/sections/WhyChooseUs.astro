@@ -1,12 +1,29 @@
 ---
-// Why Choose Us component for electrician website
 import Button from '../ui/Button.astro';
+
+const cards = [
+  {
+    icon: "M13 10V3L4 14h7v7l9-11h-7z",
+    title: "Reliable Solutions",
+    description: "Trusted electrical services backed by certified professionals and proven track record of excellence."
+  },
+  {
+    icon: "M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z",
+    title: "Dedicated to Quality",
+    description: "Every project meets highest standards with meticulous attention to detail and complete safety."
+  },
+  {
+    icon: "M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
+    title: "Partnering for Success",
+    description: "Building lasting relationships through exceptional service and reliable support for your specific needs."
+  }
+];
 ---
 
 <section class="bg-white py-20 px-4 sm:px-6 lg:px-8">
   <div class="max-w-7xl mx-auto">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mb-10">
-      <!-- Left Side: Image -->
+      <!-- Left Side -->
       <div class="relative">
         <img 
           src="https://images.unsplash.com/photo-1615774925655-a0e97fc85c14?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
@@ -15,7 +32,7 @@ import Button from '../ui/Button.astro';
         />
       </div>
 
-      <!-- Right Side: Content -->
+      <!-- Right Side -->
       <div>
         <p class="text-[#F4C430] font-semibold mb-4" style="font-size: 18px;">Why Choose Us</p>
         
@@ -43,7 +60,7 @@ import Button from '../ui/Button.astro';
           </div>
         </div>
 
-        <!-- Buttons -->
+        <!-- Contact Us Button -->
         <div class="flex flex-wrap items-center gap-8">
           <Button variant="accent" size="md" href="/contact" icon={false}>
             Contact Us
@@ -54,50 +71,21 @@ import Button from '../ui/Button.astro';
 
     <!-- Bottom Cards -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <!-- Card 1: Reliable Electrical Solutions -->
+      {cards.map((card) => (
       <div class="bg-[#FFF9E6] rounded-lg p-6 flex gap-4">
         <div class="flex-shrink-0">
           <svg class="w-12 h-12 text-[#F4C430]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d={card.icon}/>
           </svg>
         </div>
         <div>
-          <h3 class="text-xl font-bold text-black mb-2">Reliable Solutions</h3>
+          <h3 class="text-xl font-bold text-black mb-2">{card.title}</h3>
           <p class="text-gray-700" style="font-size: 16px;">
-            Trusted electrical services backed by certified professionals and proven track record of excellence.
+            {card.description}
           </p>
         </div>
       </div>
-
-      <!-- Card 2: Dedicated to Quality -->
-      <div class="bg-[#FFF9E6] rounded-lg p-6 flex gap-4">
-        <div class="flex-shrink-0">
-          <svg class="w-12 h-12 text-[#F4C430]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
-          </svg>
-        </div>
-        <div>
-          <h3 class="text-xl font-bold text-black mb-2">Dedicated to Quality</h3>
-          <p class="text-gray-700" style="font-size: 16px;">
-            Every project meets highest standards with meticulous attention to detail and complete safety.
-          </p>
-        </div>
-      </div>
-
-      <!-- Card 3: Partnering for Your Success -->
-      <div class="bg-[#FFF9E6] rounded-lg p-6 flex gap-4">
-        <div class="flex-shrink-0">
-          <svg class="w-12 h-12 text-[#F4C430]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-          </svg>
-        </div>
-        <div>
-          <h3 class="text-xl font-bold text-black mb-2">Partnering for Success</h3>
-          <p class="text-gray-700" style="font-size: 16px;">
-            Building lasting relationships through exceptional service and reliable support for your specific needs.
-          </p>
-        </div>
-      </div>
+      ))}
     </div>
   </div>
 </section>
