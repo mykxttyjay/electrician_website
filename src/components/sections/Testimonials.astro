@@ -8,6 +8,9 @@
     <div class="mb-12 text-center">
       <p class="text-[#F4C430] font-semibold mb-2" style="font-size: 18px;">Testimonials</p>
       <h2 class="heading-h2 font-bold text-black mb-4">What Our Clients Say</h2>
+      <p class="text-gray-700 leading-relaxed max-w-3xl mx-auto" style="font-size: 22px;">
+        Hear from our satisfied customers about their experience with our professional electrical services and dedicated team.
+      </p>
     </div>
 
     <!-- Carousel Container -->
@@ -116,24 +119,6 @@
         </div>
       </div>
 
-      <!-- Navigation Arrows -->
-      <button 
-        class="carousel-prev absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-[#F4C430] text-black w-12 h-12 rounded-full flex items-center justify-center hover:bg-[#e5b52a] transition-colors z-10"
-        aria-label="Previous testimonial"
-      >
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
-        </svg>
-      </button>
-      <button 
-        class="carousel-next absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-[#F4C430] text-black w-12 h-12 rounded-full flex items-center justify-center hover:bg-[#e5b52a] transition-colors z-10"
-        aria-label="Next testimonial"
-      >
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
-        </svg>
-      </button>
-
       <!-- Dots Navigation -->
       <div class="flex justify-center gap-2 mt-8">
         <button class="carousel-dot w-3 h-3 rounded-full bg-[#F4C430] transition-all" data-index="0"></button>
@@ -150,8 +135,6 @@
   const track = document.querySelector('.testimonial-track') as HTMLElement;
   const slides = document.querySelectorAll('.testimonial-slide');
   const dots = document.querySelectorAll('.carousel-dot');
-  const prevBtn = document.querySelector('.carousel-prev');
-  const nextBtn = document.querySelector('.carousel-next');
   
   // Determine slides per view based on screen size
   function getSlidesPerView() {
@@ -191,17 +174,7 @@
     updateCarousel();
   }
   
-  function prevSlide() {
-    const slidesPerView = getSlidesPerView();
-    const maxIndex = totalSlides - slidesPerView;
-    currentIndex = currentIndex <= 0 ? maxIndex : currentIndex - 1;
-    updateCarousel();
-  }
-  
-  // Event listeners
-  nextBtn?.addEventListener('click', nextSlide);
-  prevBtn?.addEventListener('click', prevSlide);
-  
+  // Dot navigation
   dots.forEach((dot, index) => {
     dot.addEventListener('click', () => {
       currentIndex = index;

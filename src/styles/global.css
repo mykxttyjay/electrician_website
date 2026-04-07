@@ -7,18 +7,20 @@
 }
 
 :root {
-  /* Color Palette */
   --color-text: #000000;
   --color-background: #ffffff;
   --color-primary: #000000;
   --color-secondary: #ffffff;
   --color-accent: #F4C430;
+  --color-accent-hover: #e5b52a;
+  --color-gray-50: #f9fafb;
+  --color-gray-200: #e5e7eb;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
   
-  /* Font Family */
   --font-poppins: 'Poppins', sans-serif;
 }
 
-/* Custom Typography - Optimized for 50+ Age Readers */
 .text-sm {
   font-size: 0.707rem;
 }
@@ -47,8 +49,6 @@
   font-size: 5.652rem;
 }
 
-/* Responsive Typography Utilities */
-/* H1 - Always 5xl with responsive scaling */
 .heading-h1 {
   font-size: 2.827rem;
   /* 3xl on mobile */
@@ -196,6 +196,31 @@
 
 .hover\:text-accent:hover {
   color: var(--color-accent);
+}
+
+.hover\:text-accent-hover:hover {
+  color: var(--color-accent-hover);
+}
+
+.hover\:bg-gray-50:hover {
+  background-color: var(--color-gray-50);
+}
+
+/* Additional color utilities */
+.text-gray-600 {
+  color: var(--color-gray-600);
+}
+
+.text-gray-700 {
+  color: var(--color-gray-700);
+}
+
+.border-gray-200 {
+  border-color: var(--color-gray-200);
+}
+
+.bg-gray-50 {
+  background-color: var(--color-gray-50);
 }
 
 /* Opacity Variants */

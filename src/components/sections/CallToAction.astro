@@ -1,0 +1,33 @@
+---
+// Call to Action component for electrician website
+import Button from '../ui/Button.astro';
+---
+
+<section class="bg-[#1a1a1a] py-20 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center">
+      <h2 class="heading-h2 font-bold text-white mb-6" style="line-height: 1.2;">
+        Ready to Power Your Project?
+      </h2>
+      <p class="text-white text-xl mb-8 max-w-6xl mx-auto">
+        Get expert electrical solutions tailored to your needs - contact our team for reliable service.
+      </p>
+      <div class="flex flex-wrap justify-center items-center gap-6">
+        <Button variant="accent" size="lg" href="/contact" icon={false}>
+          Contact Us Today
+        </Button>
+        <a href="tel:+12345678912" class="flex items-center gap-3 group">
+          <div class="w-14 h-14 bg-[#F4C430] rounded-full flex items-center justify-center group-hover:bg-[#e5b52a] transition-colors">
+            <svg class="w-7 h-7 text-black" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+            </svg>
+          </div>
+          <div class="text-left">
+            <p class="text-white font-semibold text-sm">Call Us Now</p>
+            <p class="text-white font-bold text-xl">+(234) 567 8912</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
