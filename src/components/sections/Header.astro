@@ -4,7 +4,7 @@ import Button from '../ui/Button.astro';
 
 <!-- Top Bar with Contact Info -->
 <div class="bg-white border-b border-gray-200 shadow-sm">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-1 py-4">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-1 py-3">
     <div class="flex justify-between items-center">
       <!-- Logo -->
       <a href="/" class="flex items-center gap-3">
@@ -50,35 +50,11 @@ import Button from '../ui/Button.astro';
 <!-- Navigation Bar - Sticky -->
 <nav class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-1">
-      <div class="flex justify-between items-center py-4">
+      <div class="flex justify-between items-center py-2">
         <ul class="flex gap-8 list-none m-0 p-0 text-base">
           <li><a href="/" class="text-black hover:text-accent transition-colors font-semibold">HOME</a></li>
           
-          <li class="relative group">
-            <a href="/about" class="text-black hover:text-accent transition-colors font-semibold flex items-center gap-1">
-              ABOUT US
-              <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-              </svg>
-            </a>
-            <ul class="absolute top-full left-0 bg-white border border-gray-200 mt-2 py-2 min-w-[200px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 rounded shadow-lg">
-              <li>
-                <a href="/about/careers" class="block px-4 py-2 text-black hover:text-accent hover:bg-gray-50 transition-colors font-semibold">
-                  Careers
-                </a>
-              </li>
-              <li>
-                <a href="/about/reviews" class="block px-4 py-2 text-black hover:text-accent hover:bg-gray-50 transition-colors font-semibold">
-                  Testimonials
-                </a>
-              </li>
-              <li>
-                <a href="/about/team" class="block px-4 py-2 text-black hover:text-accent hover:bg-gray-50 transition-colors font-semibold">
-                  Meet the Team
-                </a>
-              </li>
-            </ul>
-          </li>
+          <li><a href="/about" class="text-black hover:text-accent transition-colors font-semibold">ABOUT</a></li>
           
           <li class="relative group">
             <a href="/services" class="text-black hover:text-accent transition-colors font-semibold flex items-center gap-1">
@@ -87,32 +63,119 @@ import Button from '../ui/Button.astro';
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
               </svg>
             </a>
-            <ul class="absolute top-full left-0 bg-white border border-gray-200 mt-2 py-2 min-w-[220px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 rounded shadow-lg">
-              <li>
-                <a href="/services/commercial" class="block px-4 py-2 text-black hover:text-accent hover:bg-gray-50 transition-colors font-semibold">
-                  Commercial Electrical Services
-                </a>
-              </li>
-              <li>
-                <a href="/services/residential" class="block px-4 py-2 text-black hover:text-accent hover:bg-gray-50 transition-colors font-semibold">
-                  Residential Electrical Services
-                </a>
-              </li>
-              <li>
-                <a href="/services/specialty" class="block px-4 py-2 text-black hover:text-accent hover:bg-gray-50 transition-colors font-semibold">
-                  Specialty Services
-                </a>
-              </li>
-              <li>
-                <a href="/services/emergency" class="block px-4 py-2 text-black hover:text-accent hover:bg-gray-50 transition-colors font-semibold">
-                  Emergency
-                </a>
-              </li>
-            </ul>
+            <div class="absolute top-full left-0 bg-white border border-gray-200 mt-2 py-4 px-6 min-w-[900px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 rounded shadow-lg grid grid-cols-4 gap-8">
+              <!-- Commercial Electrical Services -->
+              <div>
+                <h3 class="text-black font-bold mb-3 pb-2 border-b-2 border-[#F4C430] whitespace-nowrap inline-block">Commercial Electrical</h3>
+                <ul class="space-y-2 mt-3">
+                  <li>
+                    <a href="/services/commercial/ground-up" class="block text-gray-700 hover:text-accent transition-colors" style="font-size: 14px;">
+                      Ground-up Electrical Construction
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/services/commercial/power-systems" class="block text-gray-700 hover:text-accent transition-colors" style="font-size: 14px;">
+                      Emergency & Standby Power Systems
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/services/commercial/hvac" class="block text-gray-700 hover:text-accent transition-colors" style="font-size: 14px;">
+                      Commercial HVAC Electrical
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/services/commercial/panels" class="block text-gray-700 hover:text-accent transition-colors" style="font-size: 14px;">
+                      Commercial Electrical Panels
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Residential Electrical Services -->
+              <div>
+                <h3 class="text-black font-bold mb-3 pb-2 border-b-2 border-[#F4C430] whitespace-nowrap inline-block">Residential Electrical</h3>
+                <ul class="space-y-2 mt-3">
+                  <li>
+                    <a href="/services/residential/ev-charging" class="block text-gray-700 hover:text-accent transition-colors" style="font-size: 14px;">
+                      Car Charging Stations/ EV
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/services/residential/ceiling-fan" class="block text-gray-700 hover:text-accent transition-colors" style="font-size: 14px;">
+                      Ceiling Fan
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/services/residential/gfci" class="block text-gray-700 hover:text-accent transition-colors" style="font-size: 14px;">
+                      GFCI Outlets
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/services/residential/generators" class="block text-gray-700 hover:text-accent transition-colors" style="font-size: 14px;">
+                      Backup Generators
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Specialty Services -->
+              <div>
+                <h3 class="text-black font-bold mb-3 pb-2 border-b-2 border-[#F4C430] whitespace-nowrap inline-block">Specialty Services</h3>
+                <ul class="space-y-2 mt-3">
+                  <li>
+                    <a href="/services/specialty/holiday-lighting" class="block text-gray-700 hover:text-accent transition-colors" style="font-size: 14px;">
+                      Holiday Lighting Installation
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/services/specialty/landscape" class="block text-gray-700 hover:text-accent transition-colors" style="font-size: 14px;">
+                      Landscape Lighting
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/services/specialty/pool-spa" class="block text-gray-700 hover:text-accent transition-colors" style="font-size: 14px;">
+                      Pool & Spa Electrical
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/services/specialty/property" class="block text-gray-700 hover:text-accent transition-colors" style="font-size: 14px;">
+                      Property Management
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Emergency -->
+              <div>
+                <h3 class="text-black font-bold mb-3 pb-2 border-b-2 border-[#F4C430] whitespace-nowrap inline-block">Emergency</h3>
+                <ul class="space-y-2 mt-3">
+                  <li>
+                    <a href="/services/emergency/24-hour" class="block text-gray-700 hover:text-accent transition-colors" style="font-size: 14px;">
+                      24-hour Emergency Service
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/services/emergency/hvac" class="block text-gray-700 hover:text-accent transition-colors" style="font-size: 14px;">
+                      HVAC
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/services/emergency/heating" class="block text-gray-700 hover:text-accent transition-colors" style="font-size: 14px;">
+                      Heating
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/services/emergency/water-heater" class="block text-gray-700 hover:text-accent transition-colors" style="font-size: 14px;">
+                      Water Heater
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </li>
           
           <li class="relative group">
-            <a href="/service-area" class="text-black hover:text-accent transition-colors font-semibold flex items-center gap-1">
+            <a href="/location" class="text-black hover:text-accent transition-colors font-semibold flex items-center gap-1">
               SERVICE AREA
               <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
