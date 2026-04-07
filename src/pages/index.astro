@@ -1,5 +1,9 @@
 ---
-import Welcome from '../components/Welcome.astro';
+import Header from '../components/Header.astro';
+import Home from '../components/Home.astro';
+import Features from '../components/Features.astro';
+import About from '../components/About.astro';
+import Services from '../components/Services.astro';
 import Layout from '../layouts/Layout.astro';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
@@ -7,5 +11,15 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-	<Welcome />
+	<Header />
+	<Home
+		backgroundImage="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1920&h=1080&fit=crop&q=80"
+		title="POWERING YOUR WORLD"
+		subtitle="Brightening lives with reliable electrical solutions, one connection at a time"
+		ctaText="EXPLORE NOW"
+		ctaLink="/contact"
+	/>
+	<Features />
+	<About />
+	<Services />
 </Layout>

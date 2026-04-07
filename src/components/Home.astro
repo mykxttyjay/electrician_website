@@ -1,0 +1,122 @@
+---
+import Button from './Button.astro';
+
+interface Props {
+    backgroundImage?: string;
+    pretitle?: string;
+    title: string;
+    subtitle?: string;
+    ctaText?: string;
+    ctaLink?: string;
+}
+
+const {
+    backgroundImage = "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1920&h=1080&fit=crop&q=80",
+    pretitle = "",
+    title = "POWERING YOUR WORLD",
+    subtitle = "Brightening lives with reliable electrical solutions, one connection at a time",
+    ctaText = "EXPLORE NOW",
+    ctaLink = "/contact",
+} = Astro.props;
+---
+
+<section
+    class="relative w-full h-screen flex items-center justify-center overflow-hidden"
+    style={`background-image: url('${backgroundImage}'); background-size: cover; background-position: center;`}
+>
+    <!-- Dark Overlay -->
+    <div class="absolute inset-0 bg-black/50"></div>
+
+    <!-- Content -->
+    <div class="relative z-10 w-full px-6 text-center">
+        <!-- Pretitle -->
+        {
+            pretitle && (
+                <p class="text-subtitle font-heading font-bold uppercase tracking-[0.3em] text-white mb-6 opacity-90">
+                    {pretitle}
+                </p>
+            )
+        }
+
+        <!-- Main Title -->
+        <h1
+            class="heading-h1 font-heading font-bold text-white mb-1 tracking-wider"
+        >
+            POWERING YOUR <span id="rotating-word" class="text-[#F4C430]"></span>
+        </h1>
+
+        <!-- Subtitle -->
+        {
+            subtitle && (
+                <p class="text-subtitle font-body text-white mb-10 font-light tracking-wide">
+                    {subtitle}
+                </p>
+            )
+        }
+
+        <!-- CTA Button -->
+        {
+            ctaText && ctaLink && (
+                <Button href={ctaLink} variant="accent" size="md">
+                    {ctaText}
+                </Button>
+            )
+        }
+    </div>
+</section>
+
+<style>
+    .animate-ping {
+        animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+    }
+
+    #rotating-word {
+        display: inline-block;
+        min-width: 250px;
+        text-align: left;
+        transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    #rotating-word.fade-out {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.8);
+    }
+
+    #rotating-word.fade-in {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+</style>
+
+<script>
+    const words = ['HOME', 'BUSINESS', 'FUTURE', 'WORLD'];
+    let currentIndex = 0;
+    const element = document.getElementById('rotating-word');
+    
+    function rotateWord() {
+        if (element) {
+            // Fade out with animation
+            element.classList.remove('fade-in');
+            element.classList.add('fade-out');
+            
+            setTimeout(() => {
+                // Change word
+                currentIndex = (currentIndex + 1) % words.length;
+                element.textContent = words[currentIndex];
+                
+                // Fade in with animation
+                element.classList.remove('fade-out');
+                element.classList.add('fade-in');
+            }, 500);
+        }
+    }
+    
+    // Set initial word
+    if (element) {
+        element.textContent = words[0];
+        element.classList.add('fade-in');
+    }
+    
+    // Rotate every 3 seconds
+    setInterval(rotateWord, 3000);
+</script>

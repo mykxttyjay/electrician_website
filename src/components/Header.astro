@@ -1,0 +1,37 @@
+---
+// Header component for electrician website
+---
+
+<header class="bg-black py-3 sticky top-0 z-50" style="font-family: var(--font-poppins);">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-1">
+    <div class="flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <a href="/" class="flex items-center gap-3">
+          <img src="/logo.svg" alt="Electrixa Logo" class="w-12 h-12 object-contain" style="background: transparent;" />
+          <span class="font-bold text-[#F4C430]" style="font-size: 25px;">ELECTRIXA</span>
+        </a>
+      </div>
+      
+      <ul class="flex gap-12 list-none m-0 p-0 text-base">
+        <li><a href="/" class="text-white hover:text-[#F4C430] transition-colors font-semibold">Home</a></li>
+        <li><a href="/about" class="text-white hover:text-[#F4C430] transition-colors font-semibold">About Us</a></li>
+        <li class="relative group">
+          <a href="/service-area" class="text-white hover:text-[#F4C430] transition-colors font-semibold flex items-center gap-1">
+            Service Area
+            <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </a>
+          <ul class="absolute top-full left-0 bg-black border border-gray-800 mt-2 py-2 min-w-[200px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <li><a href="/service-area/santa-monica" class="block px-4 py-2 text-white hover:text-[#F4C430] hover:bg-gray-900 transition-colors font-semibold">Santa Monica</a></li>
+          </ul>
+        </li>
+        <li><a href="/contact" class="text-white hover:text-[#F4C430] transition-colors font-semibold">Contact Us</a></li>
+      </ul>
+      
+      <a href="/book" class="bg-[#F4C430] text-black px-6 py-2.5 font-semibold text-base hover:bg-[#e5b52a] transition-all">
+        Book Now
+      </a>
+    </div>
+  </nav>
+</header>
