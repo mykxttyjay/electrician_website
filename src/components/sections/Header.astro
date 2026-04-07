@@ -1,37 +1,151 @@
 ---
 // Header component for electrician website
+import Button from '../ui/Button.astro';
 ---
 
-<header class="bg-black py-3 sticky top-0 z-50" style="font-family: var(--font-poppins);">
-  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-1">
-    <div class="flex justify-between items-center">
-      <div class="flex items-center gap-3">
+<header class="bg-white sticky top-0 z-50 shadow-sm">
+  <!-- Top Bar with Contact Info -->
+  <div class="bg-white border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-1 py-4">
+      <div class="flex justify-between items-center">
+        <!-- Logo -->
         <a href="/" class="flex items-center gap-3">
           <img src="/logo.svg" alt="Electrixa Logo" class="w-12 h-12 object-contain" style="background: transparent;" />
-          <span class="font-bold text-[#F4C430]" style="font-size: 25px;">ELECTRIXA</span>
+          <span class="font-bold text-black" style="font-size: 25px;">Electrixa</span>
         </a>
-      </div>
-      
-      <ul class="flex gap-12 list-none m-0 p-0 text-base">
-        <li><a href="/" class="text-white hover:text-[#F4C430] transition-colors font-semibold">Home</a></li>
-        <li><a href="/about" class="text-white hover:text-[#F4C430] transition-colors font-semibold">About Us</a></li>
-        <li class="relative group">
-          <a href="/service-area" class="text-white hover:text-[#F4C430] transition-colors font-semibold flex items-center gap-1">
-            Service Area
-            <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+        
+        <!-- Right Side: Links and Contact Info -->
+        <div class="flex items-center gap-8">
+          <!-- Specials Link -->
+          <a href="/specials" class="text-gray-700 hover:text-[#F4C430] transition-colors font-semibold text-base flex items-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path>
             </svg>
+            SPECIALS
           </a>
-          <ul class="absolute top-full left-0 bg-black border border-gray-800 mt-2 py-2 min-w-[200px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-            <li><a href="/service-area/santa-monica" class="block px-4 py-2 text-white hover:text-[#F4C430] hover:bg-gray-900 transition-colors font-semibold">Santa Monica</a></li>
-          </ul>
-        </li>
-        <li><a href="/contact" class="text-white hover:text-[#F4C430] transition-colors font-semibold">Contact Us</a></li>
-      </ul>
-      
-      <a href="/book" class="bg-[#F4C430] text-black px-6 py-2.5 font-semibold text-base hover:bg-[#e5b52a] transition-all">
-        Book Now
-      </a>
+          
+          <!-- Financing Link -->
+          <a href="/financing" class="text-gray-700 hover:text-[#F4C430] transition-colors font-semibold text-base flex items-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+            </svg>
+            FINANCING
+          </a>
+          
+          <!-- Phone -->
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 bg-[#F4C430] rounded-full flex items-center justify-center">
+              <svg class="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="text-sm text-gray-600">Phone Number</p>
+              <p class="text-sm font-semibold text-black">(+62)81 157 2241</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Navigation Bar -->
+  <nav class="bg-white border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-1">
+      <div class="flex justify-between items-center py-2">
+        <ul class="flex gap-8 list-none m-0 p-0 text-base">
+          <li><a href="/" class="text-[#F4C430] hover:text-[#e5b52a] transition-colors font-semibold">HOME</a></li>
+          
+          <li class="relative group">
+            <a href="/about" class="text-gray-700 hover:text-[#F4C430] transition-colors font-semibold flex items-center gap-1">
+              ABOUT US
+              <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </a>
+            <ul class="absolute top-full left-0 bg-white border border-gray-200 mt-2 py-2 min-w-[200px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 rounded shadow-lg">
+              <li>
+                <a href="/about/careers" class="block px-4 py-2 text-gray-700 hover:text-[#F4C430] hover:bg-gray-50 transition-colors font-semibold">
+                  Careers
+                </a>
+              </li>
+              <li>
+                <a href="/about/reviews" class="block px-4 py-2 text-gray-700 hover:text-[#F4C430] hover:bg-gray-50 transition-colors font-semibold">
+                  Testimonials
+                </a>
+              </li>
+              <li>
+                <a href="/about/team" class="block px-4 py-2 text-gray-700 hover:text-[#F4C430] hover:bg-gray-50 transition-colors font-semibold">
+                  Meet the Team
+                </a>
+              </li>
+            </ul>
+          </li>
+          
+          <li class="relative group">
+            <a href="/services" class="text-gray-700 hover:text-[#F4C430] transition-colors font-semibold flex items-center gap-1">
+              SERVICES
+              <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </a>
+            <ul class="absolute top-full left-0 bg-white border border-gray-200 mt-2 py-2 min-w-[220px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 rounded shadow-lg">
+              <li>
+                <a href="/services/commercial" class="block px-4 py-2 text-gray-700 hover:text-[#F4C430] hover:bg-gray-50 transition-colors font-semibold">
+                  Commercial Electrical Services
+                </a>
+              </li>
+              <li>
+                <a href="/services/residential" class="block px-4 py-2 text-gray-700 hover:text-[#F4C430] hover:bg-gray-50 transition-colors font-semibold">
+                  Residential Electrical Services
+                </a>
+              </li>
+              <li>
+                <a href="/services/specialty" class="block px-4 py-2 text-gray-700 hover:text-[#F4C430] hover:bg-gray-50 transition-colors font-semibold">
+                  Specialty Services
+                </a>
+              </li>
+              <li>
+                <a href="/services/emergency" class="block px-4 py-2 text-gray-700 hover:text-[#F4C430] hover:bg-gray-50 transition-colors font-semibold">
+                  Emergency
+                </a>
+              </li>
+            </ul>
+          </li>
+          
+          <li class="relative group">
+            <a href="/service-area" class="text-gray-700 hover:text-[#F4C430] transition-colors font-semibold flex items-center gap-1">
+              SERVICE AREA
+              <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </a>
+            <ul class="absolute top-full left-0 bg-white border border-gray-200 mt-2 py-2 min-w-[200px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 rounded shadow-lg">
+              <li>
+                <a href="/service-area/santa-monica" class="block px-4 py-2 text-gray-700 hover:text-[#F4C430] hover:bg-gray-50 transition-colors font-semibold">
+                  Santa Monica
+                </a>
+              </li>
+              <li>
+                <a href="/service-area/santa-monica" class="block px-4 py-2 text-gray-700 hover:text-[#F4C430] hover:bg-gray-50 transition-colors font-semibold">
+                  Pasadena
+                </a>
+              </li>
+              <li>
+                <a href="/service-area/santa-monica" class="block px-4 py-2 text-gray-700 hover:text-[#F4C430] hover:bg-gray-50 transition-colors font-semibold">
+                  Glendale
+                </a>
+              </li>
+            </ul>
+          </li>
+          
+          <li><a href="/contact" class="text-gray-700 hover:text-[#F4C430] transition-colors font-semibold">CONTACT US</a></li>
+        </ul>
+        
+        <Button variant="primary" size="sm" href="/appointment" icon={false}>
+          Book Now
+        </Button>
+      </div>
     </div>
   </nav>
 </header>

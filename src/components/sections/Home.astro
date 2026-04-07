@@ -11,7 +11,7 @@ interface Props {
 }
 
 const {
-    backgroundImage = "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1920&h=1080&fit=crop&q=80",
+    backgroundImage = "https://unsplash.com/photos/man-on-green-galvanized-iron-sheet-holding-green-bar-Lgaw-BnaAAI",
     pretitle = "",
     title = "POWERING YOUR WORLD",
     subtitle = "Brightening lives with reliable electrical solutions, one connection at a time",
@@ -21,14 +21,14 @@ const {
 ---
 
 <section
-    class="relative w-full h-screen flex items-center justify-center overflow-hidden"
-    style={`background-image: url('${backgroundImage}'); background-size: cover; background-position: center;`}
+    class="relative w-full flex items-center justify-center overflow-hidden"
+    style={`background-image: url('${backgroundImage}'); background-size: cover; background-position: center; height: calc(100vh - 140px);`}
 >
     <!-- Dark Overlay -->
     <div class="absolute inset-0 bg-black/50"></div>
 
     <!-- Content -->
-    <div class="relative z-10 w-full px-6 text-center">
+    <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-1 text-left">
         <!-- Pretitle -->
         {
             pretitle && (
@@ -40,7 +40,8 @@ const {
 
         <!-- Main Title -->
         <h1
-            class="heading-h1 font-heading font-bold text-white mb-1 tracking-wider"
+            class="font-heading font-bold text-white mb-1 tracking-wider"
+            style="font-size: 80px; line-height: 1.2;"
         >
             POWERING YOUR <span id="rotating-word" class="text-[#F4C430]"></span>
         </h1>

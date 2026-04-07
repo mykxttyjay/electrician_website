@@ -7,40 +7,34 @@ import Button from '../ui/Button.astro';
   <div class="max-w-7xl mx-auto">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
       <!-- Left Side - Images and Stats -->
-      <div class="flex flex-col gap-6">
-        <div class="flex gap-6">
-          <!-- Experience Card on the left -->
-          <div class="bg-[#F4F4F4] p-6 rounded-lg flex-shrink-0 self-start">
-            <div class="flex flex-col items-center gap-2">
-              <div class="w-12 h-12 bg-[#F4C430] rounded-full flex items-center justify-center">
-                <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-              </div>
-              <div class="text-center">
-                <h3 class="text-2xl font-bold text-black">20+</h3>
-                <p class="text-sm text-gray-600">Years<br>Experience</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Main Image -->
-          <div class="relative rounded-lg overflow-hidden flex-1">
-            <img 
-              src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=600&h=400&fit=crop&q=80" 
-              alt="Electrician at work" 
-              class="w-full h-80 object-cover"
-            />
-          </div>
-        </div>
-
-        <!-- Team Image -->
-        <div class="rounded-lg overflow-hidden flex-1">
+      <div class="relative h-[650px]">
+        <!-- Background Image (Buildings) - Top Left, tall and narrow -->
+        <div class="absolute top-0 left-0 w-[450px] h-[580px] rounded-lg overflow-hidden shadow-xl z-10">
           <img 
-            src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&h=300&fit=crop&q=80" 
-            alt="Our team" 
+            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=800&fit=crop&q=80" 
+            alt="Buildings" 
             class="w-full h-full object-cover"
           />
+        </div>
+
+        <!-- Main Image (Electrician) - Bottom Right, larger -->
+        <div class="absolute bottom-0 right-0 w-96 h-[420px] rounded-lg overflow-hidden shadow-xl z-20">
+          <img 
+            src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=600&h=700&fit=crop&q=80" 
+            alt="Electrician at work" 
+            class="w-full h-full object-cover"
+          />
+        </div>
+
+        <!-- Experience Card - Positioned at top-right overlapping both images -->
+        <div class="absolute top-36 right-16 bg-[#F4C430] p-8 rounded-lg shadow-2xl z-30 w-55 border-t-4 border-black">
+          <div class="flex flex-col items-start space-y-2">
+            <h3 class="text-7xl font-black text-black tracking-tight counter" data-target="20" style="line-height: 0.9; min-width: 150px;">0+</h3>
+            <div class="text-left">
+              <p class="text-lg font-bold text-black leading-tight">Years of</p>
+              <p class="text-lg font-bold text-black leading-tight">Experiences</p>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -88,20 +82,41 @@ import Button from '../ui/Button.astro';
           <Button href="/about" variant="accent" size="md" icon={false}>
             About More
           </Button>
-
-          <div class="flex items-center gap-3">
-            <img 
-              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&q=80" 
-              alt="John Smith" 
-              class="w-12 h-12 rounded-full object-cover"
-            />
-            <div>
-              <p class="font-bold text-black">John Smith</p>
-              <p class="text-gray-600 text-sm">Co-Founder</p>
-            </div>
-          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  // Counter animation for the experience card
+  const counter = document.querySelector('.counter');
+  if (counter) {
+    const target = parseInt(counter.getAttribute('data-target') || '0');
+    let current = 0;
+    const increment = target / 30; // Faster animation
+    const duration = 1000; // 1 second instead of 2
+    const stepTime = duration / 30;
+
+    const updateCounter = () => {
+      current += increment;
+      if (current < target) {
+        counter.textContent = Math.floor(current) + '+';
+        setTimeout(updateCounter, stepTime);
+      } else {
+        counter.textContent = target + '+';
+      }
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          updateCounter();
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    observer.observe(counter);
+  }
+</script>
