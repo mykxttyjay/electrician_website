@@ -63,9 +63,9 @@ const cards = [
         <!-- Mission and Vision Cards -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           {cards.map((card) => (
-            <div class="border border-gray-200 p-6 hover:border-[#F4C430] transition-all">
-              <div class="w-12 h-12 bg-[#F4F4F4] rounded-full flex items-center justify-center mb-4">
-                <svg class="w-6 h-6 text-[#F4C430]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="group border-2 border-gray-300 p-6 hover:border-[#F4C430] transition-all">
+              <div class="w-12 h-12 bg-[#F4F4F4] group-hover:bg-[#F4C430] rounded-full flex items-center justify-center mb-4 transition-colors">
+                <svg class="w-6 h-6 text-[#F4C430] group-hover:text-black transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={card.icon}></path>
                 </svg>
               </div>

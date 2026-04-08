@@ -5,10 +5,10 @@ const serviceCategories = [
     id: 'commercial',
     title: 'Commercial Electrical',
     icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4',
-    description: 'Professional electrical solutions for businesses of all sizes, from simple installations to complex systems with minimal disruption.',
+    description: 'Professional electrical solutions for businesses, from simple installations to complex systems with minimal disruption.',
     services: [
       { name: 'Ground-up Electrical Construction', image: 'https://images.unsplash.com/photo-1702128411190-5061e7756d5c?q=80&w=736&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
-      { name: 'Emergency & Standby Power Systems', image: 'https://images.unsplash.com/photo-1715962131558-63e9ef5fb79f?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+      { name: 'Emergency & Standby Power', image: 'https://images.unsplash.com/photo-1715962131558-63e9ef5fb79f?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
       { name: 'Commercial HVAC Electrical', image: 'https://images.unsplash.com/photo-1770838773181-e1b17ec22fee?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
       { name: 'Commercial Electrical Panels', image: 'https://images.unsplash.com/photo-1544724569-5f546fd6f2b5?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' }
     ]
@@ -29,7 +29,7 @@ const serviceCategories = [
     id: 'specialty',
     title: 'Specialty Services',
     icon: 'M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z',
-    description: 'Unique and advanced electrical solutions from smart home automation to custom lighting designs with precision and innovation.',
+    description: 'Unique electrical solutions from smart home automation to custom lighting designs with precision and innovation.',
     services: [
       { name: 'Holiday Lighting Installation', image: 'https://images.unsplash.com/photo-1763419529483-bad9563c70d5?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
       { name: 'Landscape Lighting', image: 'https://images.unsplash.com/photo-1742786756827-aec2791e0f87?q=80&w=1331&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
@@ -41,7 +41,7 @@ const serviceCategories = [
     id: 'emergency',
     title: 'Emergency Services',
     icon: 'M13 10V3L4 14h7v7l9-11h-7z',
-    description: 'Available 24/7 for all electrical emergencies with rapid response and fully equipped vehicles to resolve urgent issues safely.',
+    description: 'Available 24/7 for electrical emergencies with rapid response and fully equipped vehicles to resolve urgent issues safely.',
     services: [
       { name: '24-hour Emergency Service', image: 'https://images.unsplash.com/photo-1732660513320-a6b489f3fece?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
       { name: 'HVAC Electrical', image: 'https://images.unsplash.com/photo-1638444547500-5a63a2450065?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
@@ -67,11 +67,11 @@ const serviceCategories = [
     <div class="flex flex-wrap gap-4 mb-10 justify-center">
       {serviceCategories.map((category, index) => (
         <button
-          class={`service-tab relative px-8 py-4 transition-all ${index === 0 ? 'active bg-[#F4C430] text-black' : 'bg-white text-gray-700'} hover:bg-[#F4C430] hover:text-black`}
+          class={`service-tab group relative px-8 py-4 transition-all ${index === 0 ? 'active bg-[#F4C430] text-black' : 'bg-white text-gray-700'} hover:bg-[#F4C430] hover:text-black`}
           data-category={category.id}
         >
           <div class="flex flex-col items-center gap-2">
-            <svg class={`w-10 h-10 ${index === 0 ? 'text-black' : 'text-gray-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class={`w-10 h-10 ${index === 0 ? 'text-black' : 'text-gray-600'} group-hover:text-black transition-colors`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={category.icon}></path>
             </svg>
             <span class="font-bold text-base whitespace-nowrap">{category.title}</span>
@@ -92,7 +92,7 @@ const serviceCategories = [
         <!-- Top: Description (Centered) -->
         <div class="text-center mb-10">
           <h3 class="text-3xl font-bold text-black mb-6">{category.title}</h3>
-          <p class="text-gray-700 text-base leading-relaxed max-w-4xl mx-auto">{category.description}</p>
+          <p class="text-gray-700 text-base leading-relaxed max-w-5xl mx-auto">{category.description}</p>
         </div>
 
         <!-- Bottom: 4 Services in 1 Row -->
@@ -108,7 +108,7 @@ const serviceCategories = [
               </div>
               <!-- Hover Overlay -->
               <div class="absolute inset-0 bg-gradient-to-r from-[#F4C430]/80 to-[#F4C430]/60 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 ease-in-out flex items-end justify-center pb-6">
-                <h4 class="text-base font-bold text-black text-center px-4 whitespace-nowrap overflow-hidden text-ellipsis w-full">{service.name}</h4>
+                <h4 class="font-bold text-black text-center px-4 whitespace-nowrap overflow-hidden text-ellipsis w-full" style="font-size: 14px;">{service.name}</h4>
               </div>
             </div>
           ))}
@@ -131,7 +131,10 @@ const serviceCategories = [
         t.classList.remove('active', 'bg-[#F4C430]', 'text-black');
         t.classList.add('bg-white', 'text-gray-700');
         const icon = t.querySelector('svg');
-        if (icon) icon.classList.replace('text-black', 'text-gray-400');
+        if (icon) {
+          icon.classList.remove('text-black');
+          icon.classList.add('text-gray-600');
+        }
         
         // Remove pointer
         const pointer = t.querySelector('.absolute');
@@ -142,7 +145,10 @@ const serviceCategories = [
       tab.classList.add('active', 'bg-[#F4C430]', 'text-black');
       tab.classList.remove('bg-white', 'text-gray-700');
       const icon = tab.querySelector('svg');
-      if (icon) icon.classList.replace('text-gray-400', 'text-black');
+      if (icon) {
+        icon.classList.remove('text-gray-600');
+        icon.classList.add('text-black');
+      }
       
       // Add pointer
       const pointer = document.createElement('div');
