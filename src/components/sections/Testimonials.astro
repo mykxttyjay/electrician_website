@@ -16,13 +16,13 @@ const testimonials = [
     name: "David Chen",
     role: "Property Manager",
     image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&h=100&fit=crop",
-    text: "Reliable and trustworthy electricians who truly understand property management needs. They've handled multiple panel upgrades across our properties with consistent quality and professionalism. Their emergency response time is impressive, and they always arrive prepared with the right equipment. The pricing is fair and transparent, with no hidden fees. I trust them completely with all our electrical needs."
+    text: "Reliable and trustworthy electricians who truly understand property management needs. They've handled multiple panel upgrades across our properties with consistent quality and professionalism. Their emergency response time is impressive, and they always arrive prepared with the right equipment. The pricing is fair and transparent, with no hidden fees. I trust them completely."
   },
   {
     name: "Emily Martinez",
     role: "Restaurant Owner",
     image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&h=100&fit=crop",
-    text: "Professional team that understands commercial needs and the unique challenges of restaurant operations. They upgraded our restaurant's electrical system efficiently and ensured everything met strict code requirements for commercial kitchens. Excellent communication throughout the project kept us informed every step of the way. They worked during our off-hours to minimize impact on our business. Highly recommended for any commercial electrical work."
+    text: "Professional team that understands commercial needs and the unique challenges of restaurant operations. They upgraded our restaurant's electrical system efficiently and ensured everything met strict code requirements. Excellent communication throughout the project kept us informed. They worked during our off-hours to minimize impact on our business. Highly recommend them."
   }
 ];
 ---
@@ -31,7 +31,7 @@ const testimonials = [
   <div class="max-w-7xl mx-auto">
     <!-- Section Header -->
     <div class="mb-8 text-center">
-      <p class="text-accent-text font-semibold text-lg">Testimonials</p>
+      <p class="text-[#F4C430] font-semibold text-lg">Testimonials</p>
       <h2 class="heading-h2 font-bold text-black mb-3">What Our Clients Say</h2>
       <p class="text-gray-700 leading-relaxed max-w-3xl mx-auto text-subtitle">
         Hear from our satisfied customers about their experience with our professional electrical services and dedicated team.
@@ -54,7 +54,7 @@ const testimonials = [
                   />
                   <div>
                     <h3 class="text-xl font-bold text-black">{testimonial.name}</h3>
-                    <p class="text-accent-text font-semibold">{testimonial.role}</p>
+                    <p class="text-[#e5b52a] font-semibold">{testimonial.role}</p>
                   </div>
                 </div>
                 <svg class="w-24 h-24 text-[#F4C430] opacity-30" fill="currentColor" viewBox="0 0 24 24">
@@ -80,7 +80,7 @@ const testimonials = [
                   />
                   <div>
                     <h3 class="text-xl font-bold text-black">{testimonial.name}</h3>
-                    <p class="text-accent-text font-semibold">{testimonial.role}</p>
+                    <p class="text-[#e5b52a] font-semibold">{testimonial.role}</p>
                   </div>
                 </div>
                 <svg class="w-24 h-24 text-[#F4C430] opacity-30" fill="currentColor" viewBox="0 0 24 24">
@@ -97,7 +97,7 @@ const testimonials = [
       </div>
 
       <!-- Dots Navigation -->
-      <div class="flex justify-center gap-2 mt-8">
+      <div class="flex justify-center mt-8">
         {testimonials.map((_, index) => (
         <button 
           class={`carousel-dot w-12 h-12 flex items-center justify-center rounded-full transition-all`}

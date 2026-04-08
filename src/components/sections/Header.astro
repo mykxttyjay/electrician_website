@@ -75,8 +75,8 @@ const serviceAreas = [
 ---
 
 <div class="fixed top-0 left-0 right-0 z-[100] w-full">
-<!-- Top Bar with Contact Info -->
-<div class="bg-white border-b border-gray-200 shadow-sm w-full">
+<!-- Top Bar with Contact Info (Desktop Only) -->
+<div class="hidden lg:block bg-white border-b border-gray-200 shadow-sm w-full">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-1 py-2">
     <div class="flex justify-between items-center">
       <!-- Left Side: Contact Info -->
@@ -161,8 +161,15 @@ const serviceAreas = [
           <span class="font-bold text-black" style="font-size: 25px;">ELECTRIXA</span>
         </a>
         
-        <!-- Navigation Menu - Centered -->
-        <ul class="flex gap-8 list-none m-0 p-0 text-lg absolute left-1/2 transform -translate-x-1/2">
+        <!-- Hamburger Menu Button (Mobile Only) -->
+        <button id="mobile-menu-button" class="lg:hidden flex items-center justify-center w-10 h-10 text-black hover:text-[#F4C430] transition-colors" aria-label="Toggle menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+        
+        <!-- Navigation Menu - Centered (Desktop Only) -->
+        <ul class="hidden lg:flex gap-8 list-none m-0 p-0 text-lg absolute left-1/2 transform -translate-x-1/2">
           <li><a href="/" class="text-black hover:text-accent transition-colors font-semibold">Home</a></li>
           
           <li><a href="/about" class="text-black hover:text-accent transition-colors font-semibold">About</a></li>
@@ -213,20 +220,167 @@ const serviceAreas = [
           <li><a href="/contact" class="text-black hover:text-accent transition-colors font-semibold">Contact</a></li>
         </ul>
         
-        <!-- Book Now Button -->
-        <a href="/contact" class="bg-[#F4C430] text-black font-bold px-6 py-2 hover:bg-[#e5b52a] transition-colors inline-block">
+        <!-- Book Now Button (Desktop Only) -->
+        <a href="/contact" class="hidden lg:inline-block bg-[#F4C430] text-black font-bold px-6 py-2 hover:bg-[#e5b52a] transition-colors">
           BOOK NOW
         </a>
       </div>
     </div>
   </nav>
+
+  <!-- Mobile Menu Dropdown -->
+  <div id="mobile-menu" class="lg:hidden hidden bg-white border-b border-gray-200 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 py-4">
+      <!-- Mobile Top Bar Items -->
+      <div class="mb-6 pb-4 border-b border-gray-200 space-y-3">
+        <!-- Phone -->
+        <a href="tel:+12345678912" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 bg-[#F4C430] rounded-full flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+            </svg>
+          </div>
+          <span class="text-black font-semibold group-hover:text-[#F4C430] transition-colors">+(234) 567 8912</span>
+        </a>
+
+        <!-- Email -->
+        <a href="mailto:info@electrixa.com" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 bg-[#F4C430] rounded-full flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+            </svg>
+          </div>
+          <span class="text-black font-semibold group-hover:text-[#F4C430] transition-colors">info@electrixa.com</span>
+        </a>
+
+        <!-- Location -->
+        <a href="https://www.google.com/maps/search/?api=1&query=Los+Angeles,+CA" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 bg-[#F4C430] rounded-full flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+          </div>
+          <span class="text-black font-semibold group-hover:text-[#F4C430] transition-colors">Los Angeles, CA</span>
+        </a>
+
+        <!-- Specials -->
+        <a href="/specials" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 bg-[#F4C430] rounded-full flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path>
+            </svg>
+          </div>
+          <span class="text-black font-semibold group-hover:text-[#F4C430] transition-colors">SPECIALS</span>
+        </a>
+
+        <!-- Financing -->
+        <a href="/financing" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 bg-[#F4C430] rounded-full flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+            </svg>
+          </div>
+          <span class="text-black font-semibold group-hover:text-[#F4C430] transition-colors">FINANCING</span>
+        </a>
+      </div>
+
+      <!-- Mobile Navigation Links -->
+      <ul class="space-y-4">
+        <li><a href="/" class="block text-black hover:text-[#F4C430] transition-colors font-semibold text-lg">Home</a></li>
+        <li><a href="/about" class="block text-black hover:text-[#F4C430] transition-colors font-semibold text-lg">About</a></li>
+        
+        <!-- Services Accordion -->
+        <li>
+          <button id="mobile-services-toggle" class="w-full flex justify-between items-center text-black hover:text-[#F4C430] transition-colors font-semibold text-lg">
+            Services
+            <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div id="mobile-services-menu" class="hidden mt-2 ml-4 space-y-3">
+            {serviceCategories.map((category) => (
+              <div>
+                <a href={category.href} class="block text-[#F4C430] font-bold mb-2">{category.title}</a>
+                <ul class="space-y-1 ml-4">
+                  {category.services.map((service) => (
+                    <li>
+                      <a href={service.href} class="block text-gray-700 hover:text-[#F4C430] transition-colors text-sm">
+                        {service.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </li>
+        
+        <!-- Service Area Accordion -->
+        <li>
+          <button id="mobile-areas-toggle" class="w-full flex justify-between items-center text-black hover:text-[#F4C430] transition-colors font-semibold text-lg">
+            Service Area
+            <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div id="mobile-areas-menu" class="hidden mt-2 ml-4 space-y-2">
+            {serviceAreas.map((area) => (
+              <a href={area.href} class="block text-gray-700 hover:text-[#F4C430] transition-colors">
+                {area.name}
+              </a>
+            ))}
+          </div>
+        </li>
+        
+        <li><a href="/contact" class="block text-black hover:text-[#F4C430] transition-colors font-semibold text-lg">Contact</a></li>
+        
+        <!-- Mobile Book Now Button -->
+        <li class="pt-2">
+          <a href="/contact" class="block w-full text-center bg-[#F4C430] text-black font-bold px-6 py-3 hover:bg-[#e5b52a] transition-colors">
+            BOOK NOW
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>
 
 <script>
-  let lastScrollTop = 0;
   const header = document.querySelector('.fixed.top-0') as HTMLElement;
   const topBar = header?.querySelector('.bg-white.border-b') as HTMLElement;
   const nav = header?.querySelector('nav') as HTMLElement;
+  
+  // Mobile menu toggle
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const servicesToggle = document.getElementById('mobile-services-toggle');
+  const servicesMenu = document.getElementById('mobile-services-menu');
+  const areasToggle = document.getElementById('mobile-areas-toggle');
+  const areasMenu = document.getElementById('mobile-areas-menu');
+  
+  mobileMenuButton?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+    const icon = mobileMenuButton.querySelector('svg path');
+    if (icon) {
+      if (mobileMenu?.classList.contains('hidden')) {
+        icon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+      } else {
+        icon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+      }
+    }
+  });
+  
+  servicesToggle?.addEventListener('click', () => {
+    servicesMenu?.classList.toggle('hidden');
+    const icon = servicesToggle.querySelector('svg');
+    icon?.classList.toggle('rotate-180');
+  });
+  
+  areasToggle?.addEventListener('click', () => {
+    areasMenu?.classList.toggle('hidden');
+    const icon = areasToggle.querySelector('svg');
+    icon?.classList.toggle('rotate-180');
+  });
   
   if (header && topBar && nav) {
     window.addEventListener('scroll', () => {
@@ -240,8 +394,6 @@ const serviceAreas = [
         // Show top bar when at top
         topBar.style.display = 'block';
       }
-      
-      lastScrollTop = scrollTop;
     });
   }
 </script>
