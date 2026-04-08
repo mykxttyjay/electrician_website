@@ -14,6 +14,7 @@
   --color-primary: #000000;
   --color-secondary: #ffffff;
   --color-accent: #F4C430;
+  --color-accent-text: #C9A000;
   --color-accent-hover: #e5b52a;
   --color-gray-50: #f9fafb;
   --color-gray-200: #e5e7eb;
@@ -131,6 +132,10 @@
 
 .text-accent {
   color: var(--color-accent);
+}
+
+.text-accent-accessible {
+  color: var(--color-accent-text);
 }
 
 .text-text {

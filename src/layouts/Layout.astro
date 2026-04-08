@@ -1,5 +1,12 @@
 ---
 import '../styles/global.css';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const { title = 'Electrixa - Professional Electrical Services', description = 'Expert electrical services in Los Angeles. 20+ years experience, 24/7 emergency service, licensed & insured electricians. Residential & commercial electrical solutions.' } = Astro.props;
 ---
 
 <!doctype html>
@@ -7,12 +14,13 @@ import '../styles/global.css';
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
+		<meta name="description" content={description} />
 		<link rel="icon" type="image/png" href="/electrixa.png" />
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 		<meta name="generator" content={Astro.generator} />
-		<title>Electrixa</title>
+		<title>{title}</title>
 	</head>
 	<body>
 		<slot />

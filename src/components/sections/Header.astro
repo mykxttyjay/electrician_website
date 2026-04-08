@@ -139,7 +139,7 @@ const serviceAreas = [
         <!-- Social Media Icons -->
         <div class="flex items-center gap-2">
           {socialIcons.map((social) => (
-            <a href={social.href} class="w-7 h-7 bg-[#F4C430] rounded-full flex items-center justify-center hover:bg-[#e5b52a] transition-colors">
+            <a href={social.href} target="_blank" rel="noopener noreferrer" class="w-7 h-7 bg-[#F4C430] rounded-full flex items-center justify-center hover:bg-[#e5b52a] transition-colors" aria-label={`Visit our ${social.name} page`}>
               <svg class="w-3.5 h-3.5 text-black" fill="currentColor" viewBox="0 0 24 24">
                 <path d={social.icon}/>
               </svg>

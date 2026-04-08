@@ -5,6 +5,7 @@ export default {
     extend: {
       colors: {
         accent: '#F4C430',
+        'accent-text': '#C9A000',
       },
       fontFamily: {
         heading: ['Poppins', 'sans-serif'],
