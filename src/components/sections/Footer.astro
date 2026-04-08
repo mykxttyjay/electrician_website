@@ -8,7 +8,7 @@ const quickLinks = [
 ];
 
 const services = [
-  { name: 'Commercial Electrical', href: '/services' },
+  { name: 'Commercial Electrical', href: '/commercial-electrical' },
   { name: 'Residential Electrical', href: '/services' },
   { name: 'Specialty Services', href: '/services' },
   { name: 'Emergency Services', href: '/services' }
@@ -30,12 +30,6 @@ const contactInfo = [
     label: 'Address',
     value: 'Los Angeles, CA'
   }
-];
-
-const bottomLinks = [
-  { name: 'Partnerships', href: '/partnerships' },
-  { name: 'Customer Support', href: '/support' },
-  { name: 'Privacy Policy', href: '/privacy' }
 ];
 
 const socialIcons = [
@@ -75,9 +69,19 @@ const socialIcons = [
               ELECTRIXA
             </h2>
           </div>
-          <p class="text-gray-400" style="font-size: 16px;">
+          <p class="text-gray-400 mb-6" style="font-size: 16px;">
             With a commitment to excellence, we thrive in delivering exceptional solutions and building lasting partnerships. Our journey is defined by a relentless pursuit of growth.
           </p>
+          <!-- Social Icons -->
+          <div class="flex items-center gap-4">
+            {socialIcons.map((social) => (
+              <a href={social.href} class="w-10 h-10 bg-[#F4C430] rounded-full flex items-center justify-center hover:bg-[#e5b52a] transition-colors">
+                <svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 24 24">
+                  <path d={social.icon}/>
+                </svg>
+              </a>
+            ))}
+          </div>
         </div>
 
         <!-- Quick Links -->
@@ -133,27 +137,9 @@ const socialIcons = [
 
   <!-- Bottom Footer -->
   <div class="border-t border-gray-800 py-6 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-      <!-- Links -->
-      <div class="flex items-center gap-6">
-        {bottomLinks.map((link, index) => (
-          <>
-            <a href={link.href} class="text-gray-400 hover:text-[#F4C430] transition-colors" style="font-size: 13px;">{link.name}</a>
-            {index < bottomLinks.length - 1 && <span class="text-gray-600">•</span>}
-          </>
-        ))}
-      </div>
-
-      <!-- Social Icons -->
-      <div class="flex items-center gap-4">
-        {socialIcons.map((social) => (
-          <a href={social.href} class="w-10 h-10 bg-[#F4C430] rounded-full flex items-center justify-center hover:bg-[#e5b52a] transition-colors">
-            <svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 24 24">
-              <path d={social.icon}/>
-            </svg>
-          </a>
-        ))}
-      </div>
+    <div class="max-w-7xl mx-auto text-center">
+      <!-- Copyright -->
+      <p class="text-gray-400" style="font-size: 13px;">© 2026 HVAC Template. All rights reserved.</p>
     </div>
   </div>
 </footer>
