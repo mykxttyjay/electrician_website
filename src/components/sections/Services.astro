@@ -1,108 +1,160 @@
 ---
-// Services component for electrician website
-import Button from '../ui/Button.astro';
+
+const serviceCategories = [
+  {
+    id: 'commercial',
+    title: 'Commercial Electrical',
+    icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4',
+    description: 'Professional electrical solutions for businesses of all sizes, from simple installations to complex systems with minimal disruption.',
+    services: [
+      { name: 'Ground-up Electrical Construction', image: 'https://images.unsplash.com/photo-1702128411190-5061e7756d5c?q=80&w=736&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+      { name: 'Emergency & Standby Power Systems', image: 'https://images.unsplash.com/photo-1715962131558-63e9ef5fb79f?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+      { name: 'Commercial HVAC Electrical', image: 'https://images.unsplash.com/photo-1770838773181-e1b17ec22fee?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+      { name: 'Commercial Electrical Panels', image: 'https://images.unsplash.com/photo-1544724569-5f546fd6f2b5?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' }
+    ]
+  },
+  {
+    id: 'residential',
+    title: 'Residential Electrical',
+    icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6',
+    description: 'Complete residential electrical services from simple repairs to full home rewiring with safety and quality as our priority.',
+    services: [
+      { name: 'Car Charging Stations/ EV', image: 'https://images.unsplash.com/photo-1704474618942-ae933a8edd86?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+      { name: 'Ceiling Fan Installation', image: 'https://images.unsplash.com/photo-1762694067574-c7b07d6d8940?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+      { name: 'GFCI Outlets', image: 'https://images.unsplash.com/photo-1687038367723-4494d8e420f0?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+      { name: 'Backup Generators', image: 'https://images.unsplash.com/photo-1705051278299-7e64ba21437a?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' }
+    ]
+  },
+  {
+    id: 'specialty',
+    title: 'Specialty Services',
+    icon: 'M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z',
+    description: 'Unique and advanced electrical solutions from smart home automation to custom lighting designs with precision and innovation.',
+    services: [
+      { name: 'Holiday Lighting Installation', image: 'https://images.unsplash.com/photo-1763419529483-bad9563c70d5?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+      { name: 'Landscape Lighting', image: 'https://images.unsplash.com/photo-1742786756827-aec2791e0f87?q=80&w=1331&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+      { name: 'Pool & Spa Electrical', image: 'https://images.unsplash.com/photo-1678889284795-afdb0edc1737?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+      { name: 'Property Management', image: 'https://images.unsplash.com/photo-1532619675605-1ede6c2ed2b0?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' }
+    ]
+  },
+  {
+    id: 'emergency',
+    title: 'Emergency Services',
+    icon: 'M13 10V3L4 14h7v7l9-11h-7z',
+    description: 'Available 24/7 for all electrical emergencies with rapid response and fully equipped vehicles to resolve urgent issues safely.',
+    services: [
+      { name: '24-hour Emergency Service', image: 'https://images.unsplash.com/photo-1732660513320-a6b489f3fece?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+      { name: 'HVAC Electrical', image: 'https://images.unsplash.com/photo-1638444547500-5a63a2450065?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+      { name: 'Heating Systems', image: 'https://images.unsplash.com/photo-1650551182991-b07558247564?q=80&w=1173&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+      { name: 'Water Heater Electrical', image: 'https://images.unsplash.com/photo-1620653713380-7a34b773fef8?q=80&w=945&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' }
+    ]
+  }
+];
 ---
 
 <section class="bg-[#F8F8F8] py-20 px-4 sm:px-6 lg:px-8">
   <div class="max-w-7xl mx-auto">
     <!-- Section Header -->
     <div class="mb-12 text-center">
-      <p class="text-[#F4C430] font-semibold mb-2" style="font-size: 18px;">Our Services</p>
+      <p class="text-[#F4C430] font-semibold mb-2 text-lg">Our Services</p>
       <h2 class="heading-h2 font-bold text-black mb-4 mx-auto" style="line-height: 1.2;">Comprehensive Electrical Services</h2>
-      <p class="text-gray-700 leading-relaxed max-w-5xl mx-auto" style="font-size: 22px;">
+      <p class="text-gray-700 leading-relaxed max-w-5xl mx-auto text-subtitle">
         From residential installations to commercial projects, we provide complete electrical services tailored to your specific needs with guaranteed quality and safety.
       </p>
     </div>
 
-    <!-- Services Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      <!-- Service 1: Commercial Electrical Services -->
-      <div class="bg-white rounded-lg overflow-hidden group hover:shadow-xl transition-all flex flex-col">
-        <div class="h-2 bg-[#F4C430]"></div>
-        <div class="p-6 relative flex flex-col flex-grow">
-          <div class="relative z-10 mb-4">
-            <svg class="w-16 h-16 text-[#F4C430]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+    <!-- Service Category Tabs -->
+    <div class="flex flex-wrap gap-4 mb-10 justify-center">
+      {serviceCategories.map((category, index) => (
+        <button
+          class={`service-tab relative px-8 py-4 transition-all ${index === 0 ? 'active bg-[#F4C430] text-black' : 'bg-white text-gray-700'} hover:bg-[#F4C430] hover:text-black`}
+          data-category={category.id}
+        >
+          <div class="flex flex-col items-center gap-2">
+            <svg class={`w-10 h-10 ${index === 0 ? 'text-black' : 'text-gray-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={category.icon}></path>
             </svg>
+            <span class="font-bold text-base whitespace-nowrap">{category.title}</span>
           </div>
-          <h3 class="text-2xl font-bold text-black mb-4">Commercial Electrical Services</h3>
-          <p class="text-gray-600 mb-6 flex-grow" style="font-size: 16px;">
-            Professional electrical services for offices, retail spaces, and industrial facilities with minimal downtime and efficiency.
-          </p>
-          <a href="/services/commercial" class="text-black font-semibold flex items-center gap-2 hover:text-[#F4C430] transition-colors mt-auto">
-            Read More
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- Service 2: Residential Electrical Services -->
-      <div class="bg-white rounded-lg overflow-hidden group hover:shadow-xl transition-all flex flex-col">
-        <div class="h-2 bg-[#F4C430]"></div>
-        <div class="p-6 relative flex flex-col flex-grow">
-          <div class="relative z-10 mb-4">
-            <svg class="w-16 h-16 text-[#F4C430]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
-            </svg>
-          </div>
-          <h3 class="text-2xl font-bold text-black mb-4">Residential Electrical Services</h3>
-          <p class="text-gray-600 mb-6 flex-grow" style="font-size: 16px;">
-            Complete home electrical installations, rewiring, and upgrades to ensure safety and meet modern power demands.
-          </p>
-          <a href="/services/residential" class="text-black font-semibold flex items-center gap-2 hover:text-[#F4C430] transition-colors mt-auto">
-            Read More
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- Service 3: Specialty Services -->
-      <div class="bg-white rounded-lg overflow-hidden group hover:shadow-xl transition-all flex flex-col">
-        <div class="h-2 bg-[#F4C430]"></div>
-        <div class="p-6 relative flex flex-col flex-grow">
-          <div class="relative z-10 mb-4">
-            <svg class="w-16 h-16 text-[#F4C430]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
-            </svg>
-          </div>
-          <h3 class="text-2xl font-bold text-black mb-4">Specialty Services</h3>
-          <p class="text-gray-600 mb-6 flex-grow" style="font-size: 16px;">
-            Specialized electrical solutions including smart home installations, energy audits, and custom lighting design for your specific unique needs.
-          </p>
-          <a href="/services/specialty" class="text-black font-semibold flex items-center gap-2 hover:text-[#F4C430] transition-colors mt-auto">
-            Read More
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- Service 4: Emergency -->
-      <div class="bg-white rounded-lg overflow-hidden group hover:shadow-xl transition-all flex flex-col">
-        <div class="h-2 bg-[#F4C430]"></div>
-        <div class="p-6 relative flex flex-col flex-grow">
-          <div class="relative z-10 mb-4">
-            <svg class="w-16 h-16 text-[#F4C430]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-            </svg>
-          </div>
-          <h3 class="text-2xl font-bold text-black mb-4">Emergency</h3>
-          <p class="text-gray-600 mb-6 flex-grow" style="font-size: 16px;">
-            24/7 emergency electrical services to quickly resolve urgent issues and restore power safely to your residential property at any given time.
-          </p>
-          <a href="/services/emergency" class="text-black font-semibold flex items-center gap-2 hover:text-[#F4C430] transition-colors mt-auto">
-            Read More
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </a>
-        </div>
-      </div>
+          {index === 0 && (
+            <div class="absolute left-1/2 -translate-x-1/2 -bottom-3 w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-t-[12px] border-t-[#F4C430]"></div>
+          )}
+        </button>
+      ))}
     </div>
+
+    <!-- Services Grid (Dynamic Content) -->
+    {serviceCategories.map((category, catIndex) => (
+      <div 
+        class={`service-content ${catIndex === 0 ? '' : 'hidden'}`}
+        data-category={category.id}
+      >
+        <!-- Top: Description (Centered) -->
+        <div class="text-center mb-10">
+          <h3 class="text-3xl font-bold text-black mb-6">{category.title}</h3>
+          <p class="text-gray-700 text-base leading-relaxed max-w-4xl mx-auto">{category.description}</p>
+        </div>
+
+        <!-- Bottom: 4 Services in 1 Row -->
+        <div class="grid grid-cols-4 gap-6">
+          {category.services.map((service) => (
+            <div class="group cursor-pointer relative overflow-hidden">
+              <div class="w-full aspect-square overflow-hidden bg-gray-200">
+                <img 
+                  src={service.image} 
+                  alt={service.name}
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- Hover Overlay -->
+              <div class="absolute inset-0 bg-gradient-to-r from-[#F4C430]/80 to-[#F4C430]/60 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 ease-in-out flex items-end justify-center pb-6">
+                <h4 class="text-base font-bold text-black text-center px-4 whitespace-nowrap overflow-hidden text-ellipsis w-full">{service.name}</h4>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
   </div>
 </section>
+
+<script>
+  const tabs = document.querySelectorAll('.service-tab');
+  const contents = document.querySelectorAll('.service-content');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const categoryId = tab.getAttribute('data-category');
+
+      // Remove active state from all tabs
+      tabs.forEach(t => {
+        t.classList.remove('active', 'bg-[#F4C430]', 'text-black');
+        t.classList.add('bg-white', 'text-gray-700');
+        const icon = t.querySelector('svg');
+        if (icon) icon.classList.replace('text-black', 'text-gray-400');
+        
+        // Remove pointer
+        const pointer = t.querySelector('.absolute');
+        if (pointer) pointer.remove();
+      });
+
+      // Add active state to clicked tab
+      tab.classList.add('active', 'bg-[#F4C430]', 'text-black');
+      tab.classList.remove('bg-white', 'text-gray-700');
+      const icon = tab.querySelector('svg');
+      if (icon) icon.classList.replace('text-gray-400', 'text-black');
+      
+      // Add pointer
+      const pointer = document.createElement('div');
+      pointer.className = 'absolute left-1/2 -translate-x-1/2 -bottom-3 w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-t-[12px] border-t-[#F4C430]';
+      tab.appendChild(pointer);
+
+      // Hide all content
+      contents.forEach(content => content.classList.add('hidden'));
+
+      // Show selected content
+      const selectedContent = document.querySelector(`.service-content[data-category="${categoryId}"]`);
+      if (selectedContent) selectedContent.classList.remove('hidden');
+    });
+  });
+</script>

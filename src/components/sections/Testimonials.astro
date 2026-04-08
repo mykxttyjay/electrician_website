@@ -44,7 +44,33 @@ const testimonials = [
         <div class="testimonial-track flex transition-transform duration-500 ease-in-out">
           {testimonials.map((testimonial, index) => (
           <div class="testimonial-slide min-w-full md:min-w-[50%] px-3">
-            <div class="bg-white border-2 border-gray-300 shadow-md rounded-lg p-8 h-full">
+            <div class="bg-white border-2 border-gray-300 shadow-md p-8 h-full">
+              <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center gap-4">
+                  <img 
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    class="w-16 h-16 rounded-full object-cover"
+                  />
+                  <div>
+                    <h3 class="text-xl font-bold text-black">{testimonial.name}</h3>
+                    <p class="text-[#F4C430] font-semibold">{testimonial.role}</p>
+                  </div>
+                </div>
+                <svg class="w-24 h-24 text-[#F4C430] opacity-30" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z"/>
+                </svg>
+              </div>
+              <p class="text-gray-700 leading-relaxed text-base">
+                {testimonial.text}
+              </p>
+            </div>
+          </div>
+          ))}
+          <!-- Duplicate slides for infinite loop -->
+          {testimonials.map((testimonial, index) => (
+          <div class="testimonial-slide min-w-full md:min-w-[50%] px-3">
+            <div class="bg-white border-2 border-gray-300 shadow-md p-8 h-full">
               <div class="flex items-start justify-between mb-4">
                 <div class="flex items-center gap-4">
                   <img 
@@ -94,23 +120,24 @@ const testimonials = [
     return window.innerWidth >= 768 ? 2 : 1;
   }
   
-  const totalSlides = slides.length;
+  const totalSlides = slides.length / 2; // Actual number of unique slides
   
-  function updateCarousel() {
+  function updateCarousel(smooth = true) {
     const slidesPerView = getSlidesPerView();
-    const maxIndex = totalSlides - slidesPerView;
+    const offset = -(currentIndex * (100 / slidesPerView));
     
-    // Ensure currentIndex is within bounds
-    if (currentIndex > maxIndex) {
-      currentIndex = maxIndex;
+    if (smooth) {
+      track.style.transition = 'transform 500ms ease-in-out';
+    } else {
+      track.style.transition = 'none';
     }
     
-    const offset = -(currentIndex * (100 / slidesPerView));
     track.style.transform = `translateX(${offset}%)`;
     
     // Update dots
+    const dotIndex = currentIndex % totalSlides;
     dots.forEach((dot, index) => {
-      if (index === currentIndex) {
+      if (index === dotIndex) {
         dot.classList.remove('bg-gray-300');
         dot.classList.add('bg-[#F4C430]');
       } else {
@@ -121,17 +148,23 @@ const testimonials = [
   }
   
   function nextSlide() {
-    const slidesPerView = getSlidesPerView();
-    const maxIndex = totalSlides - slidesPerView;
-    currentIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
-    updateCarousel();
+    currentIndex++;
+    updateCarousel(true);
+    
+    // Reset to beginning when reaching duplicates
+    if (currentIndex >= totalSlides) {
+      setTimeout(() => {
+        currentIndex = 0;
+        updateCarousel(false);
+      }, 500);
+    }
   }
   
   // Dot navigation
   dots.forEach((dot, index) => {
     dot.addEventListener('click', () => {
       currentIndex = index;
-      updateCarousel();
+      updateCarousel(true);
     });
   });
   
@@ -149,8 +182,8 @@ const testimonials = [
   });
   
   // Handle window resize
-  window.addEventListener('resize', updateCarousel);
+  window.addEventListener('resize', () => updateCarousel(true));
   
   // Initial update
-  updateCarousel();
+  updateCarousel(false);
 </script>

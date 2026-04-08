@@ -4,24 +4,28 @@ const locations = [
     id: 'santa-monica',
     name: 'Santa Monica',
     mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52901.88730408103!2d-118.52168654863281!3d34.01945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2a4cec2910019%3A0xb4170ab5ff23f5ab!2sSanta%20Monica%2C%20CA!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus',
+    pageUrl: '/santa-monica',
     isActive: true
   },
   {
     id: 'pasadena',
     name: 'Pasadena',
     mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52901.88730408103!2d-118.17168654863281!3d34.14778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c2dc38330b51%3A0x52b41161ad24f9ad!2sPasadena%2C%20CA!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus',
+    pageUrl: '/location',
     isActive: false
   },
   {
     id: 'glendale',
     name: 'Glendale',
     mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52901.88730408103!2d-118.28168654863281!3d34.14257!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c0d213b24fb5%3A0x77a87b57698badf1!2sGlendale%2C%20CA!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus',
+    pageUrl: '/location',
     isActive: false
   },
   {
     id: 'hollywood',
     name: 'Beverly Hills',
     mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52901.88730408103!2d-118.40168654863281!3d34.10149!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2bc04d6d147ab%3A0xd6c1d5b0f2f5c64e!2sBeverly%20Hills%2C%20CA!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus',
+    pageUrl: '/location',
     isActive: false
   }
 ];
@@ -38,15 +42,15 @@ const locations = [
     <!-- Location Tabs -->
     <div class="mb-8 flex flex-wrap gap-4">
       {locations.map((location) => (
-        <button 
-          class={`location-tab px-6 py-3 bg-white border-2 ${location.isActive ? 'active border-[#F4C430]' : 'border-gray-300 text-gray-700'} font-semibold transition-all hover:border-[#F4C430] flex items-center gap-2 group`}
-          data-location={location.id}
+        <a
+          href={location.pageUrl}
+          class={`px-6 py-3 bg-white border-2 ${location.isActive ? 'border-[#F4C430]' : 'border-gray-300 text-gray-700'} font-semibold transition-all hover:border-[#F4C430] flex items-center gap-2 group`}
         >
           <svg class={`w-5 h-5 ${location.isActive ? 'text-[#F4C430]' : 'text-gray-400'} group-hover:text-[#F4C430] transition-colors`} fill="currentColor" viewBox="0 0 24 24">
             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
           </svg>
           {location.name}
-        </button>
+        </a>
       ))}
     </div>
 
@@ -58,7 +62,7 @@ const locations = [
     </div>
 
     <!-- Map Container -->
-    <div class="relative bg-gray-200 rounded-lg overflow-hidden" style="height: 400px;">
+    <div class="relative bg-gray-200 overflow-hidden" style="height: 400px;">
       <div class="absolute top-4 left-4 bg-white px-4 py-2 rounded shadow-md z-10">
         <a href="https://maps.google.com" target="_blank" class="text-[#F4C430] font-semibold flex items-center gap-2 hover:text-black transition-colors">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -82,46 +86,3 @@ const locations = [
     </div>
   </div>
 </section>
-
-<script>
-  const tabs = document.querySelectorAll('.location-tab');
-  const mapIframe = document.getElementById('location-map') as HTMLIFrameElement;
-  
-  // Map URLs for each location
-  const mapUrls: Record<string, string> = {
-    'santa-monica': 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52901.88730408103!2d-118.52168654863281!3d34.01945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2a4cec2910019%3A0xb4170ab5ff23f5ab!2sSanta%20Monica%2C%20CA!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus',
-    'pasadena': 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52901.88730408103!2d-118.17168654863281!3d34.14778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c2dc38330b51%3A0x52b41161ad24f9ad!2sPasadena%2C%20CA!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus',
-    'glendale': 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52901.88730408103!2d-118.28168654863281!3d34.14257!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c0d213b24fb5%3A0x77a87b57698badf1!2sGlendale%2C%20CA!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus',
-    'hollywood': 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52901.88730408103!2d-118.40168654863281!3d34.10149!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2bc04d6d147ab%3A0xd6c1d5b0f2f5c64e!2sBeverly%20Hills%2C%20CA!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus'
-  };
-  
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      // Remove active state from all tabs
-      tabs.forEach(t => {
-        t.classList.remove('active', 'border-[#F4C430]');
-        t.classList.add('border-gray-300', 'text-gray-700');
-        const icon = t.querySelector('svg');
-        if (icon) {
-          icon.classList.remove('text-[#F4C430]');
-          icon.classList.add('text-gray-400');
-        }
-      });
-      
-      // Add active state to clicked tab
-      tab.classList.add('active', 'border-[#F4C430]');
-      tab.classList.remove('border-gray-300', 'text-gray-700');
-      const icon = tab.querySelector('svg');
-      if (icon) {
-        icon.classList.add('text-[#F4C430]');
-        icon.classList.remove('text-gray-400');
-      }
-      
-      // Update map based on selected location
-      const location = tab.getAttribute('data-location');
-      if (location && mapIframe && mapUrls[location]) {
-        mapIframe.src = mapUrls[location];
-      }
-    });
-  });
-</script>

@@ -27,8 +27,9 @@ const socialIcons = [
 const serviceCategories = [
   {
     title: 'Commercial Electrical',
+    href: '/commercial-electrical',
     services: [
-      { name: 'Ground-up Electrical Construction', href: '/services/commercial/ground-up' },
+      { name: 'Ground-up Electrical Construction', href: '/ground-up-construction' },
       { name: 'Emergency & Standby Power Systems', href: '/services/commercial/power-systems' },
       { name: 'Commercial HVAC Electrical', href: '/services/commercial/hvac' },
       { name: 'Commercial Electrical Panels', href: '/services/commercial/panels' }
@@ -36,6 +37,7 @@ const serviceCategories = [
   },
   {
     title: 'Residential Electrical',
+    href: '/services',
     services: [
       { name: 'Car Charging Stations/ EV', href: '/services/residential/ev-charging' },
       { name: 'Ceiling Fan', href: '/services/residential/ceiling-fan' },
@@ -45,6 +47,7 @@ const serviceCategories = [
   },
   {
     title: 'Specialty Services',
+    href: '/services',
     services: [
       { name: 'Holiday Lighting Installation', href: '/services/specialty/holiday-lighting' },
       { name: 'Landscape Lighting', href: '/services/specialty/landscape' },
@@ -54,6 +57,7 @@ const serviceCategories = [
   },
   {
     title: 'Emergency',
+    href: '/services',
     services: [
       { name: '24-hour Emergency Service', href: '/services/emergency/24-hour' },
       { name: 'HVAC', href: '/services/emergency/hvac' },
@@ -64,10 +68,10 @@ const serviceCategories = [
 ];
 
 const serviceAreas = [
-  { name: 'Santa Monica', href: '/service-area/santa-monica' },
-  { name: 'Pasadena', href: '/service-area/pasadena' },
-  { name: 'Glendale', href: '/service-area/glendale' },
-  { name: 'Beverly Hills', href: '/service-area/beverly-hills' }
+  { name: 'Santa Monica', href: '/santa-monica' },
+  { name: 'Pasadena', href: '/pasadena' },
+  { name: 'Glendale', href: '/glendale' },
+  { name: 'Beverly Hills', href: '/beverly-hills' }
 ];
 ---
 
@@ -128,7 +132,7 @@ const serviceAreas = [
 </div>
 
 <!-- Navigation Bar - Sticky -->
-<nav class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+<nav class="bg-white border-b border-gray-200 sticky top-0 z-[100] shadow-md">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-1">
       <div class="flex justify-between items-center py-2">
         <ul class="flex gap-8 list-none m-0 p-0 text-base">
@@ -143,10 +147,10 @@ const serviceAreas = [
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
               </svg>
             </a>
-            <div class="absolute top-full left-0 bg-white border border-gray-200 mt-2 py-4 px-6 min-w-[900px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 rounded shadow-lg grid grid-cols-4 gap-8">
+            <div class="absolute top-full left-0 bg-white border border-gray-200 mt-2 py-4 px-6 min-w-[900px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 rounded shadow-lg grid grid-cols-4 gap-8 z-[110]">
               {serviceCategories.map((category) => (
                 <div>
-                  <h3 class="text-black font-bold mb-3 pb-2 border-b-2 border-[#F4C430] whitespace-nowrap inline-block">{category.title}</h3>
+                  <a href={category.href} class="text-black font-bold mb-3 pb-2 border-b-2 border-[#F4C430] whitespace-nowrap inline-block hover:text-[#F4C430] transition-colors">{category.title}</a>
                   <ul class="space-y-2 mt-3">
                     {category.services.map((service) => (
                       <li>
@@ -168,7 +172,7 @@ const serviceAreas = [
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
               </svg>
             </a>
-            <ul class="absolute top-full left-0 bg-white border border-gray-200 mt-2 py-2 min-w-[200px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 rounded shadow-lg">
+            <ul class="absolute top-full left-0 bg-white border border-gray-200 mt-2 py-2 min-w-[200px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 rounded shadow-lg z-[110]">
               {serviceAreas.map((area) => (
                 <li>
                   <a href={area.href} class="block px-4 py-2 text-black hover:text-accent hover:bg-gray-50 transition-colors font-semibold">
