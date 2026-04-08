@@ -18,8 +18,16 @@ const {
 
 <section
     class="relative w-full flex items-center justify-center overflow-hidden"
-    style={`background-image: url('${backgroundImage}'); background-size: cover; background-position: center; height: 100vh; padding-top: 120px;`}
+    style="height: 100vh; padding-top: 120px;"
 >
+    <!-- Background Image -->
+    <img 
+        src={backgroundImage}
+        alt="Electrical services hero background"
+        class="absolute inset-0 w-full h-full object-cover"
+        fetchpriority="high"
+    />
+    
     <!-- Dark Overlay -->
     <div class="absolute inset-0 bg-black/50"></div>
 
