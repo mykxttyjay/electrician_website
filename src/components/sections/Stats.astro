@@ -1,44 +1,49 @@
 ---
-// Stats component for electrician website
+const stats = [
+  {
+    target: 500,
+    label: "Projects Completed",
+    showDivider: true
+  },
+  {
+    target: 350,
+    label: "Happy Clients",
+    showDivider: true
+  },
+  {
+    target: 20,
+    label: "Years Experience",
+    showDivider: true
+  },
+  {
+    target: 4.9,
+    label: "Client Rating",
+    isDecimal: true,
+    showDivider: false
+  }
+];
 ---
 
 <section class="bg-[#1a1a1a] py-16 px-4 sm:px-6 lg:px-8" id="stats-section">
   <div class="max-w-7xl mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-      <!-- Stat 1: Projects Completed -->
-      <div class="text-center relative">
-        <div class="absolute right-0 top-1/2 transform -translate-y-1/2 w-px h-20 bg-white hidden md:block"></div>
-        <h3 class="text-5xl font-bold text-[#F4C430] mb-2">
-          <span class="counter" data-target="500">0</span>+
-        </h3>
-        <p class="text-white text-lg">Projects Completed</p>
-      </div>
-
-      <!-- Stat 2: Happy Clients -->
-      <div class="text-center relative">
-        <div class="absolute right-0 top-1/2 transform -translate-y-1/2 w-px h-20 bg-white hidden md:block"></div>
-        <h3 class="text-5xl font-bold text-[#F4C430] mb-2">
-          <span class="counter" data-target="350">0</span>+
-        </h3>
-        <p class="text-white text-lg">Happy Clients</p>
-      </div>
-
-      <!-- Stat 3: Years Experience -->
-      <div class="text-center relative">
-        <div class="absolute right-0 top-1/2 transform -translate-y-1/2 w-px h-20 bg-white hidden md:block"></div>
-        <h3 class="text-5xl font-bold text-[#F4C430] mb-2">
-          <span class="counter" data-target="20">0</span>+
-        </h3>
-        <p class="text-white text-lg">Years Experience</p>
-      </div>
-
-      <!-- Stat 4: Client Rating -->
-      <div class="text-center">
-        <h3 class="text-5xl font-bold text-[#F4C430] mb-2">
-          <span class="counter" data-target="4.9" data-decimal="true">0</span>
-        </h3>
-        <p class="text-white text-lg">Client Rating</p>
-      </div>
+      {stats.map((stat) => (
+        <div class="text-center relative">
+          {stat.showDivider && (
+            <div class="absolute right-0 top-1/2 transform -translate-y-1/2 w-px h-20 bg-white hidden md:block"></div>
+          )}
+          <h3 class="text-5xl font-bold text-[#F4C430] mb-2">
+            <span 
+              class="counter" 
+              data-target={stat.target}
+              data-decimal={stat.isDecimal ? "true" : "false"}
+            >
+              0
+            </span>{stat.isDecimal ? '' : '+'}
+          </h3>
+          <p class="text-white text-lg">{stat.label}</p>
+        </div>
+      ))}
     </div>
   </div>
 </section>

@@ -1,67 +1,86 @@
 ---
-// Coupons component for electrician website
+const coupons = [
+  {
+    icon: "M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z",
+    iconColor: "text-[#F4C430]",
+    label: "Heroes Discount",
+    title: "SAVE NOW",
+    titleColor: "text-[#F4C430]",
+    subtitle: "Thank You For Your Service!",
+    discount: "10%",
+    discountSuffix: "OFF",
+    description: "<strong>Seniors 65+ & Military save 10%</strong> on all services. Just show your ID!",
+    terms: "* Valid ID required. Expires: December 2024",
+    bgClass: "bg-white",
+    textClass: "text-gray-700"
+  },
+  {
+    icon: "M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 11 8.76l1-1.36 1 1.36L15.38 12 17 10.83 14.92 8H20v6z",
+    iconColor: "text-black",
+    label: "Limited Offer",
+    title: "GET FREE",
+    titleColor: "text-black",
+    subtitle: "See The Problem Clearly!",
+    discount: "FREE",
+    discountSuffix: "",
+    description: "<strong>FREE camera inspection</strong> with any drain cleaning. Know exactly what's wrong!",
+    terms: "* Mention when booking. Expires: December 2024",
+    bgClass: "bg-gradient-to-br from-[#F4C430] to-[#e5b52a]",
+    textClass: "text-black",
+    discountBg: "bg-white text-[#1a1a1a]"
+  },
+  {
+    icon: "M13 10V3L4 14h7v7l9-11h-7z",
+    iconColor: "text-[#F4C430]",
+    label: "Big Savings",
+    title: "MEGA DEAL",
+    titleColor: "text-[#F4C430]",
+    subtitle: "Don't Miss Out!",
+    discount: "$50",
+    discountSuffix: "OFF",
+    description: "<strong>Save $50 on repairs $500+</strong> Perfect for upgrades, rewiring & installations!",
+    terms: "* Min. $500 service. Call to redeem. Expires: December 2024",
+    bgClass: "bg-white",
+    textClass: "text-gray-700"
+  }
+];
 ---
 
 <section class="bg-[#1a1a1a] py-20 px-4 sm:px-6 lg:px-8">
   <div class="max-w-7xl mx-auto">
+    <!-- Section Header -->
+    <div class="mb-12 text-center">
+      <p class="text-[#F4C430] font-semibold" style="font-size: 18px;">Special Offers</p>
+      <h2 class="heading-h2 font-bold text-white mb-2">Exclusive Coupons & Deals</h2>
+      <p class="text-gray-300 leading-relaxed max-w-5xl mx-auto" style="font-size: 22px;">
+        Save on professional electrical services with our limited-time offers and special discounts.
+      </p>
+    </div>
+
     <!-- Coupons Grid -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <!-- Coupon 1: Senior & Military -->
-      <div class="bg-white rounded-lg p-8 relative overflow-hidden shadow-xl">
-        <div class="absolute top-0 right-0 w-32 h-32 bg-gray-100 rounded-full -mr-16 -mt-16"></div>
-        <div class="absolute bottom-0 left-0 w-24 h-24 bg-gray-100 rounded-full -ml-12 -mb-12"></div>
+      {coupons.map((coupon, index) => (
+      <div class={`${coupon.bgClass} p-8 relative overflow-hidden shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-2`}>
+        <div class={`absolute top-0 right-0 w-32 h-32 ${index === 1 ? 'bg-black/10' : 'bg-gray-100'} rounded-full -mr-16 -mt-16`}></div>
+        <div class={`absolute bottom-0 left-0 w-24 h-24 ${index === 1 ? 'bg-black/10' : 'bg-gray-100'} rounded-full -ml-12 -mb-12`}></div>
         <div class="relative z-10">
-          <p class="text-black text-lg font-bold mb-2">Senior & Military</p>
-          <h3 class="text-[#F4C430] text-4xl font-black mb-4">Coupon</h3>
-          <p class="text-gray-700 text-sm mb-6">Redeem & Save Today</p>
-          <div class="bg-[#1a1a1a] text-white text-center py-4 px-6 rounded-lg mb-6">
-            <span class="text-3xl font-black">10%</span>
-            <span class="text-xl font-bold ml-2">OFF</span>
+          <div class="flex items-center gap-2 mb-2">
+            <svg class={`w-6 h-6 ${coupon.iconColor}`} fill="currentColor" viewBox="0 0 24 24">
+              <path d={coupon.icon}/>
+            </svg>
+            <p class="text-black text-lg font-bold">{coupon.label}</p>
           </div>
-          <p class="text-gray-700 text-sm mb-4 leading-relaxed">
-            Senior & Military Discount. Cannot be combined with any other offer.
-          </p>
-          <p class="text-gray-600 text-xs">* Offer Expires: December 2024</p>
+          <h3 class={`${coupon.titleColor} text-3xl font-black mb-4`}>{coupon.title}</h3>
+          <p class={`${index === 1 ? 'text-black' : 'text-gray-800'} text-base mb-6 font-semibold`}>{coupon.subtitle}</p>
+          <div class={`${coupon.discountBg || 'bg-[#1a1a1a] text-white'} text-center py-4 px-6 mb-6`}>
+            <span class="text-3xl font-black">{coupon.discount}</span>
+            {coupon.discountSuffix && <span class="text-xl font-bold ml-2">{coupon.discountSuffix}</span>}
+          </div>
+          <p class={`${coupon.textClass} text-sm mb-4 leading-relaxed`} set:html={coupon.description}></p>
+          <p class={`${index === 1 ? 'text-black' : 'text-gray-600'} text-xs`}>{coupon.terms}</p>
         </div>
       </div>
-
-      <!-- Coupon 2: Free Camera Inspection -->
-      <div class="bg-gradient-to-br from-[#F4C430] to-[#e5b52a] rounded-lg p-8 relative overflow-hidden shadow-xl">
-        <div class="absolute top-0 right-0 w-32 h-32 bg-black/10 rounded-full -mr-16 -mt-16"></div>
-        <div class="absolute bottom-0 left-0 w-24 h-24 bg-black/10 rounded-full -ml-12 -mb-12"></div>
-        <div class="relative z-10">
-          <p class="text-black text-lg font-bold mb-2">Free Camera Inspection</p>
-          <h3 class="text-black text-4xl font-black mb-4">Coupon</h3>
-          <p class="text-black text-sm mb-6">Redeem & Save Today</p>
-          <div class="bg-white text-[#1a1a1a] text-center py-4 px-6 rounded-lg mb-6">
-            <span class="text-3xl font-black">FREE</span>
-          </div>
-          <p class="text-black text-sm mb-4 leading-relaxed">
-            Sewer Camera Inspection with any standard "price" drain cleaning.
-          </p>
-          <p class="text-black text-xs">* Offer Expires: December 2024</p>
-        </div>
-      </div>
-
-      <!-- Coupon 3: Electrical Service -->
-      <div class="bg-white rounded-lg p-8 relative overflow-hidden shadow-xl">
-        <div class="absolute top-0 right-0 w-32 h-32 bg-gray-100 rounded-full -mr-16 -mt-16"></div>
-        <div class="absolute bottom-0 left-0 w-24 h-24 bg-gray-100 rounded-full -ml-12 -mb-12"></div>
-        <div class="relative z-10">
-          <p class="text-black text-lg font-bold mb-2">Electrical Service</p>
-          <h3 class="text-[#F4C430] text-4xl font-black mb-4">Coupon</h3>
-          <p class="text-gray-700 text-sm mb-6">Redeem & Save Today</p>
-          <div class="bg-[#1a1a1a] text-white text-center py-4 px-6 rounded-lg mb-6">
-            <span class="text-3xl font-black">50%</span>
-            <span class="text-xl font-bold ml-2">OFF</span>
-          </div>
-          <p class="text-gray-700 text-sm mb-4 leading-relaxed">
-            Any Repair of $500 or More<br />
-            Contact us now to get $50 Off today.
-          </p>
-          <p class="text-gray-600 text-xs">* Offer Expires: December 2024</p>
-        </div>
-      </div>
+      ))}
     </div>
   </div>
 </section>

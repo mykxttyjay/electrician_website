@@ -22,81 +22,81 @@
 }
 
 .text-sm {
-  font-size: 0.707rem;
+  font-size: 11px;
 }
 
 .text-base {
-  font-size: 1rem;
+  font-size: 16px;
 }
 
 .text-xl {
-  font-size: 1.414rem;
+  font-size: 22px;
 }
 
 .text-2xl {
-  font-size: 1.999rem;
+  font-size: 31px;
 }
 
 .text-3xl {
-  font-size: 2.827rem;
+  font-size: 45px;
 }
 
 .text-4xl {
-  font-size: 3.997rem;
+  font-size: 63px;
 }
 
 .text-5xl {
-  font-size: 5.652rem;
+  font-size: 90px;
 }
 
 .heading-h1 {
-  font-size: 2.827rem;
+  font-size: 45px;
   /* 3xl on mobile */
 }
 
 @media (min-width: 768px) {
   .heading-h1 {
-    font-size: 3.997rem;
+    font-size: 63px;
     /* 4xl on tablet */
   }
 }
 
 @media (min-width: 1024px) {
   .heading-h1 {
-    font-size: 5.652rem;
+    font-size: 90px;
     /* 5xl on desktop */
   }
 }
 
 /* H2 - Max 4xl with responsive scaling */
 .heading-h2 {
-  font-size: 1.999rem;
+  font-size: 31px;
   /* 2xl on mobile */
 }
 
 @media (min-width: 768px) {
   .heading-h2 {
-    font-size: 2.827rem;
+    font-size: 45px;
     /* 3xl on tablet */
   }
 }
 
 @media (min-width: 1024px) {
   .heading-h2 {
-    font-size: 3.997rem;
+    font-size: 63px;
     /* 4xl on desktop */
   }
 }
 
 /* Subtitle - Max xl with responsive scaling */
 .text-subtitle {
-  font-size: 1rem;
+  font-size: 16px;
   /* base on mobile */
 }
 
 @media (min-width: 768px) {
   .text-subtitle {
-    font-size: 1.414rem;
+    font-size: 22px;
     /* xl on tablet and up */
   }
 }

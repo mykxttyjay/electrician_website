@@ -3,8 +3,6 @@ import Button from '../ui/Button.astro';
 
 interface Props {
     backgroundImage?: string;
-    pretitle?: string;
-    title: string;
     subtitle?: string;
     ctaText?: string;
     ctaLink?: string;
@@ -12,8 +10,6 @@ interface Props {
 
 const {
     backgroundImage = "https://unsplash.com/photos/man-on-green-galvanized-iron-sheet-holding-green-bar-Lgaw-BnaAAI",
-    pretitle = "",
-    title = "POWERING YOUR WORLD",
     subtitle = "Brightening lives with reliable electrical solutions, one connection at a time",
     ctaText = "EXPLORE NOW",
     ctaLink = "/contact",
@@ -29,15 +25,6 @@ const {
 
     <!-- Content -->
     <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-1 text-left">
-        <!-- Pretitle -->
-        {
-            pretitle && (
-                <p class="text-subtitle font-heading font-bold uppercase tracking-[0.3em] text-white mb-6 opacity-90">
-                    {pretitle}
-                </p>
-            )
-        }
-
         <!-- Main Title -->
         <h1
             class="font-heading font-bold text-white mb-1 tracking-wider"
@@ -55,7 +42,7 @@ const {
             )
         }
 
-        <!-- CTA Button -->
+        <!-- Explore Now Button -->
         {
             ctaText && ctaLink && (
                 <Button href={ctaLink} variant="accent" size="md">
@@ -67,10 +54,6 @@ const {
 </section>
 
 <style>
-    .animate-ping {
-        animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
-    }
-
     #rotating-word {
         display: inline-block;
         min-width: 250px;
