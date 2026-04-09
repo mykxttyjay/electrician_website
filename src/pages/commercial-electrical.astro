@@ -2,12 +2,27 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/sections/Header.astro';
 import Hero2 from '../components/sections/Hero2.astro';
+import ServiceDetailSection from '../components/sections/ServiceDetailSection.astro';
 import FAQ from '../components/sections/FAQ.astro';
 import Footer from '../components/sections/Footer.astro';
+
+const commercialServices = [
+  { name: 'Commercial Electrical', link: '/commercial-electrical' },
+  { name: 'Residential Electrical', link: '#' },
+  { name: 'Specialty Services', link: '#' },
+  { name: 'Emergency Services', link: '#' }
+];
+
+const commercialServiceCards = [
+  { name: 'Ground-up Electrical Construction', image: 'https://images.unsplash.com/photo-1702128411190-5061e7756d5c?q=80&w=736&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', link: '/ground-up-construction' },
+  { name: 'Emergency & Standby Power', image: 'https://images.unsplash.com/photo-1715962131558-63e9ef5fb79f?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', link: '#' },
+  { name: 'Commercial HVAC Electrical', image: 'https://images.unsplash.com/photo-1770838773181-e1b17ec22fee?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', link: '#' },
+  { name: 'Commercial Electrical Panels', image: 'https://images.unsplash.com/photo-1544724569-5f546fd6f2b5?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', link: '#' }
+];
 ---
 
 <Layout 
-  title="Commercial Electrical Services - Business Solutions | Electrixa" 
+  title="Commercial Electrical Services" 
   description="Professional commercial electrical services for businesses in Los Angeles. Panel upgrades, lighting, HVAC electrical, and emergency power systems. Licensed & insured."
 >
   <Header />
@@ -16,6 +31,15 @@ import Footer from '../components/sections/Footer.astro';
     backgroundImage="https://images.unsplash.com/photo-1509390144018-eeaf65052242?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     title="Commercial Electrical Services"
     titleSize="heading-h2"
+  />
+
+  <ServiceDetailSection 
+    image="https://images.unsplash.com/photo-1543333101-840e043d2a7d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    imageAlt="Commercial Electrical Services"
+    title="Commercial Electrical"
+    description="We provide comprehensive electrical services for businesses of all sizes, from simple repairs to complex installations. Our experienced team ensures minimal disruption while delivering safe, reliable, code-compliant solutions."
+    services={commercialServices}
+    serviceCards={commercialServiceCards}
   />
 
   <FAQ />
