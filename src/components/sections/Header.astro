@@ -75,7 +75,7 @@ const serviceAreas = [
 ---
 
 <div class="fixed top-0 left-0 right-0 z-[100] w-full">
-<!-- Top Bar with Contact Info (Desktop Only) -->
+<!-- Top Bar with Contact Info (Desktop Only - Hidden on Mobile/Tablet) -->
 <div class="hidden lg:block bg-white border-b border-gray-200 shadow-sm w-full">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-1 py-2">
     <div class="flex justify-between items-center">
@@ -153,16 +153,16 @@ const serviceAreas = [
 
 <!-- Navigation Bar - Fixed Below Top Bar -->
 <nav class="bg-white border-b border-gray-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-1">
+    <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-1">
       <div class="flex justify-between items-center py-2">
         <!-- Logo -->
-        <a href="/" class="flex items-center gap-3">
-          <img src="/electrixa.png" alt="Electrixa Logo" class="h-12 object-contain" style="mix-blend-mode: multiply;"/>
-          <span class="font-bold text-black" style="font-size: 25px;">ELECTRIXA</span>
+        <a href="/" class="flex items-center gap-2 lg:gap-3">
+          <img src="/electrixa.png" alt="Electrixa Logo" class="h-10 lg:h-12 object-contain" style="mix-blend-mode: multiply;"/>
+          <span class="font-bold text-black text-lg lg:text-[25px]">ELECTRIXA</span>
         </a>
         
-        <!-- Hamburger Menu Button (Mobile Only) -->
-        <button id="mobile-menu-button" class="lg:hidden flex items-center justify-center w-10 h-10 text-black hover:text-[#F4C430] transition-colors" aria-label="Toggle menu">
+        <!-- Hamburger Menu Button (Mobile Only - Right Side) -->
+        <button id="mobile-menu-button" class="lg:hidden flex items-center justify-center w-10 h-10 text-black hover:text-[#F4C430] transition-colors flex-shrink-0" aria-label="Toggle menu">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
