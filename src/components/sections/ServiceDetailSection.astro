@@ -7,7 +7,7 @@ interface Props {
   title: string;
   description: string;
   services: Array<{ name: string; link?: string }>;
-  serviceCards?: Array<{ name: string; image: string; link?: string }>;
+  serviceCards?: Array<{ name: string; image: string; link?: string; description?: string; features?: string[] }>;
 }
 
 const { image, imageAlt, title, description, services, serviceCards } = Astro.props;
@@ -30,9 +30,31 @@ const { image, imageAlt, title, description, services, serviceCards } = Astro.pr
 
         <!-- Service Cards Grid -->
         {serviceCards && serviceCards.length > 0 && (
-          <div class="grid grid-cols-4 gap-6">
+          <div class="space-y-6">
             {serviceCards.map((card) => (
-              <ServiceCard name={card.name} image={card.image} />
+              <div class="grid grid-cols-[1fr_2fr] gap-6 items-start">
+                <div>
+                  <ServiceCard name={card.name} image={card.image} />
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold text-black mb-3">{card.name}</h3>
+                  <p class="text-gray-700 leading-relaxed mb-4">
+                    {card.description || 'Professional electrical solutions tailored to your specific needs with guaranteed quality and safety.'}
+                  </p>
+                  {card.features && card.features.length > 0 && (
+                    <ul class="space-y-2">
+                      {card.features.map((feature) => (
+                        <li class="flex items-start gap-2">
+                          <svg class="w-5 h-5 text-[#F4C430] flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                          </svg>
+                          <span class="text-gray-700">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              </div>
             ))}
           </div>
         )}
@@ -47,7 +69,7 @@ const { image, imageAlt, title, description, services, serviceCards } = Astro.pr
           {services.map((service, index) => (
             <a 
               href={service.link || '#'}
-              class={`flex items-center justify-between px-6 py-4 transition-all duration-300 group min-w-[270px] ${
+              class={`flex items-center justify-between px-6 py-4 transition-all duration-300 group min-w-[300px] ${
                 index === 0 
                   ? 'bg-[#F4C430] text-black hover:bg-[#e5b52a]' 
                   : 'bg-[#2a2a2a] text-white hover:bg-[#F4C430] hover:text-black'
@@ -63,14 +85,14 @@ const { image, imageAlt, title, description, services, serviceCards } = Astro.pr
         </div>
 
         <!-- Get Started Today Card -->
-        <div class="bg-[#1a1a1a] p-8 inline-block rounded-lg">
-          <h3 class="text-2xl font-bold text-white mb-4 min-w-[270px]">Get Started Today</h3>
-          <p class="text-gray-300 mb-6 leading-relaxed min-w-[270px]">
+        <div class="bg-[#1a1a1a] p-8 inline-block rounded-lg min-w-[270px]">
+          <h3 class="text-2xl font-bold text-white mb-4">Get Started Today</h3>
+          <p class="text-gray-300 mb-6 leading-relaxed">
             Our certified electricians are ready to assist you with electrical solutions.
           </p>
 
           <!-- Contact Info -->
-          <div class="space-y-4 mb-6 min-w-[270px]">
+          <div class="space-y-4 mb-6">
               <div class="flex items-center gap-3">
                 <svg class="w-6 h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
