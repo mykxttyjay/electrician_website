@@ -49,7 +49,7 @@ const coupons = [
 <section class="bg-[#1a1a1a] py-20 px-4 sm:px-6 lg:px-8">
   <div class="max-w-7xl mx-auto">
     <!-- Section Header -->
-    <div class="mb-12 text-center">
+    <div class="mb-12 text-center coupon-header">
       <p class="text-[#F4C430] font-semibold text-lg">Special Offers</p>
       <h2 class="heading-h2 font-bold text-white mb-2">Exclusive Coupons & Deals</h2>
       <p class="text-gray-300 leading-relaxed max-w-5xl mx-auto text-subtitle">
@@ -60,7 +60,7 @@ const coupons = [
     <!-- Coupons Grid -->
     <div class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-6">
       {coupons.map((coupon, index) => (
-      <div class={`${coupon.bgClass} relative overflow-hidden shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border-2 border-dashed ${index === 1 ? 'border-black md:scale-110 md:z-10' : 'border-[#F4C430] md:mt-8'} rounded-lg w-full md:w-1/2 md:flex-shrink`}>
+      <div class={`${coupon.bgClass} relative overflow-hidden shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border-2 border-dashed ${index === 1 ? 'border-black md:scale-110 md:z-10' : 'border-[#F4C430] md:mt-8'} rounded-lg w-full md:w-1/2 md:flex-shrink coupon-card`} data-index={index}>
         
         <!-- Diagonal Ribbon Banner -->
         <div class={`absolute top-8 -right-12 w-48 transform rotate-45 z-20 shadow-lg ${index === 1 ? 'bg-black' : index === 0 || index === 2 ? 'bg-black' : 'bg-[#F4C430]'}`}>
@@ -109,3 +109,64 @@ const coupons = [
     </div>
   </div>
 </section>
+
+<style>
+  .coupon-header {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .coupon-card {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .coupon-card.animate {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .coupon-card[data-index="0"].animate {
+    animation-delay: 0.2s;
+  }
+
+  .coupon-card[data-index="1"].animate {
+    animation-delay: 0.4s;
+  }
+
+  .coupon-card[data-index="2"].animate {
+    animation-delay: 0.6s;
+  }
+
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<script>
+  // Intersection Observer for scroll animations
+  const observerOptions = {
+    threshold: 0.2,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  // Observe all coupon cards
+  document.querySelectorAll('.coupon-card').forEach(card => {
+    observer.observe(card);
+  });
+</script>

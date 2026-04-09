@@ -18,7 +18,7 @@ const testimonials = Object.values(testimonialFiles).map((file: any) => {
 <section class="bg-[#F8F8F8] py-20 px-4 sm:px-6 lg:px-8">
   <div class="max-w-7xl mx-auto">
     <!-- Section Header -->
-    <div class="mb-8 text-center">
+    <div class="mb-8 text-center testimonials-header">
       <p class="text-[#F4C430] font-semibold text-lg">Testimonials</p>
       <h2 class="heading-h2 font-bold text-black mb-3">What Our Clients Say</h2>
       <p class="text-gray-700 leading-relaxed max-w-3xl mx-auto text-subtitle">
@@ -27,7 +27,7 @@ const testimonials = Object.values(testimonialFiles).map((file: any) => {
     </div>
 
     <!-- Carousel Container -->
-    <div class="relative">
+    <div class="relative testimonials-carousel">
       <div class="testimonial-carousel overflow-hidden">
         <div class="testimonial-track flex transition-transform duration-500 ease-in-out">
           {testimonials.map((testimonial) => (
@@ -99,7 +99,7 @@ const testimonials = Object.values(testimonialFiles).map((file: any) => {
     </div>
 
     <!-- Logo Carousel -->
-    <div class="mt-12 px-3">
+    <div class="mt-12 px-3 testimonials-logos">
       <div class="overflow-hidden relative">
         <!-- Left gradient -->
         <div class="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#F8F8F8] to-transparent z-10 pointer-events-none"></div>
@@ -152,6 +152,36 @@ const testimonials = Object.values(testimonialFiles).map((file: any) => {
 </section>
 
 <style>
+  .testimonials-header {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .testimonials-carousel {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .testimonials-carousel.animate {
+    animation: fadeInUp 0.8s ease-out 0.3s forwards;
+  }
+
+  .testimonials-logos {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .testimonials-logos.animate {
+    animation: fadeInUp 0.8s ease-out 0.5s forwards;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   @keyframes scroll {
     0% {
       transform: translateX(0);
@@ -167,6 +197,29 @@ const testimonials = Object.values(testimonialFiles).map((file: any) => {
 </style>
 
 <script>
+  // Intersection Observer for scroll animations
+  const testimonialsObserverOptions = {
+    threshold: 0.2,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const testimonialsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate');
+        testimonialsObserver.unobserve(entry.target);
+      }
+    });
+  }, testimonialsObserverOptions);
+
+  // Observe testimonials elements
+  const testimonialsCarousel = document.querySelector('.testimonials-carousel');
+  const testimonialsLogos = document.querySelector('.testimonials-logos');
+  
+  if (testimonialsCarousel) testimonialsObserver.observe(testimonialsCarousel);
+  if (testimonialsLogos) testimonialsObserver.observe(testimonialsLogos);
+
+  // Carousel functionality
   let currentIndex = 0;
   const track = document.querySelector('.testimonial-track') as HTMLElement;
   const slides = document.querySelectorAll('.testimonial-slide');

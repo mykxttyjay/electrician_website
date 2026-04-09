@@ -34,7 +34,7 @@ const faqs = [
   
   <div class="max-w-7xl mx-auto relative z-10">
     <!-- Section Header -->
-    <div class="mb-12 text-center">
+    <div class="mb-12 text-center faq-header">
       <p class="text-[#e5b52a] font-semibold text-lg mb-2">Frequently Asked Questions</p>
       <h2 class="heading-h2 font-black text-black mb-4">Got Questions? We've Got Answers</h2>
       <p class="text-gray-700 leading-relaxed max-w-3xl mx-auto text-xl">
@@ -45,7 +45,7 @@ const faqs = [
     <!-- Two Column Layout -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
       <!-- Left Side: FAQ Questions -->
-      <div class="space-y-4">
+      <div class="space-y-4 faq-questions">
         {faqs.map((faq, index) => (
           <div class={`faq-item group bg-[#F8F8F8] border-l-4 ${index === 0 ? 'border-[#F4C430]' : 'border-transparent'} hover:border-[#F4C430] shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer`}>
             <div class="faq-question p-5" data-index={index}>
@@ -74,7 +74,7 @@ const faqs = [
       </div>
 
       <!-- Right Side: CTA Box -->
-      <div class="bg-[#1a1a1a] p-10 h-full flex flex-col justify-between">
+      <div class="bg-[#1a1a1a] p-10 h-full flex flex-col justify-between faq-cta">
         <div>
           <!-- Heading -->
           <h3 class="text-3xl font-black text-white mb-4 leading-tight">
@@ -136,7 +136,76 @@ const faqs = [
   </div>
 </section>
 
+<style>
+  .faq-header {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .faq-questions {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+
+  .faq-questions.animate {
+    animation: slideInLeft 0.8s ease-out 0.3s forwards;
+  }
+
+  .faq-cta {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+
+  .faq-cta.animate {
+    animation: slideInRight 0.8s ease-out 0.3s forwards;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideInLeft {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInRight {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+</style>
+
 <script>
+  // Intersection Observer for scroll animations
+  const faqObserverOptions = {
+    threshold: 0.2,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const faqObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate');
+        faqObserver.unobserve(entry.target);
+      }
+    });
+  }, faqObserverOptions);
+
+  // Observe FAQ elements
+  const faqQuestions = document.querySelector('.faq-questions');
+  const faqCta = document.querySelector('.faq-cta');
+  
+  if (faqQuestions) faqObserver.observe(faqQuestions);
+  if (faqCta) faqObserver.observe(faqCta);
+
+  // FAQ accordion functionality
   const faqItems = document.querySelectorAll('.faq-item');
   
   faqItems.forEach((item) => {
