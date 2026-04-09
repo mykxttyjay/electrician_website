@@ -7,8 +7,8 @@ interface Props {
 const { name, image } = Astro.props;
 ---
 
-<div class="group cursor-pointer relative overflow-hidden">
-  <div class="w-full aspect-square overflow-hidden bg-gray-200">
+<div class="group cursor-pointer relative overflow-hidden rounded-lg">
+  <div class="w-full aspect-square overflow-hidden bg-gray-200 rounded-lg">
     <img 
       src={image} 
       alt={name}
