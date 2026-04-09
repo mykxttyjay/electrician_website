@@ -1,4 +1,5 @@
 ---
+import ServiceCard from '../ui/ServiceCard.astro';
 
 const serviceCategories = [
   {
@@ -98,19 +99,7 @@ const serviceCategories = [
         <!-- Bottom: 4 Services in 1 Row -->
         <div class="grid grid-cols-4 gap-6">
           {category.services.map((service) => (
-            <div class="group cursor-pointer relative overflow-hidden">
-              <div class="w-full aspect-square overflow-hidden bg-gray-200">
-                <img 
-                  src={service.image} 
-                  alt={service.name}
-                  class="w-full h-full object-cover"
-                />
-              </div>
-              <!-- Hover Overlay -->
-              <div class="absolute inset-0 bg-gradient-to-r from-[#F4C430]/80 to-[#F4C430]/60 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 ease-in-out flex items-end justify-center pb-6">
-                <h4 class="font-bold text-black text-center px-4 whitespace-nowrap overflow-hidden text-ellipsis w-full" style="font-size: 14px;">{service.name}</h4>
-              </div>
-            </div>
+            <ServiceCard name={service.name} image={service.image} />
           ))}
         </div>
       </div>

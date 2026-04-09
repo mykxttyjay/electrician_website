@@ -1,30 +1,18 @@
 ---
-const testimonials = [
-  {
-    name: "Michael Rodriguez",
-    role: "Homeowner",
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=100&h=100&fit=crop",
-    text: "Excellent service from start to finish. The team was professional, punctual, and completed our home rewiring project ahead of schedule. They took the time to explain everything clearly and ensured all work met code requirements. The quality of their craftsmanship is outstanding, and I highly recommend their expertise and attention to detail to anyone needing electrical work."
-  },
-  {
-    name: "Sarah Johnson",
-    role: "Business Owner",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&h=100&fit=crop",
-    text: "Outstanding electrical work for our commercial space. They handled everything efficiently with minimal disruption to our business operations. The team was incredibly respectful of our schedule and worked around our busy hours. The quality of work exceeded our expectations, and they even provided helpful suggestions for energy efficiency improvements. We couldn't be happier with the results."
-  },
-  {
-    name: "David Chen",
-    role: "Property Manager",
-    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&h=100&fit=crop",
-    text: "Reliable and trustworthy electricians who truly understand property management needs. They've handled multiple panel upgrades across our properties with consistent quality and professionalism. Their emergency response time is impressive, and they always arrive prepared with the right equipment. The pricing is fair and transparent, with no hidden fees. I trust them completely."
-  },
-  {
-    name: "Emily Martinez",
-    role: "Restaurant Owner",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&h=100&fit=crop",
-    text: "Professional team that understands commercial needs and the unique challenges of restaurant operations. They upgraded our restaurant's electrical system efficiently and ensured everything met strict code requirements. Excellent communication throughout the project kept us informed. They worked during our off-hours to minimize impact on our business. Highly recommend them."
-  }
-];
+// Import all testimonial markdown files
+const testimonialFiles = import.meta.glob('../content/testimonial-*.md', { eager: true });
+const testimonials = Object.values(testimonialFiles).map((file: any) => {
+
+  const rawContent = file.rawContent ? file.rawContent() : '';
+  const cleanText = rawContent.replace(/^---[\s\S]*?---\n/, '').trim(); 
+  
+  return {
+    name: file.frontmatter.name,
+    role: file.frontmatter.role,
+    image: file.frontmatter.image,
+    text: cleanText
+  };
+});
 ---
 
 <section class="bg-[#F8F8F8] py-20 px-4 sm:px-6 lg:px-8">
@@ -42,7 +30,7 @@ const testimonials = [
     <div class="relative">
       <div class="testimonial-carousel overflow-hidden">
         <div class="testimonial-track flex transition-transform duration-500 ease-in-out">
-          {testimonials.map((testimonial, index) => (
+          {testimonials.map((testimonial) => (
           <div class="testimonial-slide min-w-full md:min-w-[50%] px-3">
             <div class="bg-white border-2 border-gray-300 shadow-md p-8 h-full">
               <div class="flex items-start justify-between mb-4">
@@ -68,7 +56,7 @@ const testimonials = [
           </div>
           ))}
           <!-- Duplicate slides for infinite loop -->
-          {testimonials.map((testimonial, index) => (
+          {testimonials.map((testimonial) => (
           <div class="testimonial-slide min-w-full md:min-w-[50%] px-3">
             <div class="bg-white border-2 border-gray-300 shadow-md p-8 h-full">
               <div class="flex items-start justify-between mb-4">
@@ -97,7 +85,7 @@ const testimonials = [
       </div>
 
       <!-- Dots Navigation -->
-      <div class="flex justify-center mt-8">
+      <div class="hidden flex justify-center mt-8">
         {testimonials.map((_, index) => (
         <button 
           class={`carousel-dot w-12 h-12 flex items-center justify-center rounded-full transition-all`}
@@ -109,8 +97,74 @@ const testimonials = [
         ))}
       </div>
     </div>
+
+    <!-- Logo Carousel -->
+    <div class="mt-12 px-3">
+      <div class="overflow-hidden relative">
+        <!-- Left gradient -->
+        <div class="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#F8F8F8] to-transparent z-10 pointer-events-none"></div>
+        <!-- Right gradient -->
+        <div class="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#F8F8F8] to-transparent z-10 pointer-events-none"></div>
+        
+        <div class="logo-track flex items-center gap-40 animate-scroll">
+          <!-- First set of logos -->
+          <div class="h-20 flex items-center justify-center opacity-60 flex-shrink-0">
+            <img src="/bbb-logo.png" alt="BBB Accredited" class="max-h-16 w-auto object-contain" />
+          </div>
+          <div class="h-20 flex items-center justify-center opacity-60 flex-shrink-0">
+            <img src="/google-reviews.webp" alt="Google Reviews" class="max-h-16 w-auto object-contain" />
+          </div>
+          <div class="h-20 flex items-center justify-center opacity-60 flex-shrink-0">
+            <img src="/licensed-insured.png" alt="Licensed & Insured" class="max-h-16 w-auto object-contain" />
+          </div>
+          <div class="h-20 flex items-center justify-center opacity-60 flex-shrink-0">
+            <img src="/24-7-service.png" alt="24/7 Service" class="max-h-16 w-auto object-contain" />
+          </div>
+          <div class="h-20 flex items-center justify-center opacity-60 flex-shrink-0">
+            <img src="/angi-certified.png" alt="Angi Certified" class="max-h-16 w-auto object-contain" />
+          </div>
+          <div class="h-20 flex items-center justify-center opacity-60 flex-shrink-0">
+            <img src="/certified.png" alt="Angie's List" class="max-h-16 w-auto object-contain" />
+          </div>
+          <!-- Duplicate set for seamless loop -->
+          <div class="h-20 flex items-center justify-center opacity-60 flex-shrink-0">
+            <img src="/bbb-logo.png" alt="BBB Accredited" class="max-h-16 w-auto object-contain" />
+          </div>
+          <div class="h-20 flex items-center justify-center opacity-60 flex-shrink-0">
+            <img src="/google-reviews.webp" alt="Google Reviews" class="max-h-16 w-auto object-contain" />
+          </div>
+          <div class="h-20 flex items-center justify-center opacity-60 flex-shrink-0">
+            <img src="/licensed-insured.png" alt="Licensed & Insured" class="max-h-16 w-auto object-contain" />
+          </div>
+          <div class="h-20 flex items-center justify-center opacity-60 flex-shrink-0">
+            <img src="/24-7-service.png" alt="24/7 Service" class="max-h-16 w-auto object-contain" />
+          </div>
+          <div class="h-20 flex items-center justify-center opacity-60 flex-shrink-0">
+            <img src="/angi-certified.png" alt="Angi Certified" class="max-h-16 w-auto object-contain" />
+          </div>
+          <div class="h-20 flex items-center justify-center opacity-60 flex-shrink-0">
+            <img src="/certified.png" alt="Angie's List" class="max-h-16 w-auto object-contain" />
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
+
+<style>
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-scroll {
+    animation: scroll 10s linear infinite;
+  }
+</style>
 
 <script>
   let currentIndex = 0;

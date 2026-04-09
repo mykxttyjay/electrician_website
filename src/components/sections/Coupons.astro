@@ -58,22 +58,25 @@ const coupons = [
     </div>
 
     <!-- Coupons Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-6">
       {coupons.map((coupon, index) => (
-      <div class={`${coupon.bgClass} relative overflow-hidden shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border-2 border-dashed ${index === 1 ? 'border-black' : 'border-[#F4C430]'}`}>
+      <div class={`${coupon.bgClass} relative overflow-hidden shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border-2 border-dashed ${index === 1 ? 'border-black md:scale-110 md:z-10' : 'border-[#F4C430] md:mt-8'} rounded-lg w-full md:w-1/2 md:flex-shrink`}>
+        
+        <!-- Diagonal Ribbon Banner -->
+        <div class={`absolute top-8 -right-12 w-48 transform rotate-45 z-20 shadow-lg ${index === 1 ? 'bg-black' : index === 0 || index === 2 ? 'bg-black' : 'bg-[#F4C430]'}`}>
+          <p class={`text-center py-2 font-black uppercase tracking-wider ${index === 1 ? 'text-[#F4C430]' : index === 0 || index === 2 ? 'text-white' : 'text-black'}`} style="font-size: 12px;">
+            {index === 0 ? 'Best Value' : index === 1 ? 'Popular' : 'Hot Deal'}
+          </p>
+        </div>
         
         <!-- Top Section with Icon Badge -->
         <div class="relative p-6 pb-4">
-          <div class={`absolute top-0 right-0 w-20 h-20 ${index === 1 ? 'bg-white' : 'bg-[#F4C430]'} transform rotate-45 translate-x-10 -translate-y-10`}></div>
-          <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center justify-start mb-4">
             <div class={`w-14 h-14 ${index === 1 ? 'bg-white' : 'bg-[#F4C430]'} flex items-center justify-center relative z-10`}>
               <svg class={`w-8 h-8 ${index === 1 ? 'text-black' : 'text-black'}`} fill="currentColor" viewBox="0 0 24 24">
                 <path d={coupon.icon}/>
               </svg>
             </div>
-            <span class={`${index === 1 ? 'bg-black text-[#F4C430]' : 'bg-black text-white'} px-3 py-1 text-xs font-bold uppercase tracking-wider`}>
-              {coupon.label}
-            </span>
           </div>
           
           <h3 class={`${coupon.titleColor} text-4xl font-black mb-2 tracking-tight`}>{coupon.title}</h3>
@@ -97,7 +100,7 @@ const coupons = [
           <p class={`${index === 1 ? 'text-black/70' : 'text-gray-600'} text-xs italic`}>{coupon.terms}</p>
           
           <!-- Claim Button -->
-          <button class={`w-full mt-4 py-3 ${index === 1 ? 'bg-black text-[#F4C430] hover:bg-gray-900' : 'bg-[#F4C430] text-black hover:bg-[#e5b52a]'} font-bold uppercase tracking-wider transition-all duration-300 hover:scale-105`}>
+          <button class={`w-full mt-4 py-3 ${index === 1 ? 'bg-black text-[#F4C430] hover:bg-[#1a1a1a]' : 'bg-[#F4C430] text-black hover:bg-[#e5b52a]'} font-bold uppercase tracking-wider transition-all duration-300 hover:scale-105`}>
             Claim Offer
           </button>
         </div>
