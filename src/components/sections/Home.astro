@@ -25,12 +25,15 @@ const {
     <img 
         src={backgroundImage}
         alt="Electrical services hero background"
-        class="absolute inset-0 w-full h-full object-cover"
+        class="hidden lg:block absolute inset-0 w-full h-full object-cover"
         fetchpriority="high"
     />
     
     <!-- Dark Overlay -->
-    <div class="absolute inset-0 bg-black/50"></div>
+    <div class="hidden lg:block absolute inset-0 bg-black/50"></div>
+    
+    <!-- Mobile Background Color -->
+    <div class="lg:hidden absolute inset-0 bg-gradient-to-br from-gray-900 to-gray-800"></div>
 
     <!-- Content -->
     <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-1 text-left">
