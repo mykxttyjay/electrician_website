@@ -74,7 +74,7 @@ const serviceAreas = [
 ];
 ---
 
-<div class="fixed top-0 left-0 right-0 z-[100] w-full">
+<div class="fixed top-0 left-0 right-0 z-[100] w-full" style="transition: transform 0.3s ease-in-out;">
 <!-- Top Bar with Contact Info (Desktop Only - Hidden on Mobile/Tablet) -->
 <div class="hidden lg:block bg-white border-b border-gray-200 shadow-sm w-full">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-1 py-2">
@@ -345,55 +345,62 @@ const serviceAreas = [
   </div>
 </div>
 
-<script>
-  const header = document.querySelector('.fixed.top-0') as HTMLElement;
-  const topBar = header?.querySelector('.bg-white.border-b') as HTMLElement;
-  const nav = header?.querySelector('nav') as HTMLElement;
-  
-  // Mobile menu toggle
-  const mobileMenuButton = document.getElementById('mobile-menu-button');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const servicesToggle = document.getElementById('mobile-services-toggle');
-  const servicesMenu = document.getElementById('mobile-services-menu');
-  const areasToggle = document.getElementById('mobile-areas-toggle');
-  const areasMenu = document.getElementById('mobile-areas-menu');
-  
-  mobileMenuButton?.addEventListener('click', () => {
-    mobileMenu?.classList.toggle('hidden');
-    const icon = mobileMenuButton.querySelector('svg path');
-    if (icon) {
-      if (mobileMenu?.classList.contains('hidden')) {
-        icon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
-      } else {
-        icon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
-      }
-    }
-  });
-  
-  servicesToggle?.addEventListener('click', () => {
-    servicesMenu?.classList.toggle('hidden');
-    const icon = servicesToggle.querySelector('svg');
-    icon?.classList.toggle('rotate-180');
-  });
-  
-  areasToggle?.addEventListener('click', () => {
-    areasMenu?.classList.toggle('hidden');
-    const icon = areasToggle.querySelector('svg');
-    icon?.classList.toggle('rotate-180');
-  });
-  
-  if (header && topBar && nav) {
-    window.addEventListener('scroll', () => {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+<script is:inline>
+  // Force script reload - v2
+  (function() {
+    const header = document.querySelector('.fixed.top-0');
+    
+    if (header) {
+      let lastScrollTop = 0;
       
-      if (scrollTop > 50) {
-        // Hide top bar when scrolled down
-        topBar.style.display = 'none';
-        header.style.top = '0';
-      } else {
-        // Show top bar when at top
-        topBar.style.display = 'block';
+      const handleScroll = () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Scrolling down and past threshold - hide header
+        if (scrollTop > lastScrollTop && scrollTop > 100) {
+          header.style.transform = 'translateY(-100%)';
+        } 
+        // Scrolling up - show header
+        else if (scrollTop < lastScrollTop) {
+          header.style.transform = 'translateY(0)';
+        }
+        
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+      };
+      
+      window.addEventListener('scroll', handleScroll, { passive: true });
+    }
+    
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const servicesToggle = document.getElementById('mobile-services-toggle');
+    const servicesMenu = document.getElementById('mobile-services-menu');
+    const areasToggle = document.getElementById('mobile-areas-toggle');
+    const areasMenu = document.getElementById('mobile-areas-menu');
+    
+    mobileMenuButton?.addEventListener('click', () => {
+      mobileMenu?.classList.toggle('hidden');
+      const icon = mobileMenuButton.querySelector('svg path');
+      if (icon) {
+        if (mobileMenu?.classList.contains('hidden')) {
+          icon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+        } else {
+          icon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+        }
       }
     });
-  }
+    
+    servicesToggle?.addEventListener('click', () => {
+      servicesMenu?.classList.toggle('hidden');
+      const icon = servicesToggle.querySelector('svg');
+      icon?.classList.toggle('rotate-180');
+    });
+    
+    areasToggle?.addEventListener('click', () => {
+      areasMenu?.classList.toggle('hidden');
+      const icon = areasToggle.querySelector('svg');
+      icon?.classList.toggle('rotate-180');
+    });
+  })();
 </script>
