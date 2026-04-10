@@ -11,6 +11,18 @@ import FAQ from '../components/sections/FAQ.astro';
 import Footer from '../components/sections/Footer.astro';
 import FloatingOffer from '../components/sections/FloatingOffer.astro';
 import OfferModal from '../components/sections/OfferModal.astro';
+import { getCollection } from 'astro:content';
+
+// Import service MD files
+const serviceFiles = import.meta.glob('../components/content/services/*.md', { eager: true });
+const services = Object.values(serviceFiles).map((file: any) => ({
+  name: file.frontmatter.name,
+  image: file.frontmatter.image,
+  link: file.frontmatter.link,
+  description: file.frontmatter.description,
+  features: file.frontmatter.features,
+  order: file.frontmatter.order
+})).sort((a, b) => a.order - b.order);
 
 const heroData = {
   backgroundImage: "https://images.unsplash.com/photo-1509390144018-eeaf65052242?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -25,74 +37,24 @@ const commercialServices = [
   { name: 'Emergency Services', link: '#' }
 ];
 
-const allServiceData = {
-  'Commercial Electrical': {
-    title: 'Commercial Electrical',
-    description: 'We provide comprehensive electrical services for businesses of all sizes, from simple repairs to complex installations. Our experienced team ensures minimal disruption while delivering safe, reliable, code-compliant solutions.',
-    cards: [
-      { 
-        name: 'Ground-up Electrical', 
-        image: 'https://images.unsplash.com/photo-1702128411190-5061e7756d5c?q=80&w=736&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 
-        link: '/ground-up-construction',
-        description: 'Complete electrical infrastructure for new commercial construction projects. From initial design to final installation, we expertly handle all critical aspects of electrical systems for your building.',
-        features: [
-          'Full electrical system design & planning',
-          'Power distribution & panel installation',
-          'Code-compliant wiring & conduit systems',
-          'Coordination with general contractors'
-        ]
-      },
-      { 
-        name: 'Emergency & Standby Power', 
-        image: 'https://images.unsplash.com/photo-1715962131558-63e9ef5fb79f?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 
-        link: '#',
-        description: 'Reliable backup power solutions to keep your business running smoothly during outages. Professional generator installation, maintenance, and automatic transfer switch systems.',
-        features: [
-          'Commercial generator installation',
-          'Automatic transfer switch setup',
-          'Regular maintenance & testing',
-          'UPS system integration'
-        ]
-      },
-      { 
-        name: 'Commercial HVAC', 
-        image: 'https://images.unsplash.com/photo-1770838773181-e1b17ec22fee?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 
-        link: '#',
-        description: 'Specialized electrical services for commercial heating, ventilation, and air conditioning systems. Expert installation and maintenance for optimal performance and energy efficiency.',
-        features: [
-          'HVAC unit electrical connections',
-          'Control system wiring & programming',
-          'Energy-efficient upgrades',
-          'Preventive maintenance programs'
-        ]
-      },
-      { 
-        name: 'Commercial Electrical Panels', 
-        image: 'https://images.unsplash.com/photo-1544724569-5f546fd6f2b5?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 
-        link: '#',
-        description: 'Professional panel upgrades and installations to meet your growing business power demands. Ensure safety and maximum efficiency with modern, reliable electrical distribution systems.',
-        features: [
-          'Panel upgrades & replacements',
-          'Circuit breaker installation',
-          'Load balancing & capacity planning',
-          'Safety inspections & compliance'
-        ]
-      }
-    ]
-  },
-};
-
 const serviceDetailData = {
   image: "https://images.unsplash.com/photo-1543333101-840e043d2a7d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   imageAlt: "Commercial Electrical Services",
   title: "Commercial Electrical",
   description: "We provide comprehensive electrical services for businesses of all sizes, from simple repairs to complex installations. Our experienced team ensures minimal disruption while delivering safe, reliable, code-compliant solutions."
 };
+
+const allServiceData = {
+  'Commercial Electrical': {
+    title: serviceDetailData.title,
+    description: serviceDetailData.description,
+    cards: services
+  },
+};
 ---
 
 <Layout 
   title="Commercial Electrical Services" 
-  description="Professional commercial electrical services for businesses in Los Angeles. Panel upgrades, lighting, HVAC electrical, and emergency power systems. Licensed & insured."
 >
   <Header />
   
@@ -113,17 +75,11 @@ const serviceDetailData = {
   />
 
   <WhyChooseUs />
-
   <Testimonials />
-
   <FAQ />
-
   <Location />
-
   <CallToAction />
-
   <Footer />
-  
   <FloatingOffer />
   <OfferModal />
 </Layout>

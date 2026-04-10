@@ -1,6 +1,6 @@
 ---
 // Import all testimonial markdown files
-const testimonialFiles = import.meta.glob('../content/testimonial-*.md', { eager: true });
+const testimonialFiles = import.meta.glob('../content/testimonials/testimonial-*.md', { eager: true });
 const testimonials = Object.values(testimonialFiles).map((file: any) => {
 
   const rawContent = file.rawContent ? file.rawContent() : '';
