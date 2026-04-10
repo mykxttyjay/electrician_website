@@ -19,9 +19,9 @@ const cards = [
   <div class="max-w-7xl mx-auto">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-end">
       <!-- Left Side -->
-      <div class="relative h-[500px] md:h-[650px] about-images">
+      <div class="relative h-[500px] md:h-[650px] about-images opacity-0 animate-[fadeIn_0.8s_ease-out_forwards]">
         <!-- First Image -->
-        <div class="absolute top-0 left-0 w-[70%] md:w-[450px] h-[380px] md:h-[580px] overflow-hidden shadow-xl z-10 rounded-lg about-image-1">
+        <div class="absolute top-0 left-0 w-[70%] md:w-[450px] h-[380px] md:h-[580px] overflow-hidden shadow-xl z-10 rounded-lg about-image-1 opacity-0 -translate-x-[30px]">
           <img 
             src="https://images.unsplash.com/photo-1622426385889-4fc93a72423a?q=80&w=746&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
             alt="Buildings" 
@@ -30,7 +30,7 @@ const cards = [
         </div>
 
         <!-- Second Image -->
-        <div class="absolute bottom-0 right-0 w-[60%] md:w-96 h-[280px] md:h-[420px] overflow-hidden shadow-xl z-20 rounded-lg about-image-2">
+        <div class="absolute bottom-0 right-0 w-[60%] md:w-96 h-[280px] md:h-[420px] overflow-hidden shadow-xl z-20 rounded-lg about-image-2 opacity-0 translate-x-[30px]">
           <img 
             src="https://images.unsplash.com/photo-1683295083329-4d4738291f3a?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
             alt="Electrician at work" 
@@ -39,9 +39,9 @@ const cards = [
         </div>
 
         <!-- Experience Card -->
-        <div class="absolute top-24 right-4 md:top-36 md:right-16 bg-[#F4C430] p-4 md:p-8 shadow-2xl z-30 w-40 md:w-55 border-t-4 border-black rounded-lg about-experience-card">
+        <div class="absolute top-24 right-4 md:top-36 md:right-16 bg-[#F4C430] p-4 md:p-8 shadow-2xl z-30 w-40 md:w-55 border-t-4 border-black rounded-lg about-experience-card opacity-0 scale-[0.8]">
           <div class="flex flex-col items-start space-y-1 md:space-y-2">
-            <h3 class="text-5xl md:text-7xl font-black text-black tracking-tight counter" data-target="20" style="line-height: 0.9;">0+</h3>
+            <h3 class="text-5xl md:text-7xl font-black text-black tracking-tight counter leading-[0.9]" data-target="20">0+</h3>
             <div class="text-left">
               <p class="text-base md:text-lg font-bold text-black leading-tight">Years Experience</p>
             </div>
@@ -50,22 +50,27 @@ const cards = [
       </div>
 
       <!-- Right Side -->
-      <div class="space-y-6 about-content">
-        <div>
-          <p class="text-[#e5b52a] font-semibold mb-2 flex items-center gap-2" style="font-size: 18px;">
+      <div class="space-y-6 about-content opacity-0">
+        <div class="relative">
+          <!-- Background Text -->
+          <div class="absolute -top-16 left-0 text-[180px] font-black text-gray-100 leading-none pointer-events-none select-none opacity-30">
+            ABOUT
+          </div>
+          
+          <p class="text-[#e5b52a] font-semibold mb-2 flex items-center gap-2 relative z-10 text-lg">
             <svg class="w-5 h-5 text-[#F4C430]" fill="currentColor" viewBox="0 0 24 24">
               <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/>
             </svg>
             About Us
           </p>
-          <h2 class="heading-h2 font-bold text-black mb-4" style="line-height: 1.2;">Reliable & Expert<br><span class="whitespace-nowrap">Electrical Solutions</span></h2>
-          <p class="text-gray-700 leading-relaxed" style="font-size: 22px;">
+          <h2 class="heading-h2 font-bold text-black mb-4 relative z-10 leading-tight">Reliable & Expert<br><span class="whitespace-nowrap">Electrical Solutions</span></h2>
+          <p class="text-gray-700 leading-relaxed relative z-10 text-[22px]">
             With over two decades of experience, we deliver professional electrical services that prioritize safety, efficiency, and innovation. Our certified team ensures every project meets the highest standards.
           </p>
         </div>
 
         <!-- Mission and Vision Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 about-cards">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 about-cards opacity-0 translate-y-5">
           {cards.map((card) => (
             <div class="group border-2 border-gray-300 p-6 hover:border-[#F4C430] transition-all">
               <div class="w-12 h-12 bg-[#F4F4F4] group-hover:bg-[#F4C430] rounded-full flex items-center justify-center mb-4 transition-colors">
@@ -82,7 +87,7 @@ const cards = [
         </div>
 
         <!-- About More Button -->
-        <div class="flex items-center gap-6 pt-2 about-button">
+        <div class="flex items-center gap-6 pt-2 about-button opacity-0 translate-y-5">
           <Button href="/about" variant="accent" size="md" icon={false}>
             About More
           </Button>
@@ -92,114 +97,14 @@ const cards = [
   </div>
 </section>
 
-<style>
-  .about-images,
-  .about-content {
-    opacity: 0;
-  }
-
-  .about-images.animate {
-    animation: fadeIn 0.8s ease-out forwards;
-  }
-
-  .about-content.animate {
-    animation: fadeInRight 0.8s ease-out 0.3s forwards;
-  }
-
-  .about-image-1 {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-
-  .about-images.animate .about-image-1 {
-    animation: slideInLeft 0.8s ease-out 0.2s forwards;
-  }
-
-  .about-image-2 {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-
-  .about-images.animate .about-image-2 {
-    animation: slideInRight 0.8s ease-out 0.4s forwards;
-  }
-
-  .about-experience-card {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-
-  .about-images.animate .about-experience-card {
-    animation: scaleIn 0.6s ease-out 0.6s forwards;
-  }
-
-  .about-cards {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  .about-content.animate .about-cards {
-    animation: fadeInUp 0.8s ease-out 0.5s forwards;
-  }
-
-  .about-button {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  .about-content.animate .about-button {
-    animation: fadeInUp 0.8s ease-out 0.7s forwards;
-  }
-
-  @keyframes fadeIn {
-    to {
-      opacity: 1;
-    }
-  }
-
-  @keyframes fadeInRight {
-    to {
-      opacity: 1;
-    }
-  }
-
-  @keyframes slideInLeft {
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes slideInRight {
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes scaleIn {
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
-  @keyframes fadeInUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-</style>
-
 <script>
   // Counter animation for the experience card
   const counter = document.querySelector('.counter');
   if (counter) {
     const target = parseInt(counter.getAttribute('data-target') || '0');
     let current = 0;
-    const increment = target / 30; // Faster animation
-    const duration = 1000; // 1 second instead of 2
+    const increment = target / 30;
+    const duration = 1000;
     const stepTime = duration / 30;
 
     const updateCounter = () => {
@@ -233,16 +138,43 @@ const cards = [
   const aboutObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('animate');
+        // Add animation classes when element is visible
+        if (entry.target.classList.contains('about-images')) {
+          entry.target.querySelector('.about-image-1')?.classList.add('animate-[slideInLeft_0.8s_ease-out_0.2s_forwards]');
+          entry.target.querySelector('.about-image-2')?.classList.add('animate-[slideInRight_0.8s_ease-out_0.4s_forwards]');
+          entry.target.querySelector('.about-experience-card')?.classList.add('animate-[scaleIn_0.6s_ease-out_0.6s_forwards]');
+        }
+        if (entry.target.classList.contains('about-content')) {
+          entry.target.classList.add('animate-[fadeIn_0.8s_ease-out_0.3s_forwards]');
+          entry.target.querySelector('.about-cards')?.classList.add('animate-[fadeInUp_0.8s_ease-out_0.5s_forwards]');
+          entry.target.querySelector('.about-button')?.classList.add('animate-[fadeInUp_0.8s_ease-out_0.7s_forwards]');
+        }
         aboutObserver.unobserve(entry.target);
       }
     });
   }, aboutObserverOptions);
 
-  // Observe about section elements
   const aboutImages = document.querySelector('.about-images');
   const aboutContent = document.querySelector('.about-content');
   
   if (aboutImages) aboutObserver.observe(aboutImages);
   if (aboutContent) aboutObserver.observe(aboutContent);
 </script>
+
+<style>
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+  @keyframes slideInLeft {
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes slideInRight {
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes scaleIn {
+    to { opacity: 1; transform: scale(1); }
+  }
+  @keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
