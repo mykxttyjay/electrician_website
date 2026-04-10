@@ -15,11 +15,16 @@ const testimonials = Object.values(testimonialFiles).map((file: any) => {
 });
 ---
 
-<section class="bg-[#F8F8F8] py-20 px-4 sm:px-6 lg:px-8">
-  <div class="max-w-7xl mx-auto">
+<section class="relative bg-[#F8F8F8] py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+  <div class="max-w-7xl mx-auto relative z-10">
     <!-- Section Header -->
     <div class="mb-8 text-center testimonials-header">
-      <p class="text-[#F4C430] font-semibold text-lg">Testimonials</p>
+      <p class="text-[#F4C430] font-semibold text-lg flex items-center justify-center gap-2">
+        <svg class="w-5 h-5 text-[#F4C430]" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/>
+        </svg>
+        Testimonials
+      </p>
       <h2 class="heading-h2 font-bold text-black mb-3">What Our Clients Say</h2>
       <p class="text-gray-700 leading-relaxed max-w-3xl mx-auto text-subtitle">
         Hear from our satisfied customers about their experience with our professional electrical services and dedicated team.
