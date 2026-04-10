@@ -134,7 +134,7 @@ const serviceAreas = [
 </div>
 
 <!-- Navigation Bar - Sticky -->
-<nav class="bg-white border-b border-gray-200 sticky top-0 z-[100] shadow-md">
+<nav class="bg-white border-b border-gray-200 sticky top-0 z-[100] shadow-md relative">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-1">
     <div class="flex justify-between items-center py-4 lg:py-2">
       <!-- Logo -->
@@ -162,40 +162,15 @@ const serviceAreas = [
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
           </a>
-          <div class="absolute top-full left-0 bg-white border border-gray-200 mt-2 py-4 px-6 min-w-[900px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 rounded shadow-lg grid grid-cols-4 gap-8 z-[110]">
-            {serviceCategories.map((category) => (
-              <div>
-                <a href={category.href} class="text-black font-bold mb-3 pb-2 border-b-2 border-[#F4C430] whitespace-nowrap inline-block hover:text-[#F4C430] transition-colors">{category.title}</a>
-                <ul class="space-y-2 mt-3">
-                  {category.services.map((service) => (
-                    <li>
-                      <a href={service.href} class="block text-gray-700 hover:text-accent transition-colors" style="font-size: 14px;">
-                        {service.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
         </li>
         
-        <li class="relative group">
+        <li class="relative group service-area-nav">
           <a href="/location" class="text-black hover:text-accent transition-colors font-semibold flex items-center gap-1">
             Service Area
             <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
           </a>
-          <ul class="absolute top-full left-0 bg-white border border-gray-200 mt-2 py-2 min-w-[200px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 rounded shadow-lg z-[110]">
-            {serviceAreas.map((area) => (
-              <li>
-                <a href={area.href} class="block px-4 py-2 text-black hover:text-accent hover:bg-gray-50 transition-colors font-semibold">
-                  {area.name}
-                </a>
-              </li>
-            ))}
-          </ul>
         </li>
         
         <li><a href="/contact" class="text-black hover:text-accent transition-colors font-semibold">Contact</a></li>
@@ -214,7 +189,139 @@ const serviceAreas = [
       </a>
     </div>
   </div>
+  
+  <!-- Services Dropdown - Aligned with Nav Menu -->
+  <div class="absolute bg-white border-b border-gray-200 py-6 px-8 opacity-0 invisible transition-all duration-200 shadow-lg z-[110] services-dropdown rounded-b-lg" style="top: 100%;">
+    <div class="grid grid-cols-4 gap-8">
+      {serviceCategories.map((category) => (
+        <div>
+          <a href={category.href} class="text-black font-bold mb-3 pb-2 border-b-2 border-[#F4C430] whitespace-nowrap inline-block hover:text-[#F4C430] transition-colors">{category.title}</a>
+          <ul class="space-y-2 mt-3">
+            {category.services.map((service) => (
+              <li>
+                <a href={service.href} class="block text-gray-700 hover:text-accent transition-colors" style="font-size: 14px;">
+                  {service.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+  
+  <!-- Service Area Dropdown -->
+  <div class="absolute bg-white shadow-lg opacity-0 invisible transition-all duration-200 min-w-[200px] z-[110] service-area-dropdown rounded-b-lg" style="top: 100%;">
+    {serviceAreas.map((area) => (
+      <a href={area.href} class="block px-6 py-3 text-black font-semibold hover:bg-gray-50 hover:text-[#F4C430] transition-all border-b border-gray-100 last:border-b-0" style="font-size: 14px;">
+        {area.name}
+      </a>
+    ))}
+  </div>
 </nav>
+
+<script is:inline>
+  // Dropdown hover handlers with dynamic positioning
+  document.addEventListener('DOMContentLoaded', function() {
+    const nav = document.querySelector('nav');
+    const navContainer = document.querySelector('nav > div');
+    const servicesLink = document.querySelector('nav ul li:nth-child(3)');
+    const servicesDropdown = document.querySelector('.services-dropdown');
+    const serviceAreaLink = document.querySelector('.service-area-nav');
+    const serviceAreaDropdown = document.querySelector('.service-area-dropdown');
+    
+    // Position dropdowns
+    function positionDropdowns() {
+      if (servicesDropdown && navContainer) {
+        const containerRect = navContainer.getBoundingClientRect();
+        const navRect = nav.getBoundingClientRect();
+        
+        // Services dropdown: from logo to call button (full container width)
+        const containerLeftOffset = containerRect.left - navRect.left;
+        const containerWidth = containerRect.width;
+        servicesDropdown.style.left = containerLeftOffset + 'px';
+        servicesDropdown.style.width = containerWidth + 'px';
+      }
+      
+      if (serviceAreaLink && serviceAreaDropdown) {
+        const linkRect = serviceAreaLink.getBoundingClientRect();
+        const navRect = nav.getBoundingClientRect();
+        
+        // Service Area dropdown: positioned below the link
+        const leftOffset = linkRect.left - navRect.left;
+        serviceAreaDropdown.style.left = leftOffset + 'px';
+      }
+    }
+    
+    // Position on load and resize
+    positionDropdowns();
+    window.addEventListener('resize', positionDropdowns);
+    
+    // Services dropdown hover
+    if (servicesLink && servicesDropdown && nav) {
+      servicesLink.addEventListener('mouseenter', () => {
+        servicesDropdown.classList.remove('invisible', 'opacity-0');
+        servicesDropdown.classList.add('visible', 'opacity-100');
+      });
+      
+      servicesLink.addEventListener('mouseleave', (e) => {
+        const rect = servicesDropdown.getBoundingClientRect();
+        const isMovingToDropdown = e.clientY > rect.top;
+        
+        if (!isMovingToDropdown) {
+          setTimeout(() => {
+            if (!servicesDropdown.matches(':hover')) {
+              servicesDropdown.classList.add('invisible', 'opacity-0');
+              servicesDropdown.classList.remove('visible', 'opacity-100');
+            }
+          }, 100);
+        }
+      });
+      
+      servicesDropdown.addEventListener('mouseenter', () => {
+        servicesDropdown.classList.remove('invisible', 'opacity-0');
+        servicesDropdown.classList.add('visible', 'opacity-100');
+      });
+      
+      servicesDropdown.addEventListener('mouseleave', () => {
+        servicesDropdown.classList.add('invisible', 'opacity-0');
+        servicesDropdown.classList.remove('visible', 'opacity-100');
+      });
+    }
+    
+    // Service Area dropdown hover
+    if (serviceAreaLink && serviceAreaDropdown && nav) {
+      serviceAreaLink.addEventListener('mouseenter', () => {
+        serviceAreaDropdown.classList.remove('invisible', 'opacity-0');
+        serviceAreaDropdown.classList.add('visible', 'opacity-100');
+      });
+      
+      serviceAreaLink.addEventListener('mouseleave', (e) => {
+        const rect = serviceAreaDropdown.getBoundingClientRect();
+        const isMovingToDropdown = e.clientY > rect.top;
+        
+        if (!isMovingToDropdown) {
+          setTimeout(() => {
+            if (!serviceAreaDropdown.matches(':hover')) {
+              serviceAreaDropdown.classList.add('invisible', 'opacity-0');
+              serviceAreaDropdown.classList.remove('visible', 'opacity-100');
+            }
+          }, 100);
+        }
+      });
+      
+      serviceAreaDropdown.addEventListener('mouseenter', () => {
+        serviceAreaDropdown.classList.remove('invisible', 'opacity-0');
+        serviceAreaDropdown.classList.add('visible', 'opacity-100');
+      });
+      
+      serviceAreaDropdown.addEventListener('mouseleave', () => {
+        serviceAreaDropdown.classList.add('invisible', 'opacity-0');
+        serviceAreaDropdown.classList.remove('visible', 'opacity-100');
+      });
+    }
+  });
+</script>
 
 <!-- Mobile Menu Dropdown -->
 <div id="mobile-menu" class="lg:hidden hidden bg-white border-b border-gray-200 shadow-lg sticky top-[60px] z-[99]">
