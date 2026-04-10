@@ -49,8 +49,8 @@ const coupons = [
 <section class="bg-[#1a1a1a] py-20 px-4 sm:px-6 lg:px-8">
   <div class="max-w-7xl mx-auto">
     <!-- Section Header -->
-    <div class="mb-12 text-center coupon-header">
-      <div class="flex items-center justify-center gap-2 mb-2">
+    <div class="mb-6 text-center opacity-0 animate-[fadeInUp_0.8s_ease-out_forwards]">
+      <div class="flex items-center justify-center gap-2 mb-1">
         <svg class="w-5 h-5 text-[#F4C430]" fill="currentColor" viewBox="0 0 24 24">
           <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/>
         </svg>
@@ -63,13 +63,13 @@ const coupons = [
     </div>
 
     <!-- Coupons Grid -->
-    <div class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-6">
+    <div class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-6 mb-8">
       {coupons.map((coupon, index) => (
-      <div class={`${coupon.bgClass} relative overflow-hidden shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border-2 border-dashed ${index === 1 ? 'border-black md:scale-110 md:z-10' : 'border-[#F4C430] md:mt-8'} rounded-lg w-full md:w-1/2 md:flex-shrink coupon-card`} data-index={index}>
+      <div class={`${coupon.bgClass} relative overflow-hidden shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-0.5 border-2 border-dashed ${index === 1 ? 'border-black md:scale-110 md:z-10' : 'border-[#F4C430] md:mt-8'} rounded-lg w-full md:w-1/2 md:flex-shrink coupon-card opacity-0 translate-y-[30px]`} data-index={index}>
         
         <!-- Diagonal Ribbon Banner -->
         <div class={`absolute top-8 -right-12 w-48 transform rotate-45 z-20 shadow-lg ${index === 1 ? 'bg-black' : index === 0 || index === 2 ? 'bg-black' : 'bg-[#F4C430]'}`}>
-          <p class={`text-center py-2 font-black uppercase tracking-wider ${index === 1 ? 'text-[#F4C430]' : index === 0 || index === 2 ? 'text-white' : 'text-black'}`} style="font-size: 12px;">
+          <p class={`text-center py-2 font-black uppercase tracking-wider text-xs ${index === 1 ? 'text-[#F4C430]' : index === 0 || index === 2 ? 'text-white' : 'text-black'}`}>
             {index === 0 ? 'Best Value' : index === 1 ? 'Popular' : 'Hot Deal'}
           </p>
         </div>
@@ -78,7 +78,7 @@ const coupons = [
         <div class="relative p-6 pb-4">
           <div class="flex items-center justify-start mb-4">
             <div class={`w-14 h-14 ${index === 1 ? 'bg-white' : 'bg-[#F4C430]'} flex items-center justify-center relative z-10`}>
-              <svg class={`w-8 h-8 ${index === 1 ? 'text-black' : 'text-black'}`} fill="currentColor" viewBox="0 0 24 24">
+              <svg class={`w-8 h-8 text-black`} fill="currentColor" viewBox="0 0 24 24">
                 <path d={coupon.icon}/>
               </svg>
             </div>
@@ -116,32 +116,6 @@ const coupons = [
 </section>
 
 <style>
-  .coupon-header {
-    opacity: 0;
-    animation: fadeInUp 0.8s ease-out forwards;
-  }
-
-  .coupon-card {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-
-  .coupon-card.animate {
-    animation: fadeInUp 0.8s ease-out forwards;
-  }
-
-  .coupon-card[data-index="0"].animate {
-    animation-delay: 0.2s;
-  }
-
-  .coupon-card[data-index="1"].animate {
-    animation-delay: 0.4s;
-  }
-
-  .coupon-card[data-index="2"].animate {
-    animation-delay: 0.6s;
-  }
-
   @keyframes fadeInUp {
     0% {
       opacity: 0;
@@ -155,7 +129,6 @@ const coupons = [
 </style>
 
 <script>
-  // Intersection Observer for scroll animations
   const observerOptions = {
     threshold: 0.2,
     rootMargin: '0px 0px -50px 0px'
@@ -164,13 +137,15 @@ const coupons = [
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('animate');
-        observer.unobserve(entry.target);
+        const card = entry.target as HTMLElement;
+        const index = card.dataset.index;
+        const delay = index === '0' ? '0.2s' : index === '1' ? '0.4s' : '0.6s';
+        card.style.animation = `fadeInUp 0.8s ease-out ${delay} forwards`;
+        observer.unobserve(card);
       }
     });
   }, observerOptions);
 
-  // Observe all coupon cards
   document.querySelectorAll('.coupon-card').forEach(card => {
     observer.observe(card);
   });
