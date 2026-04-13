@@ -21,13 +21,11 @@ const {
     class="relative w-full flex items-center justify-center overflow-hidden"
     style="height: 90vh;"
 >
-    <!-- Background Image -->
-    <img 
-        src={backgroundImage}
-        alt="Electrical services hero background"
-        class="hidden lg:block absolute inset-0 w-full h-full object-cover"
-        fetchpriority="high"
-    />
+    <!-- Background Image with Fixed Attachment -->
+    <div 
+        class="hidden lg:block absolute inset-0 w-full h-full bg-cover bg-center bg-fixed"
+        style={`background-image: url(${backgroundImage});`}
+    ></div>
     
     <!-- Dark Overlay -->
     <div class="hidden lg:block absolute inset-0 bg-black/50"></div>
