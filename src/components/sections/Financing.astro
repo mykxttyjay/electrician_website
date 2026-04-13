@@ -1,4 +1,5 @@
 ---
+import Button from '../ui/Button.astro';
 ---
 
 <section class="bg-[#F8F8F8] py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
@@ -31,7 +32,7 @@
             </div>
             <div>
               <h4 class="text-xl font-bold text-black mb-2">Quick Approval</h4>
-              <p class="text-gray-700">Get approved in minutes with our streamlined application process</p>
+              <p class="text-gray-700">Get approved in minutes with our streamlined application</p>
             </div>
           </div>
 
@@ -95,9 +96,14 @@
             </div>
           </div>
 
-          <a href="/contact" class="block w-full bg-black text-[#F4C430] font-bold text-center py-4 rounded-lg hover:bg-[#1a1a1a] transition-all text-lg">
+          <Button 
+            variant="couponDark"
+            size="md"
+            href="/contact"
+            class="w-full py-4"
+          >
             Apply Now
-          </a>
+          </Button>
         </div>
       </div>
     </div>

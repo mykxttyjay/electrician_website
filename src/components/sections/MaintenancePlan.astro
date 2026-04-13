@@ -1,4 +1,5 @@
 ---
+import Button from '../ui/Button.astro';
 ---
 
 <section class="bg-white py-20 px-4 sm:px-6 lg:px-8">
@@ -52,9 +53,16 @@
             <span class="text-gray-700">Safety report included</span>
           </li>
         </ul>
-        <a href="/contact" class="block w-full bg-[#F4C430] text-black font-bold text-center py-3 rounded hover:bg-[#e5b52a] transition-all mt-auto">
-          Get Started
-        </a>
+        <div class="mt-auto">
+          <Button 
+            variant="coupon"
+            size="md"
+            href="/contact"
+            class="w-full py-3"
+          >
+            Get Started
+          </Button>
+        </div>
       </div>
 
       <!-- Premium Plan (Featured) -->
@@ -99,9 +107,16 @@
             <span class="text-white">Extended warranty coverage</span>
           </li>
         </ul>
-        <a href="/contact" class="block w-full bg-[#F4C430] text-black font-bold text-center py-3 rounded hover:bg-[#e5b52a] transition-all mt-auto">
-          Get Started
-        </a>
+        <div class="mt-auto">
+          <Button 
+            variant="couponWhite"
+            size="md"
+            href="/contact"
+            class="w-full py-3"
+          >
+            Get Started
+          </Button>
+        </div>
       </div>
 
       <!-- Professional Plan -->
@@ -149,9 +164,16 @@
             <span class="text-gray-700">Premium warranty coverage</span>
           </li>
         </ul>
-        <a href="/contact" class="block w-full bg-[#F4C430] text-black font-bold text-center py-3 rounded hover:bg-[#e5b52a] transition-all mt-auto">
-          Get Started
-        </a>
+        <div class="mt-auto">
+          <Button 
+            variant="coupon"
+            size="md"
+            href="/contact"
+            class="w-full py-3"
+          >
+            Get Started
+          </Button>
+        </div>
       </div>
     </div>
   </div>

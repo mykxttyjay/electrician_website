@@ -1,4 +1,6 @@
 ---
+import Button from '../ui/Button.astro';
+
 const faqs = [
   {
     question: "What areas do you serve?",
@@ -125,12 +127,14 @@ const faqs = [
           </div>
 
           <!-- CTA Button -->
-          <a 
+          <Button 
+            variant="couponWhite"
+            size="md"
             href="/contact"
-            class="w-full bg-[#F4C430] text-black py-4 font-bold hover:bg-[#e5b52a] transition-all flex items-center justify-center text-lg"
+            class="w-full py-4"
           >
             Get Free Quote
-          </a>
+          </Button>
         </div>
       </div>
     </div>

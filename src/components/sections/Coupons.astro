@@ -1,4 +1,6 @@
 ---
+import Button from '../ui/Button.astro';
+
 const coupons = [
   {
     icon: "M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z",
@@ -105,9 +107,16 @@ const coupons = [
           <p class={`${index === 1 ? 'text-black/70' : 'text-gray-600'} text-xs italic`}>{coupon.terms}</p>
           
           <!-- Claim Button -->
-          <button class={`w-full mt-4 py-3 ${index === 1 ? 'bg-black text-[#F4C430] hover:bg-[#1a1a1a]' : 'bg-[#F4C430] text-black hover:bg-[#e5b52a]'} font-bold uppercase tracking-wider transition-all duration-300 hover:scale-105`}>
-            Claim Offer
-          </button>
+          <div class="mt-4">
+            <Button 
+              variant={index === 1 ? 'couponDark' : 'coupon'}
+              size="md"
+              href="/contact"
+              class="w-full py-3"
+            >
+              Claim Offer
+            </Button>
+          </div>
         </div>
       </div>
       ))}
