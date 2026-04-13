@@ -77,12 +77,7 @@ const serviceCategories = [
           data-category={category.id}
           data-index={index}
         >
-          <div class="flex flex-col items-center gap-2">
-            <svg class={`w-10 h-10 ${index === 0 ? 'text-black' : 'text-gray-600'} group-hover:text-black transition-colors`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={category.icon}></path>
-            </svg>
-            <span class="font-bold text-base whitespace-nowrap">{category.title}</span>
-          </div>
+          <span class="font-bold text-base whitespace-nowrap">{category.title}</span>
           {index === 0 && (
             <div class="absolute left-1/2 -translate-x-1/2 -bottom-3 w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-t-[12px] border-t-[#F4C430]"></div>
           )}
@@ -219,11 +214,6 @@ const serviceCategories = [
       tabs.forEach(t => {
         t.classList.remove('active', 'bg-[#F4C430]', 'text-black');
         t.classList.add('bg-white', 'text-gray-700');
-        const icon = t.querySelector('svg');
-        if (icon) {
-          icon.classList.remove('text-black');
-          icon.classList.add('text-gray-600');
-        }
         
         // Remove pointer
         const pointer = t.querySelector('.absolute');
@@ -233,11 +223,6 @@ const serviceCategories = [
       // Add active state to clicked tab
       tab.classList.add('active', 'bg-[#F4C430]', 'text-black');
       tab.classList.remove('bg-white', 'text-gray-700');
-      const icon = tab.querySelector('svg');
-      if (icon) {
-        icon.classList.remove('text-gray-600');
-        icon.classList.add('text-black');
-      }
       
       // Add pointer
       const pointer = document.createElement('div');

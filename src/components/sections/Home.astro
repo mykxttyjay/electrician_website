@@ -37,16 +37,16 @@ const {
     <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-1 text-left">
         <!-- Main Title -->
         <h1
-            class="font-heading font-bold text-white mb-1 tracking-wider animate-title mobile-title break-words"
-            style="font-size: 80px; line-height: 1.2; max-width: 100%;"
+            class="font-heading font-bold text-white mb-1 tracking-wider opacity-0 animate-[slideInFromLeft_1s_ease-out_forwards] text-[60px] xs:text-[30px] sm:text-[30px] md:text-[48px] lg:text-[80px] break-words"
+            style="line-height: 1.2; max-width: 100%;"
         >
-            POWERING YOUR <span id="rotating-word" class="text-[#F4C430]"></span>
+            POWERING YOUR <span id="rotating-word" class="text-[#F4C430] inline-block min-w-[100px] xs:min-w-[150px] md:min-w-[200px] lg:min-w-[250px] text-left transition-all duration-500 ease-[cubic-bezier(0.68,-0.55,0.265,1.55)]"></span>
         </h1>
 
         <!-- Subtitle -->
         {
             subtitle && (
-                <p class="text-subtitle font-body text-white mb-10 font-light tracking-wide animate-subtitle">
+                <p class="text-subtitle font-body text-white mb-10 font-light tracking-wide opacity-0 animate-[slideInFromLeft_1s_ease-out_0.3s_forwards]">
                     {subtitle}
                 </p>
             )
@@ -56,14 +56,14 @@ const {
         {
             ctaText && ctaLink && (
                 <div class="flex flex-col sm:flex-row items-start sm:items-center gap-10">
-                    <div class="animate-button">
+                    <div class="opacity-0 animate-[slideInFromLeft_1s_ease-out_0.6s_forwards]">
                         <Button href={ctaLink} variant="accent" size="md">
                             {ctaText}
                         </Button>
                     </div>
                     
                     <!-- Rating Display -->
-                    <div class="flex items-center gap-4 animate-rating">
+                    <div class="flex items-center gap-4 opacity-0 animate-[slideInFromRight_1s_ease-out_0.9s_forwards]">
                         <div class="text-left">
                             <div class="font-bold text-white" style="font-size: 50px;">4.9</div>
                         </div>
@@ -75,7 +75,7 @@ const {
                                     </svg>
                                 ))}
                             </div>
-                            <div class="text-white text-lg font-light">356 Client reviews</div>
+                            <div class="text-white text-lg font-light">534 Client Reviews</div>
                         </div>
                     </div>
                 </div>
@@ -83,105 +83,6 @@ const {
         }
     </div>
 </section>
-
-<style>
-    /* Mobile title size override */
-    @media (max-width: 425px) {
-        .mobile-title {
-            font-size: 60px !important;
-        }
-    }
-
-    @media (min-width: 426px) and (max-width: 767px) {
-        .mobile-title {
-            font-size: 30px !important;
-        }
-    }
-
-    @media (min-width: 768px) and (max-width: 1023px) {
-        .mobile-title {
-            font-size: 48px !important;
-        }
-    }
-
-    #rotating-word {
-        display: inline-block;
-        min-width: 100px;
-        text-align: left;
-        transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    }
-
-    @media (min-width: 426px) {
-        #rotating-word {
-            min-width: 150px;
-        }
-    }
-
-    @media (min-width: 768px) {
-        #rotating-word {
-            min-width: 200px;
-        }
-    }
-
-    @media (min-width: 1024px) {
-        #rotating-word {
-            min-width: 250px;
-        }
-    }
-
-    #rotating-word.fade-out {
-        opacity: 0;
-        transform: translateY(-30px) scale(0.8);
-    }
-
-    #rotating-word.fade-in {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-
-    /* Page load animations */
-    .animate-title {
-        opacity: 0;
-        animation: slideInFromLeft 1s ease-out forwards;
-    }
-
-    .animate-subtitle {
-        opacity: 0;
-        animation: slideInFromLeft 1s ease-out 0.3s forwards;
-    }
-
-    .animate-button {
-        opacity: 0;
-        animation: slideInFromLeft 1s ease-out 0.6s forwards;
-    }
-
-    .animate-rating {
-        opacity: 0;
-        animation: slideInFromRight 1s ease-out 0.9s forwards;
-    }
-
-    @keyframes slideInFromLeft {
-        0% {
-            opacity: 0;
-            transform: translateX(-50px);
-        }
-        100% {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
-
-    @keyframes slideInFromRight {
-        0% {
-            opacity: 0;
-            transform: translateX(50px);
-        }
-        100% {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
-</style>
 
 <script>
     const words = ['HOME', 'BUSINESS', 'FUTURE', 'WORLD'];
@@ -191,8 +92,8 @@ const {
     function rotateWord() {
         if (element) {
             // Fade out with animation
-            element.classList.remove('fade-in');
-            element.classList.add('fade-out');
+            element.classList.remove('opacity-100', 'translate-y-0', 'scale-100');
+            element.classList.add('opacity-0', '-translate-y-[30px]', 'scale-[0.8]');
             
             setTimeout(() => {
                 // Change word
@@ -200,8 +101,8 @@ const {
                 element.textContent = words[currentIndex];
                 
                 // Fade in with animation
-                element.classList.remove('fade-out');
-                element.classList.add('fade-in');
+                element.classList.remove('opacity-0', '-translate-y-[30px]', 'scale-[0.8]');
+                element.classList.add('opacity-100', 'translate-y-0', 'scale-100');
             }, 500);
         }
     }
@@ -209,7 +110,7 @@ const {
     // Set initial word
     if (element) {
         element.textContent = words[0];
-        element.classList.add('fade-in');
+        element.classList.add('opacity-100', 'translate-y-0', 'scale-100');
     }
     
     // Rotate every 3 seconds
