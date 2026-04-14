@@ -236,7 +236,15 @@ const faqs = [
         if (answer) answer.style.maxHeight = '0px';
         icon?.classList.remove('rotate-180');
       } else {
-        if (answer) answer.style.maxHeight = answer.scrollHeight + 'px';
+        if (answer) {
+          // Batch read and write operations
+          requestAnimationFrame(() => {
+            const height = answer.scrollHeight;
+            requestAnimationFrame(() => {
+              answer.style.maxHeight = height + 'px';
+            });
+          });
+        }
         icon?.classList.add('rotate-180');
       }
     });

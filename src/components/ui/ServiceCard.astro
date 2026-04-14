@@ -13,6 +13,8 @@ const { name, image } = Astro.props;
       src={image} 
       alt={name}
       class="w-full h-full object-cover"
+      loading="lazy"
+      decoding="async"
     />
   </div>
   <!-- Hover Overlay -->

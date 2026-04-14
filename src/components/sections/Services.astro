@@ -241,9 +241,12 @@ const serviceCategories = [
         const newGrid = selectedContent.querySelector('.services-grid');
         if (newGrid) {
           newGrid.classList.remove('animate');
-          // Force reflow
-          void (newGrid as HTMLElement).offsetWidth;
-          newGrid.classList.add('animate');
+          // Use requestAnimationFrame to batch DOM operations
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              newGrid.classList.add('animate');
+            });
+          });
         }
       }
     });

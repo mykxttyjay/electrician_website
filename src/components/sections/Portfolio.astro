@@ -142,19 +142,25 @@ const projects = [
   
   // Calculate exact slide width including gap
   function calculateSlideWidth() {
-    const firstSlide = slides[0] as HTMLElement;
-    const trackStyle = window.getComputedStyle(track);
-    const gap = parseInt(trackStyle.gap) || 20;
-    slideWidth = firstSlide.offsetWidth + gap;
+    requestAnimationFrame(() => {
+      const firstSlide = slides[0] as HTMLElement;
+      const trackStyle = window.getComputedStyle(track);
+      const gap = parseInt(trackStyle.gap) || 20;
+      slideWidth = firstSlide.offsetWidth + gap;
+    });
   }
   
   // Initialize on load
-  calculateSlideWidth();
+  window.addEventListener('load', calculateSlideWidth);
   
-  // Recalculate on window resize
+  // Recalculate on window resize with debounce
+  let resizeTimeout: number;
   window.addEventListener('resize', () => {
-    calculateSlideWidth();
-    updateCarousel(false);
+    clearTimeout(resizeTimeout);
+    resizeTimeout = window.setTimeout(() => {
+      calculateSlideWidth();
+      updateCarousel(false);
+    }, 150);
   });
   
   function updateCarousel(smooth = true) {

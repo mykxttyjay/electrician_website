@@ -16,6 +16,8 @@ const { image, title, category } = Astro.props;
         src={image}
         alt={title}
         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+        loading="lazy"
+        decoding="async"
       />
       <!-- Overlay -->
       <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
