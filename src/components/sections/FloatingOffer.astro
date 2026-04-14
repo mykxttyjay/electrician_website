@@ -23,7 +23,9 @@
   const modal = document.getElementById('offer-modal');
   
   floatingBtn?.addEventListener('click', () => {
-    modal?.classList.remove('hidden');
-    modal?.classList.add('flex');
+    if (modal) {
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
   });
 </script>
