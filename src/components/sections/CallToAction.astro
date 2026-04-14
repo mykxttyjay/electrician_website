@@ -3,56 +3,43 @@ import Button from '../ui/Button.astro';
 ---
 
 <section class="bg-white py-0 px-0 relative overflow-hidden">
-  <div class="max-w-full mx-auto">
+  <!-- Full Section Background Image -->
+  <div class="absolute inset-0 bg-cover bg-center bg-fixed" style="background-image: url('https://images.unsplash.com/photo-1582481024061-4be0e115414f?q=80&w=1179&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');"></div>
+  
+  <div class="max-w-full mx-auto relative">
     <div class="grid lg:grid-cols-4">
-      <!-- Left Side - Experience/Stats with Background -->
-      <div class="relative bg-[#F4C430] lg:col-span-1 py-16 overflow-hidden">
-        <!-- Background Image with Overlay -->
-        <div class="absolute inset-0 bg-cover bg-center bg-fixed" style="background-image: url('https://images.unsplash.com/photo-1566417110104-cd4f94af0fb3?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
-          <div class="absolute inset-0 bg-[#F4C430] opacity-90"></div>
-        </div>
+      <!-- Left Side - Experience/Stats with Yellow Overlay -->
+      <div class="relative lg:col-span-1 py-8 overflow-hidden">
+        <!-- Yellow Gradient Overlay (only on left side) -->
+        <div class="absolute inset-0 bg-[#F4C430] opacity-90"></div>
 
         <!-- Content -->
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="text-left ml-0 mt-0">  <!-- Adjust ml-0 (horizontal) and mt-0 (vertical) values -->
             <div class="mb-4 ml-48">
               <div class="text-white">
-                <div class="text-[80px] font-black leading-none">24/7</div>
+                <div class="text-[75px] font-black leading-none">24/7</div>
                 <div class="text-xl font-semibold tracking-wider mt-4">Emergency</div>
                 <div class="text-xl font-semibold tracking-wider">Service</div>
               </div>
               
-              <!-- Decorative Icons -->
-              <div class="mt-4 flex gap-3">
-                <!-- Lightning Icon -->
-                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-                  <svg class="w-5 h-5 text-[#F4C430]" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/>
-                  </svg>
-                </div>
-                
-                <!-- Shield Icon -->
-                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-                  <svg class="w-5 h-5 text-[#F4C430]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-                  </svg>
-                </div>
-                
-                <!-- Clock Icon -->
-                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-                  <svg class="w-5 h-5 text-[#F4C430]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                  </svg>
-                </div>
-              </div>
+              <!-- Play Button -->
+              <button class="mt-3 w-12 h-12 bg-white rounded-full flex items-center justify-center hover:bg-black hover:text-white transition-all duration-300 hover:scale-110 shadow-lg">
+                <svg class="w-8 h-8 text-black ml-1" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              </button>
             </div>
           </div>
         </div>
       </div>
 
       <!-- Right Side - Contact Information -->
-      <div class="bg-white lg:col-span-3 py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="relative lg:col-span-3 py-8 overflow-hidden">
+        <!-- White Overlay (only on right side) -->
+        <div class="absolute inset-0 bg-white/90"></div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 class="text-[61px] font-bold text-black mb-4 leading-tight">
             Have Questions? <span class="text-[#F4C430]">+(234) 567 8912</span>
           </h2>

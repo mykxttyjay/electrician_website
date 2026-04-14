@@ -21,17 +21,30 @@ const {
     class="relative w-full flex items-center justify-center overflow-hidden"
     style="height: 90vh;"
 >
-    <!-- Background Image with Fixed Attachment -->
+    <!-- Background Images with Crossfade -->
     <div 
-        class="hidden lg:block absolute inset-0 w-full h-full bg-cover bg-center bg-fixed"
-        style={`background-image: url(${backgroundImage});`}
+        data-bg-index="0"
+        class="absolute inset-0 w-full h-full bg-cover bg-center bg-fixed transition-opacity duration-1000 opacity-100"
+        style="background-image: url('https://images.unsplash.com/photo-1760886801783-e2d0522dd2c3?q=80&w=1170&auto=format&fit=crop');"
+    ></div>
+    <div 
+        data-bg-index="1"
+        class="absolute inset-0 w-full h-full bg-cover bg-center bg-fixed transition-opacity duration-1000 opacity-0"
+        style="background-image: url('https://images.unsplash.com/photo-1581090581500-58b180d1f0fd?q=80&w=1170&auto=format&fit=crop');"
+    ></div>
+    <div 
+        data-bg-index="2"
+        class="absolute inset-0 w-full h-full bg-cover bg-center bg-fixed transition-opacity duration-1000 opacity-0"
+        style="background-image: url('https://images.unsplash.com/photo-1543489816-c87b0f5f7dd4?q=80&w=1170&auto=format&fit=crop');"
+    ></div>
+    <div 
+        data-bg-index="3"
+        class="absolute inset-0 w-full h-full bg-cover bg-center bg-fixed transition-opacity duration-1000 opacity-0"
+        style="background-image: url('https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1172&auto=format&fit=crop');"
     ></div>
     
     <!-- Dark Overlay -->
-    <div class="hidden lg:block absolute inset-0 bg-black/50"></div>
-    
-    <!-- Mobile Background Color -->
-    <div class="lg:hidden absolute inset-0 bg-gradient-to-br from-gray-900 to-gray-800"></div>
+    <div class="absolute inset-0 bg-black/50"></div>
 
     <!-- Content -->
     <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-1 text-left">
@@ -88,19 +101,29 @@ const {
     const words = ['HOME', 'BUSINESS', 'FUTURE', 'WORLD'];
     let currentIndex = 0;
     const element = document.getElementById('rotating-word');
+    const bgImages = document.querySelectorAll('[data-bg-index]');
     
     function rotateWord() {
-        if (element) {
-            // Fade out with animation
+        if (element && bgImages.length > 0) {
+            // Calculate next index
+            const nextIndex = (currentIndex + 1) % words.length;
+            
+            // Fade out word with animation
             element.classList.remove('opacity-100', 'translate-y-0', 'scale-100');
             element.classList.add('opacity-0', '-translate-y-[30px]', 'scale-[0.8]');
             
+            // Crossfade backgrounds simultaneously - new fades in while old fades out
+            bgImages[nextIndex].classList.remove('opacity-0');
+            bgImages[nextIndex].classList.add('opacity-100');
+            bgImages[currentIndex].classList.remove('opacity-100');
+            bgImages[currentIndex].classList.add('opacity-0');
+            
             setTimeout(() => {
-                // Change word
-                currentIndex = (currentIndex + 1) % words.length;
+                // Update index and word
+                currentIndex = nextIndex;
                 element.textContent = words[currentIndex];
                 
-                // Fade in with animation
+                // Fade in word with animation
                 element.classList.remove('opacity-0', '-translate-y-[30px]', 'scale-[0.8]');
                 element.classList.add('opacity-100', 'translate-y-0', 'scale-100');
             }, 500);
