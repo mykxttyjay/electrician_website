@@ -72,10 +72,17 @@ const cards = [
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 about-cards opacity-0 translate-y-5">
           {cards.map((card) => (
             <div class="group border-2 border-gray-300 p-6 hover:border-[#F4C430] transition-all">
-              <div class="w-12 h-12 bg-[#F4F4F4] group-hover:bg-[#F4C430] rounded-full flex items-center justify-center mb-3 transition-colors">
-                <svg class="w-6 h-6 text-[#F4C430] group-hover:text-black transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={card.icon}></path>
-                </svg>
+              <div class="relative w-20 h-20 mb-4">
+                <!-- Dashed circle border with rotation animation -->
+                <div class="absolute inset-0 rounded-full border-4 border-dashed border-[#F4C430] opacity-30 group-hover:opacity-50 transition-opacity animate-spin-slow"></div>
+                <!-- Inner solid circle with icon -->
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div class="w-12 h-12 bg-[#F4C430] group-hover:bg-black rounded-full flex items-center justify-center transition-colors">
+                    <svg class="w-6 h-6 text-black group-hover:text-[#F4C430] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={card.icon}></path>
+                    </svg>
+                  </div>
+                </div>
               </div>
               <h3 class="text-xl font-bold text-black mb-2">{card.title}</h3>
               <p class="text-gray-700">
@@ -175,5 +182,18 @@ const cards = [
   }
   @keyframes fadeInUp {
     to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .animate-spin-slow {
+    animation: spin 8s linear infinite;
+  }
+  
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
   }
 </style>

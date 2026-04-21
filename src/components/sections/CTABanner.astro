@@ -32,7 +32,7 @@ const slides = [
     <div class="relative">
       {slides.map((slide, index) => (
         <div 
-          class={`carousel-slide transition-opacity duration-500 ${index === 0 ? 'opacity-100' : 'opacity-0 absolute inset-0'}`}
+          class={`carousel-slide transition-opacity duration-300 ${index === 0 ? 'opacity-100 relative z-10' : 'opacity-0 absolute inset-0 pointer-events-none'}`}
           data-slide-index={index}
         >
           <div class="flex flex-col md:flex-row items-center justify-between gap-8">
@@ -100,13 +100,13 @@ const slides = [
   function showSlide(index: number) {
     // Hide all slides
     slides.forEach(slide => {
-      slide.classList.remove('opacity-100');
-      slide.classList.add('opacity-0', 'absolute', 'inset-0');
+      slide.classList.remove('opacity-100', 'relative', 'z-10');
+      slide.classList.add('opacity-0', 'absolute', 'inset-0', 'pointer-events-none');
     });
 
     // Show current slide
-    slides[index].classList.remove('opacity-0', 'absolute', 'inset-0');
-    slides[index].classList.add('opacity-100');
+    slides[index].classList.remove('opacity-0', 'absolute', 'inset-0', 'pointer-events-none');
+    slides[index].classList.add('opacity-100', 'relative', 'z-10');
 
     // Update indicators
     indicators.forEach((indicator, i) => {
@@ -127,8 +127,8 @@ const slides = [
     showSlide(next);
   }
 
-  // Auto-rotate every 5 seconds
-  let autoRotate = setInterval(nextSlide, 5000);
+  // Auto-rotate every 3 seconds
+  let autoRotate = setInterval(nextSlide, 3000);
 
   // Manual navigation
   indicators.forEach((indicator, index) => {
@@ -136,7 +136,7 @@ const slides = [
       showSlide(index);
       // Reset auto-rotate timer
       clearInterval(autoRotate);
-      autoRotate = setInterval(nextSlide, 5000);
+      autoRotate = setInterval(nextSlide, 3000);
     });
   });
 </script>
