@@ -52,7 +52,7 @@ const projects = [
   <!-- Full Width Carousel Container -->
   <div class="relative portfolio-carousel opacity-0">
     <div class="overflow-hidden">
-      <div class="portfolio-track flex transition-transform duration-700 ease-in-out gap-3 px-3">
+      <div class="portfolio-track flex transition-transform duration-500 ease-in-out gap-3 px-3">
         {projects.map((project) => (
           <PortfolioCard 
             image={project.image}
@@ -165,7 +165,7 @@ const projects = [
   
   function updateCarousel(smooth = true) {
     if (smooth) {
-      track.style.transition = 'transform 700ms ease-in-out';
+      track.style.transition = 'transform 500ms ease-in-out';
     } else {
       track.style.transition = 'none';
     }
@@ -183,7 +183,7 @@ const projects = [
       setTimeout(() => {
         currentIndex = 0;
         updateCarousel(false);
-      }, 700);
+      }, 500);
     }
   }
   
@@ -206,7 +206,7 @@ const projects = [
   prevBtn?.addEventListener('click', prevSlide);
   
   // Auto-play carousel
-  let autoplayInterval = setInterval(nextSlide, 4000);
+  let autoplayInterval = setInterval(nextSlide, 3000);
   
   // Pause on hover
   const carousel = document.querySelector('.portfolio-carousel');
@@ -215,6 +215,6 @@ const projects = [
   });
   
   carousel?.addEventListener('mouseleave', () => {
-    autoplayInterval = setInterval(nextSlide, 4000);
+    autoplayInterval = setInterval(nextSlide, 3000);
   });
 </script>
