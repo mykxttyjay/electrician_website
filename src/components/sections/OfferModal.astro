@@ -40,26 +40,42 @@
         Expert electricians ready to help with installations, repairs, and emergency services. Quality work guaranteed.
       </p>
 
-      <!-- Stats -->
-      <div class="grid grid-cols-3 gap-4 mb-6 py-4 border-y border-gray-200">
-        <div class="text-center">
-          <p class="text-3xl font-bold text-[#F4C430]">20+</p>
-          <p class="text-gray-600 text-xs uppercase">Years</p>
-        </div>
-        <div class="text-center border-x border-gray-200">
-          <p class="text-3xl font-bold text-[#F4C430]">24/7</p>
-          <p class="text-gray-600 text-xs uppercase">Available</p>
-        </div>
-        <div class="text-center">
-          <p class="text-3xl font-bold text-[#F4C430]">100%</p>
-          <p class="text-gray-600 text-xs uppercase">Licensed</p>
+      <!-- Countdown Timer -->
+      <div class="mb-6 py-6 border-y border-gray-200">
+        <p class="text-center font-black text-black uppercase tracking-wider mb-4" style="font-size: 20px;">Offer Ends In</p>
+        <div class="grid grid-cols-4 gap-3">
+          <div class="text-center bg-gradient-to-br from-[#F4C430] to-[#e5b52a] rounded-lg p-3 overflow-hidden">
+            <div class="countdown-flip">
+              <p id="countdown-days" class="text-3xl font-black text-black transition-all duration-500">00</p>
+            </div>
+            <p class="text-black text-xs uppercase font-bold mt-1">Days</p>
+          </div>
+          <div class="text-center bg-gradient-to-br from-[#F4C430] to-[#e5b52a] rounded-lg p-3 overflow-hidden">
+            <div class="countdown-flip">
+              <p id="countdown-hours" class="text-3xl font-black text-black transition-all duration-500">00</p>
+            </div>
+            <p class="text-black text-xs uppercase font-bold mt-1">Hours</p>
+          </div>
+          <div class="text-center bg-gradient-to-br from-[#F4C430] to-[#e5b52a] rounded-lg p-3 overflow-hidden">
+            <div class="countdown-flip">
+              <p id="countdown-minutes" class="text-3xl font-black text-black transition-all duration-500">00</p>
+            </div>
+            <p class="text-black text-xs uppercase font-bold mt-1">Minutes</p>
+          </div>
+          <div class="text-center bg-gradient-to-br from-[#F4C430] to-[#e5b52a] rounded-lg p-3 overflow-hidden">
+            <div class="countdown-flip">
+              <p id="countdown-seconds" class="text-3xl font-black text-black transition-all duration-500">00</p>
+            </div>
+            <p class="text-black text-xs uppercase font-bold mt-1">Seconds</p>
+          </div>
         </div>
       </div>
 
       <!-- CTA Buttons -->
       <div class="space-y-3">
         <a 
-          href="/coupons" 
+          id="view-coupons-btn"
+          href="/#coupons" 
           class="block w-full bg-[#F4C430] text-black text-center py-3 font-bold text-base hover:bg-[#d4a820] transition-colors"
         >
           View Available Coupons
@@ -74,14 +90,6 @@
           Call Now: +(234) 567 8912
         </a>
       </div>
-
-      <!-- Maybe Later Link -->
-      <button 
-        id="maybe-later"
-        class="block w-full text-center text-gray-500 underline mt-4 hover:text-gray-700 transition-colors text-sm"
-      >
-        Maybe later
-      </button>
     </div>
   </div>
 </div>
@@ -89,7 +97,74 @@
 <script>
   const modal = document.getElementById('offer-modal');
   const closeBtn = document.getElementById('close-modal');
-  const maybeLaterBtn = document.getElementById('maybe-later');
+  const viewCouponsBtn = document.getElementById('view-coupons-btn');
+  
+  // Store previous values to detect changes
+  let prevDays = '00', prevHours = '00', prevMinutes = '00', prevSeconds = '00';
+  
+  // Function to update countdown with animation
+  function updateCountdownValue(elementId: string, newValue: string, prevValue: string) {
+    const element = document.getElementById(elementId);
+    if (element && newValue !== prevValue) {
+      // Add flip animation
+      element.style.transform = 'translateY(-100%)';
+      element.style.opacity = '0';
+      
+      setTimeout(() => {
+        element.textContent = newValue;
+        element.style.transform = 'translateY(100%)';
+        
+        setTimeout(() => {
+          element.style.transform = 'translateY(0)';
+          element.style.opacity = '1';
+        }, 50);
+      }, 250);
+    } else if (element) {
+      element.textContent = newValue;
+    }
+  }
+  
+  // Countdown Timer - Set to 24 hours from now
+  function startCountdown() {
+    const countdownEnd = new Date().getTime() + (24 * 60 * 60 * 1000); // 24 hours from now
+    
+    const timer = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = countdownEnd - now;
+      
+      if (distance < 0) {
+        clearInterval(timer);
+        updateCountdownValue('countdown-days', '00', prevDays);
+        updateCountdownValue('countdown-hours', '00', prevHours);
+        updateCountdownValue('countdown-minutes', '00', prevMinutes);
+        updateCountdownValue('countdown-seconds', '00', prevSeconds);
+        return;
+      }
+      
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      
+      const newDays = String(days).padStart(2, '0');
+      const newHours = String(hours).padStart(2, '0');
+      const newMinutes = String(minutes).padStart(2, '0');
+      const newSeconds = String(seconds).padStart(2, '0');
+      
+      updateCountdownValue('countdown-days', newDays, prevDays);
+      updateCountdownValue('countdown-hours', newHours, prevHours);
+      updateCountdownValue('countdown-minutes', newMinutes, prevMinutes);
+      updateCountdownValue('countdown-seconds', newSeconds, prevSeconds);
+      
+      prevDays = newDays;
+      prevHours = newHours;
+      prevMinutes = newMinutes;
+      prevSeconds = newSeconds;
+    }, 1000);
+  }
+  
+  // Start countdown when page loads
+  startCountdown();
   
   // Show modal after 3 seconds on page load
   setTimeout(() => {
@@ -101,26 +176,23 @@
     }
   }, 3000);
   
-  // Close modal handlers
-  closeBtn?.addEventListener('click', () => {
+  // Close modal handler
+  function closeModal() {
     if (modal) {
       modal.classList.add('hidden');
       modal.classList.remove('flex');
     }
-  });
+  }
   
-  maybeLaterBtn?.addEventListener('click', () => {
-    if (modal) {
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-    }
-  });
+  closeBtn?.addEventListener('click', closeModal);
+  
+  // Close modal when clicking "View Available Coupons"
+  viewCouponsBtn?.addEventListener('click', closeModal);
   
   // Close on outside click
   modal?.addEventListener('click', (e) => {
-    if (e.target === modal && modal) {
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
+    if (e.target === modal) {
+      closeModal();
     }
   });
 </script>
