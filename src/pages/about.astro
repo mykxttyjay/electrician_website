@@ -9,6 +9,7 @@ import FAQ from "../components/sections/FAQ.astro";
 import Location from "../components/sections/Location.astro";
 import Footer from "../components/sections/Footer.astro";
 import FloatingOffer from "../components/sections/FloatingOffer.astro";
+import FloatingSideButtons from "../components/sections/FloatingSideButtons.astro";
 import OfferModal from "../components/sections/OfferModal.astro";
 ---
 
@@ -24,5 +25,6 @@ import OfferModal from "../components/sections/OfferModal.astro";
     <Location />
     <Footer />
     <FloatingOffer />
+    <FloatingSideButtons showOnScroll={true} triggerSection="services" />
     <OfferModal />
 </Layout>
