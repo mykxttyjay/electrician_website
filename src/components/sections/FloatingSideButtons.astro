@@ -14,7 +14,7 @@ const { show = true, showOnScroll = false, triggerSection = 'coupons' } = Astro.
     <!-- Specials Button -->
     <a 
       href="/specials" 
-      class="group relative w-14 h-14 bg-black text-[#F4C430] flex items-center justify-center transition-all duration-500 hover:bg-[#F4C430] hover:text-black border-2 border-[#F4C430] shadow-lg hover:shadow-[0_10px_30px_rgba(244,196,48,0.6)] rounded-md overflow-hidden animate-[floatingPulse_2s_ease-in-out_infinite] hover:animate-none"
+      class="group relative w-14 h-14 bg-black text-[#F4C430] flex items-center justify-center transition-all duration-500 hover:bg-[#F4C430] hover:text-black border-2 border-[#F4C430] shadow-lg hover:shadow-[0_10px_30px_rgba(244,196,48,0.6)] rounded-md overflow-hidden"
       title="Specials"
     >
       <!-- Shimmer effect -->
@@ -23,7 +23,7 @@ const { show = true, showOnScroll = false, triggerSection = 'coupons' } = Astro.
       <!-- Pulsing ring -->
       <div class="absolute inset-0 border-2 border-[#F4C430] animate-[ping_1.5s_ease-in-out_infinite] opacity-75 rounded-md"></div>
       
-      <svg class="relative w-6 h-6 group-hover:rotate-[360deg] transition-transform duration-500 animate-[wiggle_1s_ease-in-out_infinite] group-hover:animate-none" fill="currentColor" viewBox="0 0 24 24">
+      <svg class="relative w-6 h-6 group-hover:rotate-[360deg] transition-transform duration-500" fill="currentColor" viewBox="0 0 24 24">
         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
       </svg>
     </a>
@@ -31,7 +31,7 @@ const { show = true, showOnScroll = false, triggerSection = 'coupons' } = Astro.
     <!-- Financing Button -->
     <a 
       href="/financing" 
-      class="group relative w-14 h-14 bg-black text-[#F4C430] flex items-center justify-center transition-all duration-500 hover:bg-[#F4C430] hover:text-black border-2 border-[#F4C430] shadow-lg hover:shadow-[0_10px_30px_rgba(244,196,48,0.6)] rounded-md overflow-hidden animate-[floatingPulse_2s_ease-in-out_infinite] hover:animate-none"
+      class="group relative w-14 h-14 bg-black text-[#F4C430] flex items-center justify-center transition-all duration-500 hover:bg-[#F4C430] hover:text-black border-2 border-[#F4C430] shadow-lg hover:shadow-[0_10px_30px_rgba(244,196,48,0.6)] rounded-md overflow-hidden"
       title="Financing"
     >
       <!-- Shimmer effect -->
@@ -40,27 +40,15 @@ const { show = true, showOnScroll = false, triggerSection = 'coupons' } = Astro.
       <!-- Pulsing ring -->
       <div class="absolute inset-0 border-2 border-[#F4C430] animate-[ping_1.5s_ease-in-out_infinite] opacity-75 rounded-md"></div>
       
-      <svg class="relative w-6 h-6 group-hover:scale-125 transition-transform duration-500 animate-[wiggle_1s_ease-in-out_infinite] group-hover:animate-none" fill="currentColor" viewBox="0 0 24 24">
+      <svg class="relative w-6 h-6 group-hover:scale-125 transition-transform duration-500" fill="currentColor" viewBox="0 0 24 24">
         <path d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </a>
   </div>
 )}
 
-<style>
-  @keyframes wiggle {
-    0%, 100% { transform: rotate(-3deg); }
-    50% { transform: rotate(3deg); }
-  }
-  
-  @keyframes floatingPulse {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-4px); }
-  }
-</style>
-
 {showOnScroll && (
-  <script define:vars={{ triggerSection }}>
+  <script define:vars={{ triggerSection }} is:inline>
     document.addEventListener('DOMContentLoaded', function() {
       const floatingSideButtons = document.getElementById('floating-side-buttons');
       const targetSection = document.getElementById(triggerSection);
@@ -68,22 +56,30 @@ const { show = true, showOnScroll = false, triggerSection = 'coupons' } = Astro.
       
       if (!floatingSideButtons || !targetSection) return;
       
-      let hasBeenShown = false;
+      // Track if we've scrolled past the trigger section
+      let isPastTrigger = false;
       
-      // Observer for trigger section
+      // Observer for trigger section - continuously observe
       const triggerObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-          if (entry.isIntersecting && !hasBeenShown) {
-            // Target section is visible - show buttons
+          // Get the position of the section relative to viewport
+          const rect = entry.target.getBoundingClientRect();
+          const isAboveTrigger = rect.bottom < 0;
+          
+          if (isAboveTrigger) {
+            // We've scrolled past the trigger section - show buttons
+            isPastTrigger = true;
             floatingSideButtons.style.opacity = '1';
             floatingSideButtons.style.pointerEvents = 'auto';
-            hasBeenShown = true;
-            // Stop observing trigger section once shown
-            triggerObserver.unobserve(targetSection);
+          } else {
+            // We're at or above the trigger section - hide buttons
+            isPastTrigger = false;
+            floatingSideButtons.style.opacity = '0';
+            floatingSideButtons.style.pointerEvents = 'none';
           }
         });
       }, {
-        threshold: 0.1,
+        threshold: [0, 0.1, 1],
         rootMargin: '0px'
       });
       
@@ -91,12 +87,12 @@ const { show = true, showOnScroll = false, triggerSection = 'coupons' } = Astro.
       if (footer) {
         const footerObserver = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
-            if (entry.isIntersecting && hasBeenShown) {
+            if (entry.isIntersecting && isPastTrigger) {
               // Footer is visible - hide buttons
               floatingSideButtons.style.opacity = '0';
               floatingSideButtons.style.pointerEvents = 'none';
-            } else if (!entry.isIntersecting && hasBeenShown) {
-              // Footer is not visible - show buttons
+            } else if (!entry.isIntersecting && isPastTrigger) {
+              // Footer is not visible and we're past trigger - show buttons
               floatingSideButtons.style.opacity = '1';
               floatingSideButtons.style.pointerEvents = 'auto';
             }

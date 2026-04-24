@@ -5,7 +5,7 @@ import Button from '../ui/Button.astro';
 <section class="bg-[#F8F8F8] py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
   <div class="max-w-7xl mx-auto relative z-10">
     <!-- Section Header -->
-    <div class="mb-12 text-center financing-header">
+    <div class="mb-12 text-center opacity-0 animate-[fadeInUp_0.8s_ease-out_forwards]">
       <div class="flex items-center justify-center gap-2">
         <svg class="w-5 h-5 text-[#F4C430]" fill="currentColor" viewBox="0 0 24 24">
           <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/>
@@ -21,7 +21,7 @@ import Button from '../ui/Button.astro';
     <!-- Financing Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       <!-- Left: Benefits -->
-      <div class="financing-benefits">
+      <div class="financing-benefits opacity-0 -translate-x-[30px]">
         <h3 class="text-2xl font-bold text-black mb-6">Why Choose Our Financing?</h3>
         <div class="space-y-4">
           <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-[#F4C430] hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex items-start gap-4">
@@ -75,7 +75,7 @@ import Button from '../ui/Button.astro';
       </div>
 
       <!-- Right: Image -->
-      <div class="financing-options">
+      <div class="financing-options opacity-0 translate-x-[30px]">
         <div class="rounded-lg overflow-hidden shadow-lg h-full">
           <img 
             src="https://images.unsplash.com/photo-1660330589827-da8ab7dd3c02?q=60&w=800&auto=format&fit=crop" 
@@ -88,61 +88,6 @@ import Button from '../ui/Button.astro';
   </div>
 </section>
 
-<style>
-  .financing-header {
-    opacity: 0;
-    animation: fadeInUp 0.8s ease-out forwards;
-  }
-
-  .financing-benefits {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-
-  .financing-benefits.animate {
-    animation: slideInLeft 0.8s ease-out 0.3s forwards;
-  }
-
-  .financing-options {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-
-  .financing-options.animate {
-    animation: slideInRight 0.8s ease-out 0.3s forwards;
-  }
-
-  .financing-cta {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  .financing-cta.animate {
-    animation: fadeInUp 0.8s ease-out 0.6s forwards;
-  }
-
-  @keyframes fadeInUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes slideInLeft {
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes slideInRight {
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-</style>
-
 <script>
   const financingObserverOptions = {
     threshold: 0.2,
@@ -152,7 +97,11 @@ import Button from '../ui/Button.astro';
   const financingObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('animate');
+        if (entry.target.classList.contains('financing-benefits')) {
+          entry.target.classList.add('animate-[slideInLeft_0.8s_ease-out_0.3s_forwards]');
+        } else if (entry.target.classList.contains('financing-options')) {
+          entry.target.classList.add('animate-[slideInRight_0.8s_ease-out_0.3s_forwards]');
+        }
         financingObserver.unobserve(entry.target);
       }
     });
@@ -160,9 +109,7 @@ import Button from '../ui/Button.astro';
 
   const financingBenefits = document.querySelector('.financing-benefits');
   const financingOptions = document.querySelector('.financing-options');
-  const financingCta = document.querySelector('.financing-cta');
   
   if (financingBenefits) financingObserver.observe(financingBenefits);
   if (financingOptions) financingObserver.observe(financingOptions);
-  if (financingCta) financingObserver.observe(financingCta);
 </script>
