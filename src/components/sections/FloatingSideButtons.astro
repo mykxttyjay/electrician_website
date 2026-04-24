@@ -13,7 +13,7 @@ const { show = true, showOnScroll = false, triggerSection = 'coupons' } = Astro.
   <div id="floating-side-buttons" class={`fixed left-4 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col gap-4 transition-opacity duration-300 ${showOnScroll ? 'opacity-0 pointer-events-none' : ''}`}>
     <!-- Specials Button -->
     <a 
-      href="#" 
+      href="/specials" 
       class="group w-14 h-14 bg-black text-[#F4C430] flex items-center justify-center transition-all duration-300 hover:bg-[#F4C430] hover:text-black border-2 border-[#F4C430] shadow-lg hover:shadow-xl rounded-md"
       title="Specials"
     >
@@ -24,7 +24,7 @@ const { show = true, showOnScroll = false, triggerSection = 'coupons' } = Astro.
     
     <!-- Financing Button -->
     <a 
-      href="#" 
+      href="/financing" 
       class="group w-14 h-14 bg-black text-[#F4C430] flex items-center justify-center transition-all duration-300 hover:bg-[#F4C430] hover:text-black border-2 border-[#F4C430] shadow-lg hover:shadow-xl rounded-md"
       title="Financing"
     >
@@ -40,19 +40,22 @@ const { show = true, showOnScroll = false, triggerSection = 'coupons' } = Astro.
     document.addEventListener('DOMContentLoaded', function() {
       const floatingSideButtons = document.getElementById('floating-side-buttons');
       const targetSection = document.getElementById(triggerSection);
+      const footer = document.querySelector('footer');
       
       if (!floatingSideButtons || !targetSection) return;
       
-      const observer = new IntersectionObserver((entries) => {
+      let hasBeenShown = false;
+      
+      // Observer for trigger section
+      const triggerObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
+          if (entry.isIntersecting && !hasBeenShown) {
             // Target section is visible - show buttons
             floatingSideButtons.style.opacity = '1';
             floatingSideButtons.style.pointerEvents = 'auto';
-          } else {
-            // Target section is not visible - hide buttons
-            floatingSideButtons.style.opacity = '0';
-            floatingSideButtons.style.pointerEvents = 'none';
+            hasBeenShown = true;
+            // Stop observing trigger section once shown
+            triggerObserver.unobserve(targetSection);
           }
         });
       }, {
@@ -60,7 +63,29 @@ const { show = true, showOnScroll = false, triggerSection = 'coupons' } = Astro.
         rootMargin: '0px'
       });
       
-      observer.observe(targetSection);
+      // Observer for footer
+      if (footer) {
+        const footerObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting && hasBeenShown) {
+              // Footer is visible - hide buttons
+              floatingSideButtons.style.opacity = '0';
+              floatingSideButtons.style.pointerEvents = 'none';
+            } else if (!entry.isIntersecting && hasBeenShown) {
+              // Footer is not visible - show buttons
+              floatingSideButtons.style.opacity = '1';
+              floatingSideButtons.style.pointerEvents = 'auto';
+            }
+          });
+        }, {
+          threshold: 0.1,
+          rootMargin: '0px'
+        });
+        
+        footerObserver.observe(footer);
+      }
+      
+      triggerObserver.observe(targetSection);
     });
   </script>
 )}
