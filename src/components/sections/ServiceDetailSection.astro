@@ -15,9 +15,16 @@ interface Props {
       cards: Array<{ name: string; image: string; link?: string; description?: string; features?: string[]; icon?: string }>;
     };
   };
+  showPricing?: boolean;
+  pricingTitle?: string;
+  pricingDescription?: string;
+  pricingCardDescription?: string;
+  pricingCardImage?: string;
+  pricingFeatures?: string[];
+  pricingIcon?: string;
 }
 
-const { image, imageAlt, title, description, services, serviceCards, allServiceData } = Astro.props;
+const { image, imageAlt, title, description, services, serviceCards, allServiceData, showPricing = false, pricingTitle, pricingDescription, pricingCardDescription, pricingCardImage, pricingFeatures, pricingIcon } = Astro.props;
 ---
 
 <section class="bg-[#F8F8F8] py-20 px-4 sm:px-6 lg:px-8">
@@ -34,6 +41,37 @@ const { image, imageAlt, title, description, services, serviceCards, allServiceD
         <p class="text-gray-700 leading-relaxed mb-8" style="font-size: 22px;" id="service-description">
           {description}
         </p>
+
+        {showPricing && (
+          <div class="mb-8 grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-6 items-start">
+            <!-- Left: Service Card -->
+            <ServiceCard 
+              name={pricingTitle || 'Service Details'}
+              image={pricingCardImage || image}
+              description={pricingCardDescription || 'Complete electrical infrastructure for new construction projects from foundation to finish.'}
+              icon={pricingIcon}
+            />
+            
+            <!-- Right: Content -->
+            <div>
+              {pricingDescription && (
+                <p class="text-gray-600 text-base mb-4 leading-relaxed">{pricingDescription}</p>
+              )}
+              {pricingFeatures && pricingFeatures.length > 0 && (
+                <ul class="space-y-3">
+                  {pricingFeatures.map((feature) => (
+                    <li class="flex items-start gap-3">
+                      <svg class="w-5 h-5 text-[#F4C430] flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                      </svg>
+                      <span class="text-gray-700">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </div>
+        )}
 
         <!-- Service Category Tabs -->
         {serviceCards && serviceCards.length > 0 && (
