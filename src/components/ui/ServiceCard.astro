@@ -29,9 +29,7 @@ const CardWrapper = link ? 'a' : 'div';
   <!-- Default Bottom Label (Always visible) -->
   <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#F4C430] via-[#F4C430]/95 to-[#F4C430]/80 py-4 px-4 flex items-center gap-2 z-10 transition-all duration-300 group-hover:opacity-0 group-hover:translate-y-2">
     {icon && (
-      <div class="w-5 h-5 flex-shrink-0">
-        <img src={icon} alt="" class="w-full h-full object-contain" />
-      </div>
+      <div class="w-5 h-5 flex-shrink-0" set:html={icon.replace('data:image/svg+xml,', '').replace(/%3C/g, '<').replace(/%3E/g, '>').replace(/%22/g, '"').replace(/%20/g, ' ').replace(/%3D/g, '=').replace(/%2F/g, '/')} />
     )}
     <h4 class="font-black text-black text-[16px] leading-tight">{name}</h4>
   </div>
