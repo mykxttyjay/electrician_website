@@ -166,13 +166,13 @@
   // Start countdown when page loads
   startCountdown();
   
-  // Show modal after 3 seconds on page load
+  // Show modal after 3 seconds on page load (only once)
+  let modalShown = false;
   setTimeout(() => {
-    const hasSeenModal = sessionStorage.getItem('hasSeenOfferModal');
-    if (!hasSeenModal && modal) {
+    if (modal && !modalShown) {
+      modalShown = true;
       modal.classList.remove('hidden');
       modal.classList.add('flex');
-      sessionStorage.setItem('hasSeenOfferModal', 'true');
     }
   }, 3000);
   

@@ -49,17 +49,3 @@ import Layout from '../layouts/Layout.astro';
 	<FloatingSideButtons showOnScroll={true} triggerSection="coupons" />
 	<OfferModal />
 </Layout>
-
-<script>
-	// Auto-show offer modal on page load
-	document.addEventListener('DOMContentLoaded', () => {
-		const modal = document.getElementById('offer-modal');
-		if (modal) {
-			// Delay the modal appearance by 1 second for better UX
-			setTimeout(() => {
-				modal.classList.remove('hidden');
-				modal.classList.add('flex');
-			}, 1000);
-		}
-	});
-</script>
